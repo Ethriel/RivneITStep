@@ -1,1 +1,1 @@
-# RivneITStep
+# Tasks, homeworks, etc.
