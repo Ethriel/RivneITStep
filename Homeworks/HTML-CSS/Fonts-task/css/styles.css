@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'Caveat';
+    src: url('fonts/Caveat-Regular.woff2') format('woff2'),
+        url('fonts/Caveat-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FrakturOmniv1';
+    src: url('fonts/FrakturOmniv1.woff2') format('woff2'),
+        url('fonts/FrakturOmniv1.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LIBRARY 3 AM';
+    src: url('fonts/LIBRARY3AM.woff2') format('woff2'),
+        url('fonts/LIBRARY3AM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LIBRARY 3 AM soft';
+    src: url('fonts/LIBRARY3AMsoft.woff2') format('woff2'),
+        url('fonts/LIBRARY3AMsoft.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Perfograma';
+    src: url('fonts/Perfograma.woff2') format('woff2'),
+        url('fonts/Perfograma.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.body-main {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.hs {
+    font-family: 'LIBRARY 3 AM';
+    text-align: center;
+}
+
+.h1-main {
+    color: firebrick;
+}
+
+.h3-main {
+    color: blue;
+}
+
+.description {
+    font-family: Caveat;
+    text-indent: 2%;
+}
+
+.description-second {
+    text-align: center;
+    font-weight: bold;
+}
+
+.p-right {
+    text-align: right;
+}
+
+.h3-ingr {
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    color: blueviolet;
+}
+
+.ingr-parts {
+    font-family: 'Perfograma';
+    text-decoration: underline;
+}
+.cooking{
+    text-indent: 2%;
+    font-size: medium;
+}
+.sauce{
+    font-size: x-large;
+    font-style: italic;
+    border: solid 2px firebrick;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-indent: 0;
+}
