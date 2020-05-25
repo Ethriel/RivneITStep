@@ -1,0 +1,24 @@
+div ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-base {
+    background-color: darkgray;
+    width: 10em;
+    color: white;
+    text-align: center;
+}
+
+.menu-item li {
+    border-bottom: solid black 1px;
+}
+
+.menu-item li a {
+    display: block;
+}
+
+.menu-item li:hover {
+    background-color: red;
+    cursor: grab;
+}

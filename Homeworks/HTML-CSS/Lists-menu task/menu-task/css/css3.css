@@ -1,0 +1,82 @@
+nav {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-items li {
+    width: 4em;
+    float: left;
+    text-align: center;
+}
+
+.menu-items li a {
+    color: gray;
+    display: block;
+    width: 4em;
+    height: 4em;
+}
+
+.menu-items li a div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.h1-title {
+    font-size: 64px;
+    margin: 0;
+}
+
+.nav-menu {
+    font-size: 24px;
+    text-align: right;
+}
+
+.li-home {
+    background-color: rgb(18, 214, 107);
+}
+
+.li-settings {
+    background-color: rgb(255, 103, 255);
+}
+
+.li-twit {
+    background-color: rgb(67, 67, 247);
+}
+
+.li-flask {
+    background-color: rgb(240, 214, 66);
+}
+
+.li-contact {
+    background-color: rgb(250, 139, 157);
+}
+
+.a-link {
+    text-decoration: none;
+    font-size: 20px;
+    color: green;
+    padding: 5px;
+}
+
+.a-link:visited {
+    color: red;
+}
+
+.a-link:hover {
+    background-color: black;
+    color: white;
+}
+
+.a-link:active {
+    color: blue;
+}

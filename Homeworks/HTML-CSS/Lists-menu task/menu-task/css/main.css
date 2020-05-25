@@ -1,0 +1,22 @@
+div ul{
+    list-style-type: none;
+    padding: 0;
+}
+.a-link {
+    text-decoration: none;
+    font-size: 20px;
+    color: green;
+    padding: 5px;
+}
+
+.a-link:visited {
+    color: red;
+}
+
+.a-link:hover {
+    color: teal
+}
+
+.a-link:active {
+    color: blue;
+}

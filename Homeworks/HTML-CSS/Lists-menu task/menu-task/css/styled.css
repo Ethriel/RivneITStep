@@ -1,0 +1,55 @@
+.menu-div {
+    background-color: rgb(40, 188, 238);
+    color: white;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 12%;
+    min-width: 300px;
+}
+
+.h4-menu {
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+.ul-menu {
+    list-style-type: none;
+    padding: 5px;
+}
+
+.ul-menu li {
+    margin-left: 15px;
+    border-top: solid gray 1px;
+    box-shadow: 10px 0 0 rgb(220, 246, 255) inset;
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 15px;
+}
+
+.li-last {
+    border-bottom: solid gray 1px;
+}
+
+li+li {
+    margin-top: 2px
+}
+
+.a-link {
+    text-decoration: none;
+    font-size: 20px;
+    color: green;
+    padding: 5px;
+}
+
+.a-link:visited {
+    color: red;
+}
+
+.a-link:hover {
+    background-color: black;
+    color: white;
+}
+
+.a-link:active {
+    color: blue;
+}

@@ -1,0 +1,24 @@
+.ul-tasks {
+    font-size: xx-large;
+}
+
+.ul-common {
+    list-style-image: url(../img/arrow.png);
+    font-size: large;
+}
+
+.ul-winter {
+    list-style-image: url(../img/winter_16.png);
+}
+
+.ul-spring {
+    list-style-image: url(../img/spring_16.png);
+}
+
+.ul-summer {
+    list-style-image: url(../img/summer_16.png);
+}
+
+.ul-autumn {
+    list-style-image: url(../img/autumn_16.png);
+}

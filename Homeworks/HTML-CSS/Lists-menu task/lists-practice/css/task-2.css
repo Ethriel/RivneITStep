@@ -1,0 +1,49 @@
+/*ROMAN*/
+.ol-roman {
+    font-size: large;
+    list-style-type: none;
+    counter-reset: inc;
+    color: royalblue;
+}
+
+.ol-roman li {
+    counter-increment: inc;
+}
+
+.ol-roman li::before {
+    content: counter(inc, upper-roman)". ";
+    font-weight: bold;
+    color: black
+}
+
+/*DECIMAL*/
+.ol-decimal {
+    list-style-type: none;
+    counter-reset: inc;
+}
+
+.ol-decimal li {
+    counter-increment: inc;
+}
+
+.ol-decimal li::before {
+    content: counter(inc, decimal)". ";
+    font-weight: bold;
+    color: black
+}
+
+/*ALPHA*/
+.ol-alpha {
+    list-style-type: none;
+    counter-reset: inc;
+}
+
+.ol-alpha li {
+    counter-increment: inc;
+}
+
+.ol-alpha li::before {
+    content: counter(inc, lower-alpha)". ";
+    font-weight: bold;
+    color: black
+}
