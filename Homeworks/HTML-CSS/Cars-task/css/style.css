@@ -1,0 +1,51 @@
+.ul-cars li {
+    list-style-type: none;
+    margin: 1%;
+}
+
+.p-cars-h {
+    margin: 1%;
+    width: 90%;
+    text-align: center;
+    display: inline-block;
+}
+
+.p-cars-h a img {
+    width: 15%;
+}
+
+.h1-header {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-left img {
+    width: 95%;
+    margin-left: 3%;
+}
+
+.clear {
+    clear: both;
+}
+
+.p-text {
+    text-decoration: none;
+    font-size: large;
+    text-align: center;
+    margin-right: 3%;
+}
+
+.a-to-main {
+    font-size: larger;
+    text-align: center;
+}
+
+.ul-descr li{
+    list-style-type: none;
+    text-indent: 2%;
+    font-size: 15px;
+}
