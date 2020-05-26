@@ -1,0 +1,48 @@
+html,
+body {
+    height: 100%;
+    width: 70%;
+    margin: 0 auto;
+}
+
+header,
+nav,
+div {
+    border: 0.5px solid black;
+    margin: 0.2%;
+    padding: 0;
+    text-align: center;
+}
+
+.header,
+.nav,
+.footer {
+    height: 12%;
+    width: 100%;
+}
+
+.mid {
+    height: 38%;
+}
+
+.left {
+    float: left;
+    height: 99%;
+    width: 58%;
+}
+
+.left-item {
+    height: 50%;
+    border: 0.5px solid black;
+}
+
+
+.right {
+    height: 99%;
+    width: 38%;
+    float: right;
+}
+
+.footer {
+    margin: 0 auto;
+}
