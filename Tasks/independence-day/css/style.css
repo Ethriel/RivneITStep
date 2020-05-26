@@ -1,0 +1,14 @@
+body{
+    font-size: small;
+}
+h1{
+    font-weight: bold;
+    font-size: xx-large;
+}
+span{
+    color: blue;
+}
+.sec-italic-back{
+    font-style: italic;
+    background-color: papayawhip;
+}

@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+}
+
+.main {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.button {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #0bb6e2;
+    width: 150px;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 0px 1px 4px 0px lightblue;
+    margin: 0 auto;
+}
+
+.button:hover {
+    background-color: #397485;
+}
+
+.button-left {
+    margin: 0;
+}
+
+.header {
+    background-color: #0db5e4;
+}
+
+img {
+    margin: 2px;
+    padding: 2px;
+}
+
+.main-img,
+.bird-img {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.h2 {
+    text-transform: uppercase;
+    color: rgb(49, 47, 47);
+}
+
+.p {
+    color: gray;
+}
+
+.heading {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.left-pic-text,
+.right-pic-text {
+    overflow: hidden;
+}
+
+.left-img {
+    margin-right: 20px;
+}
+
+.right-img {
+    margin-left: 20px;
+    float: right;
+}
+
+.two-pic-par {
+    width: 100%;
+}
+
+.pic-text-under-right {
+    float: right;
+    width: 45%;
+}
+
+.pic-text-under-left {
+    float: left;
+    width: 45%;
+}
+
+.three-pic {
+    width: 100%;
+}
+
+.pic-text-three {
+    float: right;
+    width: 32%;
+}
+
+.main-img,
+.top-text-button,
+.heading,
+.left-pic-text,
+.right-pic-text,
+.pic-text-under-left,
+.pic-text-under-right,
+.pic-text-three,
+.h2 {
+    margin-top: 30px;
+}
+
+.top-content,
+.two-pic-text,
+.two-pic-par,
+.three-pic,
+.bottom {
+    clear: both;
+}

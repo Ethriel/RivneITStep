@@ -1,0 +1,32 @@
+body {
+    background-image: url(../images/abstract-wallpaper-white-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header {
+    margin: 0 0 0 20%;
+    padding: 0;
+}
+
+.header p {
+    margin: 0 0 0 2%;
+}
+
+.ul-descr li {
+    list-style-type: none;
+    margin: 1%;
+}
+
+.float-left img{
+    float: left;
+    margin-bottom: 30px;
+    margin-right: 20px;
+}
+.clear{
+    clear: both;
+}
+.ul-movies li{
+    display: inline;
+    margin: 1%;
+}
