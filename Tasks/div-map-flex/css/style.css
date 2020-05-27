@@ -1,0 +1,86 @@
+body {
+    width: 90%;
+}
+
+div {
+    display: flex;
+    border: 1px solid black;
+}
+
+.da {
+    background-color: red;
+    height: 600px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.db {
+    background-color: orange;
+    width: 15%;
+    height: 90%;
+}
+
+.dc {
+    background-color: yellow;
+    width: 75%;
+    height: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dd {
+    background-color: green;
+    width: 90%;
+    height: 30%;
+    justify-content: center;
+    align-items: center;
+}
+
+.de {
+    background-color: blue;
+    height: 90%;
+    width: 30%;
+}
+
+.df {
+    background-color: darkviolet;
+    height: 90%;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+}
+
+.dg {
+    background-color: violet;
+    height: 90%;
+    width: 45%;
+}
+
+.dg-last {
+    width: 90%;
+}
+
+.dh {
+    background-color: grey;
+    height: 90%;
+    width: 45%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.di {
+    background-color: white;
+    height: 45%;
+    width: 90%;
+}
+
+.da,
+.dc,
+.dd,
+.df,
+.dh {
+    justify-content: space-around;
+}
