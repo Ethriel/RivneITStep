@@ -1,0 +1,88 @@
+.main,
+.footer {
+    width: 100%;
+    background-color: lightgray;
+
+}
+
+.main {
+    height: 88%;
+    border: 1px solid magenta;
+}
+
+.footer {
+    height: 10%;
+    border: 1px solid cyan;
+}
+
+.main-container,
+.header,
+.content-sidebar,
+.sub,
+.footer-container {
+    margin: 0.8% auto;
+}
+
+.header,
+.content-sidebar {
+    width: 95%;
+}
+
+.main-container,
+.footer-container {
+    width: 80%;
+}
+
+.main-container {
+    height: 95%;
+    border: 1px solid red;
+}
+
+.header {
+    height: 20%;
+    border: 1px solid yellow;
+}
+
+.content-sidebar {
+    height: 78%;
+}
+
+.content-container,
+.sidebar-container {
+    height: 98%;
+}
+
+.content-container {
+    float: left;
+    width: 67%;
+}
+
+.sidebar-container {
+    float: right;
+    width: 29%;
+}
+
+.sidebar,
+.content {
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    border: 1px solid orange;
+}
+
+.content {
+    border: 1px solid green;
+}
+
+.sub {
+    width: 95%;
+    height: 25%;
+    border: 1px solid violet;
+}
+
+.footer-container {
+    height: 80%;
+    border: 1px solid yellowgreen;
+}

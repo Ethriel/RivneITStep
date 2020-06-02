@@ -1,0 +1,119 @@
+.main,
+.header,
+.nav,
+.article-div,
+.footer-bootom {
+    height: 100%;
+    width: 98%;
+}
+
+.main,
+.header,
+.nav,
+.header-article,
+.between,
+.section,
+.footer-article,
+.div-asides,
+.asides,
+.aside-one,
+.aside-two,
+.footer-bottom {
+    margin: 1% auto;
+}
+.main {
+    border: 3px solid silver;
+}
+
+.nav,
+.footer-bottom {
+    height: 7.5%;
+}
+
+.footer-article,
+.footer-bottom {
+    border: 1px solid orange;
+}
+
+.header,
+.header-article {
+    border: 1px solid green;
+}
+
+.header {
+    height: 19%;
+}
+
+.nav {
+    border: 1px solid pink;
+}
+
+.article-div {
+    height: 60%;
+}
+
+.article,
+.asides,
+.div-article,
+.div-asides {
+    height: 98%;
+}
+
+.div-article {
+    float: left;
+    width: 69%;
+}
+
+.div-asides {
+    float: right;
+    width: 29%;
+}
+
+.article,
+.asides {
+    display: inline-block;
+    text-align: center;
+}
+
+.article {
+    width: 100%;
+    border: 1px solid royalblue;
+}
+
+.header-article,
+.section {
+    height: 15%;
+    width: 95%;
+}
+
+.between {
+    height: 37%;
+}
+
+.section {
+    border: 1px solid magenta;
+}
+
+.footer-article {
+    height: 9%;
+    width: 95%;
+}
+
+.asides {
+    width: 100%;
+    border: 1px solid sandybrown;
+}
+
+.aside-one,
+.aside-two {
+    border: 1px solid cyan;
+    width: 95%;
+}
+
+.aside-one {
+    height: 50%;
+}
+
+.aside-two {
+    height: 40%;
+}
