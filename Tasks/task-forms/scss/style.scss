@@ -1,0 +1,139 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+}
+
+.main,
+.container,
+.login,
+.userName,
+.password,
+.button,
+.form,
+.text-forgot {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container {
+    width: $defaultWidth;
+}
+
+.container,
+.login {
+    height: $defaultHeight;
+}
+
+.container {
+    max-width: $maxWidthMain;
+    background-color: $mainBg;
+}
+
+.login,
+.social {
+    max-width: $maxWidthForm;
+    width: 80%;
+}
+
+.login {
+    background-color: $formBg;
+}
+
+input {
+    border: none;
+    margin: 10px;
+}
+
+.userName,
+.password,
+.button {
+    width: 95%;
+}
+
+input[type=text],
+input[type=password],
+input[type=button] {
+    width: 95%;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+}
+
+input[type=text],
+input[type=password] {
+    background-color: $inputBg;
+
+    &::placeholder {
+        font-weight: bold;
+        color: $plholCol;
+    }
+}
+
+input[type=button] {
+    display: block;
+    margin: 0 auto;
+    background-color: $btnCol;
+    color: $btnTextCol;
+}
+
+.text-forgot {
+    margin-top: 60px;
+}
+
+.text {
+    color: $forgotCol;
+    font-weight: bold;
+}
+
+.or-login {
+    margin: 20px;
+
+    .or {
+        font-weight: bold;
+        color: $inputBg;
+        font-size: 20px;
+    }
+}
+
+.social {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+
+    i {
+        font-size: 16px;
+        color: $inputBg;
+    }
+}
+
+.fb {
+    background-color: $fbCol;
+}
+
+.tw {
+    background-color: $twCol;
+}

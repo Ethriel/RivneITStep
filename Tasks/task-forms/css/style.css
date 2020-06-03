@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+}
+
+.main,
+.container,
+.login,
+.userName,
+.password,
+.button,
+.form,
+.text-forgot {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+}
+
+.container,
+.login {
+  height: 100%;
+}
+
+.container {
+  max-width: 500px;
+  background-color: #e55d45;
+}
+
+.login,
+.social {
+  max-width: 300px;
+  width: 80%;
+}
+
+.login {
+  background-color: #e6e4e5;
+}
+
+input {
+  border: none;
+  margin: 10px;
+}
+
+.userName,
+.password,
+.button {
+  width: 95%;
+}
+
+input[type=text],
+input[type=password],
+input[type=button] {
+  width: 95%;
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+}
+
+input[type=text],
+input[type=password] {
+  background-color: #ffffff;
+}
+input[type=text]::-ms-input-placeholder, input[type=password]::-ms-input-placeholder {
+  font-weight: bold;
+  color: #ccc8c7;
+}
+input[type=text]::placeholder,
+input[type=password]::placeholder {
+  font-weight: bold;
+  color: #ccc8c7;
+}
+
+input[type=button] {
+  display: block;
+  margin: 0 auto;
+  background-color: #32a759;
+  color: #e8fdee;
+}
+
+.text-forgot {
+  margin-top: 60px;
+}
+
+.text {
+  color: #dd6145;
+  font-weight: bold;
+}
+
+.or-login {
+  margin: 20px;
+}
+.or-login .or {
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+button {
+  width: 100px;
+  height: 40px;
+}
+button i {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.fb {
+  background-color: #3a5ba0;
+}
+
+.tw {
+  background-color: #1cb8eb;
+}
