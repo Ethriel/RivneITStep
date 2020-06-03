@@ -1,0 +1,101 @@
+.header-links,
+.site-navigation,
+.category,
+.callout,
+.compare,
+.pr-list,
+.sub-list,
+.news,
+.footer-links,
+.footer-callout {
+    background-color: #716dcc;
+}
+
+.header,
+.footer {
+    width: 100%;
+    height: 12%;
+}
+
+.header,
+.left-container,
+.right-container,
+.footer {
+    background-color: #c9ffef;
+}
+
+.header-links,
+.right-container {
+    float: right;
+}
+
+.header-links,
+.site-navigation {
+    height: 40%;
+}
+
+.header-links {
+    width: 25%;
+}
+
+.site-navigation {
+    width: 99%;
+    margin: 0 auto;
+}
+
+.left-container,
+.right-container {
+    height: 65%;
+}
+
+.left-container {
+    float: left;
+    width: 24%;
+}
+
+.category,
+.callout,
+.compare,
+.pr-list,
+.sub-list {
+    width: 100%;
+    margin-bottom: 1%;
+}
+
+.category {
+    height: 49%;
+}
+
+.callout,
+.compare {
+    height: 19%;
+}
+
+.right-container {
+    width: 74%;
+}
+
+.pr-list {
+    height: 60%;
+}
+
+.sub-list {
+    height: 35%;
+}
+
+.footer,
+.site-navigation {
+    clear: both;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.news,
+.footer-links,
+.footer-callout {
+    height: 100%;
+    width: 33%;
+}
