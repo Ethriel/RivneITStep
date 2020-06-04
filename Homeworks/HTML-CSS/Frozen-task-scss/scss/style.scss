@@ -1,0 +1,187 @@
+@import "mixins.scss";
+@import "variables.scss";
+
+* {
+    margin: 0;
+}
+
+html,
+body,
+.main,
+.header,
+.additional {
+    width: 100%;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0 auto;
+}
+
+.main,
+.header,
+.main-img-section,
+.descr,
+.text-descr,
+.new-product,
+.additional,
+.product,
+.story,
+.flavors,
+.location,
+.footer,
+.icons {
+    display: flex;
+}
+
+.main-img-section,
+.new-product,
+.descr,
+.additional,
+.product,
+.story,
+.flavors,
+.location,
+.footer,
+.icons {
+    @include center-flex;
+}
+
+.main,
+.text-descr,
+.product,
+.story,
+.flavors,
+.location,
+.footer {
+    flex-direction: column;
+}
+
+.main {
+    height: 100%;
+}
+
+.header,
+.descr,
+.additional,
+.icons {
+    flex-direction: row;
+}
+
+.header {
+    background-color: $headerBg;
+}
+
+.header-img,
+.menu {
+    margin: 2% 0% 2% 5%;
+}
+
+.header-img {
+    width: 30%;
+}
+
+.menu {
+    width: 70%;
+
+    ul {
+        list-style-type: none;
+
+        li {
+            float: left;
+            margin: 1%;
+
+            a {
+                color: $itemCol;
+                text-decoration: none;
+                text-transform: uppercase;
+
+                &:hover {
+                    color: $hoverCol;
+                }
+            }
+        }
+    }
+}
+
+.new-product {
+    background-color: $nProdBg;
+}
+
+.text-descr {
+    width: 50%;
+    margin-left: 15%;
+
+    h1,
+    h3 {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 30px;
+        color: $twistedCol;
+    }
+
+    h3 {
+        font-size: 18px;
+        text-transform: uppercase;
+        color: $newPrCol;
+    }
+
+    p {
+        width: 100%;
+        font-size: 14px;
+        color: $descrTextCol;
+    }
+}
+
+.img-descr {
+    width: 40%;
+    margin-right: 15%;
+}
+
+.additional {
+    a {
+        display: block;
+        text-decoration: none;
+    }
+
+    justify-content: space-around;
+    background-color: $addCol;
+}
+
+.additional a:nth-child(1n) {
+    margin-left: $mrgAdd;
+}
+
+.additional a:nth-child(4n) {
+    margin-right: $mrgAdd;
+}
+
+.add-text {
+    text-transform: uppercase;
+    color: $addTextCol;
+}
+
+.footer {
+    background-color: $footerCol;
+
+    .rights {
+        margin: 1% 3% 3% 3%;
+        p {
+            color: $addTextCol;
+        }
+    }
+}
+
+.icons {
+    width: 30%;
+    justify-content: space-around;
+    margin: 3%;
+
+    i {
+        font-size: 30px;
+        color: $iconCol;
+    }
+}
