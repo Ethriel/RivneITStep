@@ -1,0 +1,129 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+html,
+body {
+    height: 100%;
+    margin: 0 auto;
+}
+
+.main {
+    height: 100%;
+}
+
+.main,
+.header,
+.about-us,
+.main-info,
+.left-info,
+.left-articles,
+.l-article,
+.right-info,
+.header-info {
+    display: flex;
+}
+
+.main,
+.about-us,
+.left-info,
+.right-info,
+.header-info {
+    @include flexColumn();
+}
+
+.header,
+.l-article {
+    @include flexRow();
+    width: 100%;
+}
+
+.header {
+    justify-content: space-between;
+}
+
+.header-text {
+    background-image: url(../img/topRectangle.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.header-p{
+    @include pTextStyle();
+    margin-top: 0;
+    padding: 0;
+}
+.header-h1 {
+    @include h2Style();
+}
+
+.img-top {
+    width: 25%;
+}
+
+.header-info {
+    margin-right: 5%;
+    align-self: center;
+}
+
+.empty {
+    height: 50%;
+    min-height: 50%;
+    width: 100%;
+    background-color: $emptyBg;
+}
+
+.about-us {
+    @include flexCenter();
+    background-color: $aboutUsBg;
+}
+
+.about-h2 {
+    @include textStyle();
+    @include h2Style();
+    color: $white;
+}
+
+.span-red {
+    color: $redBasic;
+}
+
+.p-text {
+    @include textStyle();
+    @include pTextStyle();
+    color: $pTextCol;
+    width: 60%;
+}
+
+.info-h2 {
+    @include h2Style();
+    color: $darkGrey;
+}
+
+.l-article {
+    width: 28%;
+}
+
+.l-info-h3 {
+    @include h3Style();
+    color: $redBasic;
+}
+
+.circle {
+    margin-top: 10%;
+    margin-right: 5%;
+}
+
+.my-red-circle {
+    color: $redBasic;
+}
+
+.my-white-ico {
+    color: $white;
+}
+
+.my-grey-circle {
+    color: $darkGrey;
+}
+
+.img-grey-rect {
+    width: 95%;
+}

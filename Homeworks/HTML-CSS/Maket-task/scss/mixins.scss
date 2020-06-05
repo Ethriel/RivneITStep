@@ -1,0 +1,43 @@
+@mixin flexCenter {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+@mixin flexRow {
+    flex-direction: row;
+}
+
+@mixin flexColumn {
+    flex-direction: column;
+}
+
+@mixin textStyle {
+    font-family: "Open Sans";
+    line-height: 20px;
+}
+
+@mixin h2Style {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@mixin pTextStyle {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+@mixin h3Style {
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+@mixin h1Style {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
