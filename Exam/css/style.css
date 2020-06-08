@@ -1,25 +1,385 @@
-html,
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@font-face {
+  font-family: "Gabriola";
+  src: url("../fonts/Gabriola.woff2") format("woff2"), url("../fonts/Gabriola.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 body {
-    height: 100%;
-    min-height: 100%;
-}
-body{
-    background-color: black;
-}
-.main-div,
-.child-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+  margin: 0;
+  padding: 0;
 }
 
-.main-div {
-    width: 40%;
-    height: 100%;
-    min-height: 100%;
-    background-image: url(../img/coupon.png);
-    background-repeat: no-repeat;
-    background-size: contain;
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+div {
+  display: flex;
+}
+
+.main-container {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
+
+.main-container {
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.header {
+  width: 100%;
+  height: 10%;
+  background-color: #03a9f4;
+  justify-content: space-around;
+}
+
+.logo-and-text {
+  flex-direction: row;
+}
+
+.header-text {
+  flex-direction: column;
+  height: 100%;
+  margin-top: -12%;
+}
+
+.prov-cus-wr-serv {
+  margin-top: -15%;
+}
+
+.blueessay {
+  color: #ffffff;
+  font-family: Poppins;
+  font-size: 39px;
+  font-weight: 400;
+}
+
+.essay {
+  color: #ecfa4d;
+  font-family: Poppins;
+  text-transform: uppercase;
+}
+
+.prov-cus-wr-serv {
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.26px;
+}
+
+.ul-menu {
+  list-style-type: none;
+}
+.ul-menu li {
+  float: left;
+  margin-right: 5%;
+}
+.ul-menu li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Poppins - Semi Bold";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.my-phone {
+  color: #ffffff;
+}
+
+.my-phone,
+.btn-si,
+.btn-order {
+  align-self: center;
+}
+
+.btn-si,
+.btn-order {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100px;
+  height: 40px;
+  border: 1px solid #1088c7;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.24px;
+}
+
+.btn-si {
+  background-color: #0287c3;
+}
+
+.btn-order {
+  background-color: #f75e2e;
+}
+
+.main-info {
+  background-image: url(../img/main-bg.png);
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.text-button {
+  flex-direction: column;
+}
+
+.main-info-h1 {
+  font-family: Poppins;
+  font-size: 32px;
+  color: #323538;
+  font-weight: 400;
+  width: 50%;
+}
+
+.main-info-bes-net {
+  color: #03a9f4;
+  letter-spacing: -0.94px;
+}
+
+.main-info-p {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #51555a;
+}
+
+.main-info-button {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #1088c7;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.24px;
+  background-color: #f75e2e;
+  width: 220px;
+}
+
+.selects {
+  align-content: center;
+  justify-content: space-around;
+  width: 80%;
+  align-self: center;
+  background-color: #0286c3;
+  align-content: center;
+  align-items: center;
+}
+
+.select-opt {
+  flex-direction: column;
+}
+
+.lab-select {
+  font-family: Poppins;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.select-opt select {
+  border: 1px solid #d8dadb;
+  background-color: #f6f9f9;
+  width: 202px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.sel-opt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #656a70;
+  font-family: Poppins;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+input,
+textarea {
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  padding: 10px;
+}
+
+input[type=button] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+.input-group {
+  border: 1px solid #d8dadb;
+  background-color: #f6f9f9;
+  width: 202px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  clear: both;
+  margin: 15px 0;
+  position: relative;
+}
+
+.input-group input[type=button] {
+  background-color: #eeeeee;
+  min-width: 38px;
+  width: auto;
+}
+
+.input-group .quantity-field {
+  position: relative;
+  height: 38px;
+  left: -6px;
+  text-align: center;
+  width: 62px;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 0 5px;
+  resize: vertical;
+}
+
+.welcome-sitename {
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.welcome-article {
+  flex-direction: column;
+  margin-left: 5%;
+}
+
+.id-item-white,
+.id-item-blue {
+  font-family: Poppins;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.id-item-blue {
+  color: #03a9f4;
+}
+
+.id-item-white {
+  color: #ffffff;
+}
+
+.article-header-black,
+.article-header-white {
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.article-header-black {
+  color: #1e2021;
+}
+
+.article-header-white {
+  color: #ffffff;
+}
+
+.par-grey,
+.par-white {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.par-grey {
+  color: #51555a;
+}
+
+.par-white {
+  color: #ffffff;
+}
+
+.our-advantages,
+.adv-item {
+  flex-direction: column;
+}
+
+.our-advantages {
+  background-image: url(../img/advantages-bg.png);
+  width: 100%;
+}
+
+.adv-items {
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.adv-img {
+  width: 20%;
+}
+
+.adv-item {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: #ffffff;
+  width: 30%;
+}
+
+.adv-text {
+  flex-direction: column;
+}
+
+.btn-place-order,
+.adv-text {
+  align-self: center;
+}
+
+.btn-place {
+  width: 220px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.center-h3,
+.center-h4,
+.p-adv {
+  text-align: center;
+}
+
+.adv-h4 {
+  font-family: Poppins;
+  font-size: 17px;
+  font-weight: 500;
+  color: #1e2021;
+}
+
+.how-it-works {
+  flex-direction: column;
+}
+
+.hiw-item {
+  width: 20%;
 }

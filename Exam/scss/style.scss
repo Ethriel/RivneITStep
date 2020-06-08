@@ -1,18 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+    font-family: 'Gabriola';
+    src: url('../fonts/Gabriola.woff2') format('woff2'),
+        url('../fonts/Gabriola.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+}
+
+div {
+    display: flex;
+}
+
+.main-container {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    min-width: 100%;
+}
+
 $mainCol: #03a9f4;
 $fontEssCol: #ecfa4d;
 $white: #ffffff;
 $signInCol: #0287c3;
 $orange: #f75e2e;
 $welcomeCol: #0286c3;
+$mihCol: #323538;
 $parTextCol: #51555a;
 $hTextCol: #1e2021;
 $dropDownItemBg: #f6f9f9;
 $dropDownItemTextCol: #656a70;
 
-$borderSignIn: 1px solid #1088c7;
+$borderButton: 1px solid #1088c7;
 $borderDropDownItem: 1px solid #d8dadb;
 
 $subitemShadow: 0 4px 20px rgba(202, 202, 202, 0.25);
+
+
+@mixin centerFlex {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+@mixin rowFlex {
+    flex-direction: row;
+}
+
+@mixin colFlex {
+    flex-direction: column;
+}
 
 @mixin blueessaysite {
     color: $white;
@@ -55,10 +104,10 @@ $subitemShadow: 0 4px 20px rgba(202, 202, 202, 0.25);
     text-transform: uppercase;
 }
 
-@mixin btnSignIn {
+@mixin btnCommon {
     width: 100px;
     height: 40px;
-    border: $borderSignIn;
+    border: $borderButton;
 }
 
 @mixin textBtn {
@@ -69,9 +118,32 @@ $subitemShadow: 0 4px 20px rgba(202, 202, 202, 0.25);
     letter-spacing: 0.24px;
 }
 
+@mixin mainInfoH {
+    font-family: Poppins;
+    font-size: 32px;
+    color: $mihCol;
+    font-weight: 400;
+}
+
+@mixin maininfoHBlue {
+    color: $mainCol;
+    letter-spacing: -0.94px;
+}
+
+@mixin label {
+    font-family: Poppins;
+    color: $white;
+    font-size: 13px;
+    font-weight: 500;
+}
+
 @mixin dropDownItem {
     border: $borderDropDownItem;
     background-color: $dropDownItemBg;
+    width: 202px;
+    height: 50px;
+    display: flex;
+    @include centerFlex();
 }
 
 @mixin dropDownItemText {
@@ -97,7 +169,7 @@ $subitemShadow: 0 4px 20px rgba(202, 202, 202, 0.25);
 
 @mixin articleHeader {
     font-family: Poppins;
-    font-size: 35px;
+    font-size: 24px;
     font-weight: 400;
 }
 
@@ -150,9 +222,296 @@ $subitemShadow: 0 4px 20px rgba(202, 202, 202, 0.25);
     font-size: 17px;
     font-weight: 400;
 }
+
 @mixin sectionBottomHeader {
     color: $white;
     font-family: Poppins;
     font-size: 16px;
     font-weight: 500;
+}
+
+.main-container {
+    @include colFlex();
+    align-items: center;
+    align-content: center;
+}
+
+.header {
+    width: 100%;
+    height: 10%;
+    background-color: $mainCol;
+    justify-content: space-around;
+}
+
+.logo-and-text {
+    @include rowFlex();
+}
+
+.header-text {
+    @include colFlex();
+    height: 100%;
+    margin-top: -12%;
+}
+
+.prov-cus-wr-serv {
+    margin-top: -15%;
+}
+
+.blueessay {
+    @include blueessaysite();
+}
+
+.essay {
+    @include essay();
+}
+
+.prov-cus-wr-serv {
+    @include headerBot();
+}
+
+.ul-menu {
+    li {
+        float: left;
+        margin-right: 5%;
+
+        a {
+            text-decoration: none;
+            @include mainMenuItem();
+        }
+    }
+
+    list-style-type: none;
+}
+
+.my-phone {
+    color: $white;
+}
+
+.my-phone,
+.btn-si,
+.btn-order {
+    align-self: center;
+}
+
+.btn-si,
+.btn-order {
+    display: flex;
+    @include centerFlex();
+    @include btnCommon();
+    @include textBtn();
+}
+
+.btn-si {
+    background-color: $signInCol;
+}
+
+.btn-order {
+    background-color: $orange;
+}
+
+.main-info {
+    background-image: url(../img/main-bg.png);
+    @include centerFlex();
+}
+
+.text-button {
+    @include colFlex();
+}
+
+.main-info-h1 {
+    @include mainInfoH();
+    width: 50%;
+}
+
+.main-info-bes-net {
+    @include maininfoHBlue();
+}
+
+.main-info-p {
+    @include paragraph();
+    @include paragraphGrey();
+}
+
+.main-info-button {
+    @include btnCommon();
+    @include textBtn();
+    background-color: $orange;
+    width: 220px;
+}
+
+.selects {
+    align-content: center;
+    justify-content: space-around;
+    width: 80%;
+    align-self: center;
+    background-color: $welcomeCol;
+    align-content: center;
+    align-items: center;
+}
+
+.select-opt {
+    @include colFlex();
+}
+
+.lab-select {
+    @include label();
+}
+
+.select-opt {
+    select {
+        @include dropDownItem();
+    }
+}
+
+.sel-opt {
+    display: flex;
+    @include centerFlex();
+    @include dropDownItemText();
+}
+
+input,
+textarea {
+    border: 1px solid #eeeeee;
+    box-sizing: border-box;
+    margin: 0;
+    outline: none;
+    padding: 10px;
+}
+
+input[type="button"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+.input-group {
+    @include dropDownItem();
+    clear: both;
+    margin: 15px 0;
+    position: relative;
+}
+
+.input-group input[type='button'] {
+    background-color: #eeeeee;
+    min-width: 38px;
+    width: auto;
+}
+
+.input-group .quantity-field {
+    position: relative;
+    height: 38px;
+    left: -6px;
+    text-align: center;
+    width: 62px;
+    display: inline-block;
+    font-size: 13px;
+    margin: 0 0 5px;
+    resize: vertical;
+}
+
+.welcome-sitename {
+    width: 80%;
+    @include centerFlex();
+    justify-content: space-between;
+}
+
+.welcome-article {
+    @include colFlex();
+    margin-left: 5%;
+}
+
+.id-item-white,
+.id-item-blue {
+    @include idItem();
+}
+
+.id-item-blue {
+    @include idWhiteBg();
+}
+
+.id-item-white {
+    @include idBlueBg();
+}
+
+.article-header-black,
+.article-header-white {
+    @include articleHeader();
+}
+
+.article-header-black {
+    @include articleHeaderBlack();
+}
+
+.article-header-white {
+    @include articleHeaderWhite();
+}
+
+.par-grey,
+.par-white {
+    @include paragraph();
+}
+
+.par-grey {
+    @include paragraphGrey();
+}
+
+.par-white {
+    @include paragraphWhite();
+}
+
+.our-advantages,
+.adv-item {
+    @include colFlex();
+}
+
+.our-advantages {
+    background-image: url(../img/advantages-bg.png);
+    width: 100%;
+}
+
+.adv-items {
+    @include rowFlex();
+    justify-content: space-around;
+}
+
+.adv-img {
+    width: 20%;
+}
+
+.adv-item {
+    @include centerFlex();
+    background-color: $white;
+    width: 30%;
+}
+
+.adv-text {
+    @include colFlex();
+}
+
+.btn-place-order,
+.adv-text {
+    align-self: center;
+}
+
+.btn-place {
+    width: 220px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.center-h3,
+.center-h4,
+.p-adv {
+    text-align: center;
+}
+
+.adv-h4 {
+    @include subItemHeader();
+}
+
+.how-it-works {
+    @include colFlex();
+}
+
+.hiw-item {
+    width: 20%;
 }
