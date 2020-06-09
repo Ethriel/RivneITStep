@@ -41,43 +41,17 @@ div {
   justify-content: space-around;
 }
 
-.logo-and-text {
-  flex-direction: row;
+.menu-phone-buttons {
+  width: 50%;
+  justify-content: space-between;
 }
 
-.header-text {
-  flex-direction: column;
-  height: 100%;
-  margin-top: -12%;
-}
-
-.prov-cus-wr-serv {
-  margin-top: -15%;
-}
-
-.blueessay {
-  color: #ffffff;
-  font-family: Poppins;
-  font-size: 39px;
-  font-weight: 400;
-}
-
-.essay {
-  color: #ecfa4d;
-  font-family: Poppins;
-  text-transform: uppercase;
-}
-
-.prov-cus-wr-serv {
-  color: #ffffff;
-  font-family: "Open Sans";
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: 0.26px;
+.menu {
+  width: 50%;
 }
 
 .ul-menu {
+  width: 100%;
   list-style-type: none;
 }
 .ul-menu li {
@@ -382,4 +356,67 @@ input[type=button] {
 
 .hiw-item {
   width: 20%;
+}
+
+.discounts-testimonials-container,
+.testimonials,
+.discount-program {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.discounts-testimonials-container {
+  width: 100%;
+  min-height: 60%;
+}
+
+.discount-program {
+  background-image: url(../img/discounts-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100%;
+}
+
+.p-disc {
+  width: 50%;
+  text-align: center;
+}
+
+.p-test {
+  width: 50%;
+  text-align: justify;
+}
+
+.h4-bold {
+  font-weight: bold;
+}
+
+.par-date {
+  font-family: Poppins;
+  font-size: 13px;
+  font-weight: 300;
+  text-align: center;
+  color: #a3a6a9;
+}
+
+.offs {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.off-item {
+  flex-direction: column;
+  width: 50%;
+}
+
+.h-off {
+  font-family: Poppins;
+  color: #f75e2e;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 40px;
+  text-transform: uppercase;
 }
