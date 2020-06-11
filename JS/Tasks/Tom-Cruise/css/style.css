@@ -1,0 +1,62 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.actor {
+    display: flex;
+    width: 70%;
+    margin: 2% auto;
+}
+.description,.films,h1,#plot-text{
+    padding: 2%;
+}
+.description {
+    width: 45%;
+    background-color: white;
+}
+
+.avatar-img {
+    width: 50%;
+    height: 50%;
+    margin-right: 5%;
+}
+
+.films {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.films input[type="button"] {
+    margin-right: 0.5%;
+}
+
+#plot-text {
+    color: red;
+    display: none;
+}
+
+#plot {
+    background-color: #e0ffff;
+    display: none;
+    padding: 2%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#plot p {
+    text-align: center;
+}
