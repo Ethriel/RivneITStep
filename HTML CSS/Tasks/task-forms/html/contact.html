@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact form</title>
+    <link href="../css/contact.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main">
+        <div class="contact-form">
+            <div class="greetings">
+                <h2>Contact form</h2>
+                <p>Please fill in your information and we'll be sending your order.</p>
+            </div>
+            <div class="your-name">
+                <h4 class="text-name">Your name</h4>
+                <input type="text" placeholder="first name">
+                <input type="text" placeholder="last name">
+            </div>
+
+            <div class="your-email">
+                <h4 class="text-email">Your email</h4>
+                <input type="email" placeholder="email">
+            </div>
+
+            <div class="phone">
+                <h4 class="text-phone">Phone*</h4>
+                <input type="number" min="0" max="9" placeholder="000">
+                <input type="number" min="0" max="9" placeholder="000">
+                <input type="number" min="0" max="9" placeholder="0000">
+            </div>
+
+            <div class="message-subject">
+                <h4 class="text-subject">Message subject*</h4>
+                <select name="" id="">
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="message">
+                <h4 class="text-message">Message*</h4>
+                <textarea name="" id="" cols="70" rows="5"></textarea>
+            </div>
+            <hr>
+            <button>Submit form</button>
+        </div>
+    </div>
+</body>
+
+</html>

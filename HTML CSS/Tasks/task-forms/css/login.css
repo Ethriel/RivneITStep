@@ -9,28 +9,17 @@ body {
   margin: 0 auto;
 }
 
-.main {
+.main,
+.container {
   height: 100%;
   width: 100%;
 }
 
-.main,
-.container,
-.login,
-.userName,
-.password,
-.button,
-.form,
-.text-forgot {
+div {
   display: flex;
   align-items: center;
-  align-content: center;
   justify-content: center;
   flex-direction: column;
-}
-
-.container {
-  width: 100%;
 }
 
 .container,
@@ -41,6 +30,15 @@ body {
 .container {
   max-width: 500px;
   background-color: #e55d45;
+}
+
+.header h2 {
+  font-size: 20px;
+}
+
+.form,
+.login {
+  width: 100%;
 }
 
 .login,
@@ -55,36 +53,34 @@ body {
 
 input {
   border: none;
-  margin: 10px;
+  margin: 5%;
 }
 
 .userName,
 .password,
 .button {
-  width: 95%;
+  width: 90%;
 }
 
 input[type=text],
 input[type=password],
 input[type=button] {
-  width: 95%;
+  width: 100%;
   font-size: 16px;
-  padding: 10px;
+  padding: 5%;
   text-align: center;
 }
 
 input[type=text],
 input[type=password] {
   background-color: #ffffff;
-}
-input[type=text]::-ms-input-placeholder, input[type=password]::-ms-input-placeholder {
-  font-weight: bold;
-  color: #ccc8c7;
+  font-size: 12px;
 }
 input[type=text]::placeholder,
 input[type=password]::placeholder {
   font-weight: bold;
   color: #ccc8c7;
+  font-size: 14px;
 }
 
 input[type=button] {
@@ -93,9 +89,15 @@ input[type=button] {
   background-color: #32a759;
   color: #e8fdee;
 }
+input[type=button]:hover {
+  cursor: grab;
+}
 
 .text-forgot {
-  margin-top: 60px;
+  margin-top: 15%;
+}
+.text-forgot:hover {
+  cursor: grab;
 }
 
 .text {
@@ -104,7 +106,7 @@ input[type=button] {
 }
 
 .or-login {
-  margin: 20px;
+  margin: 10%;
 }
 .or-login .or {
   font-weight: bold;
@@ -127,6 +129,9 @@ button {
 button i {
   font-size: 16px;
   color: #ffffff;
+}
+button:hover {
+  cursor: grab;
 }
 
 .fb {

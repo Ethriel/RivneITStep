@@ -1,5 +1,5 @@
-@import "variables.scss";
-@import "mixins.scss";
+@import "login-mixins.scss";
+@import "login-variables.scss";
 
 * {
     margin: 0;
@@ -7,33 +7,22 @@
 
 html,
 body {
-    height: 100%;
+    height: $defaultHeight;
     width: 70%;
     margin: 0 auto;
 }
 
-.main {
-    height: 100%;
-    width: 100%;
+.main,
+.container {
+    height: $defaultHeight;
+    width: $defaultWidth;
 }
 
-.main,
-.container,
-.login,
-.userName,
-.password,
-.button,
-.form,
-.text-forgot {
+div {
     display: flex;
     align-items: center;
-    align-content: center;
     justify-content: center;
     flex-direction: column;
-}
-
-.container {
-    width: $defaultWidth;
 }
 
 .container,
@@ -44,6 +33,17 @@ body {
 .container {
     max-width: $maxWidthMain;
     background-color: $mainBg;
+}
+
+.header {
+    h2 {
+        font-size: 20px;
+    }
+}
+
+.form,
+.login {
+    width: $defaultWidth;
 }
 
 .login,
@@ -58,31 +58,33 @@ body {
 
 input {
     border: none;
-    margin: 10px;
+    margin: 5%;
 }
 
 .userName,
 .password,
 .button {
-    width: 95%;
+    width: 90%;
 }
 
 input[type=text],
 input[type=password],
 input[type=button] {
-    width: 95%;
+    width: $defaultWidth;
     font-size: 16px;
-    padding: 10px;
+    padding: 5%;
     text-align: center;
 }
 
 input[type=text],
 input[type=password] {
     background-color: $inputBg;
+    font-size: 12px;
 
     &::placeholder {
         font-weight: bold;
         color: $plholCol;
+        font-size: 14px;
     }
 }
 
@@ -91,10 +93,18 @@ input[type=button] {
     margin: 0 auto;
     background-color: $btnCol;
     color: $btnTextCol;
+
+    &:hover {
+        cursor: grab;
+    }
 }
 
 .text-forgot {
-    margin-top: 60px;
+    margin-top: 15%;
+
+    &:hover {
+        cursor: grab;
+    }
 }
 
 .text {
@@ -103,7 +113,7 @@ input[type=button] {
 }
 
 .or-login {
-    margin: 20px;
+    margin: 10%;
 
     .or {
         font-weight: bold;
@@ -127,6 +137,10 @@ button {
     i {
         font-size: 16px;
         color: $inputBg;
+    }
+
+    &:hover {
+        cursor: grab;
     }
 }
 
