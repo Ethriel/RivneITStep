@@ -1,15 +1,6 @@
 @import "flight-mixins.scss";
 @import "flight-variables.scss";
 
-$defaultWidth: 100%;
-$defaultHeight: 100%;
-$mainBlueCol: #0f4372;
-$textColWhite: #d5e1df;
-$textColGray: #737067;
-$textColBlack: #0b0000;
-$flightsContainerBgCol: #f5f5f5;
-$sidebarBgCol: #ffffff;
-
 * {
     margin: 0;
 }
@@ -102,22 +93,32 @@ div {
 }
 
 .search-btn {
-    background-color: $mainBlueCol;
-    color: $textColWhite;
-    font-size: 16px;
-    border: 1px solid $mainBlueCol;
-    border-radius: 30%;
+    @include buttonMix();
     width: 140px;
     height: 40px;
 }
 
 .sidebars {
-    width: $defaultWidth;
+    width: 94%;
 }
 
 .left {
     margin-left: 5%;
+    width: 23%;
     background-color: $sidebarBgCol;
+
+    * {
+        margin-left: 0.8%;
+    }
+}
+
+.stops,
+.prices,
+.airlines {
+    flex-direction: column;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    width: 100%;
 }
 
 .checkbox-container {
@@ -127,6 +128,8 @@ div {
 }
 
 .price-container {
+    width: 50%;
+
     * {
         margin-right: 2%;
     }
@@ -135,9 +138,85 @@ div {
         font-size: 20px;
         text-align: center;
     }
-    input{
-        height: 30px;
+
+    input {
+        height: 25px;
         text-align: center;
         font-size: 20px;
+    }
+}
+
+.h4-left {
+    color: $mainBlueCol;
+    font-weight: bold;
+}
+
+.right {
+    width: 73%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.right-header,
+.table-cell {
+    flex-direction: column;
+}
+
+.right-header {
+    h2 {
+        text-align: center;
+    }
+
+    margin-bottom: 2%;
+    background-color: $sidebarBgCol;
+    min-width: 100%;
+    min-height: 30%;
+    justify-content: center;
+}
+
+.flights-table {
+    border: $borderTable;
+    border-spacing: 0;
+
+    th {
+        color: $thCol;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    tr,
+    td {
+        background-color: $sidebarBgCol;
+        border-bottom: $borderTable;
+    }
+}
+
+.flights-table tr:first-child th {
+    border-bottom: $borderTable;
+}
+
+.table-cell {
+    h4 {
+        color: $tdH4Col;
+    }
+
+    p {
+        color: $tdPCol;
+    }
+
+    input[type="button"] {
+        @include buttonMix();
+        width: 50px;
+        height: 30px;
+    }
+
+    align-items: center;
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: $aCol;
     }
 }

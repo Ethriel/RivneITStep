@@ -91,18 +91,34 @@ div {
 }
 
 .sidebars {
-  width: 100%;
+  width: 94%;
 }
 
 .left {
   margin-left: 5%;
+  width: 23%;
   background-color: #ffffff;
+}
+.left * {
+  margin-left: 0.8%;
+}
+
+.stops,
+.prices,
+.airlines {
+  flex-direction: column;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  width: 100%;
 }
 
 .checkbox-container * {
   margin-right: 2%;
 }
 
+.price-container {
+  width: 50%;
+}
 .price-container * {
   margin-right: 2%;
 }
@@ -111,7 +127,78 @@ div {
   text-align: center;
 }
 .price-container input {
-  height: 30px;
+  height: 25px;
   text-align: center;
   font-size: 20px;
+}
+
+.h4-left {
+  color: #0f4372;
+  font-weight: bold;
+}
+
+.right {
+  width: 73%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.right-header,
+.table-cell {
+  flex-direction: column;
+}
+
+.right-header {
+  margin-bottom: 2%;
+  background-color: #ffffff;
+  min-width: 100%;
+  min-height: 30%;
+  justify-content: center;
+}
+.right-header h2 {
+  text-align: center;
+}
+
+.flights-table {
+  border: 1px solid #917878 !important;
+  border-spacing: 0;
+}
+.flights-table th {
+  color: #33557a;
+}
+.flights-table td {
+  text-align: center;
+}
+.flights-table tr,
+.flights-table td {
+  background-color: #ffffff;
+  border-bottom: 1px solid #917878 !important;
+}
+
+.flights-table tr:first-child th {
+  border-bottom: 1px solid #917878 !important;
+}
+
+.table-cell {
+  align-items: center;
+}
+.table-cell h4 {
+  color: #4a3f45;
+}
+.table-cell p {
+  color: #9e9e9c;
+}
+.table-cell input[type=button] {
+  background-color: #0f4372;
+  color: #d5e1df;
+  font-size: 16px;
+  border: 1px solid #0f4372;
+  border-radius: 30%;
+  width: 50px;
+  height: 30px;
+}
+.table-cell a {
+  display: block;
+  text-decoration: none;
+  color: #6e8994;
 }

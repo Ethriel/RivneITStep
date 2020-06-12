@@ -1,0 +1,7 @@
+@mixin buttonMix {
+    background-color: $mainBlueCol;
+    color: $textColWhite;
+    font-size: 16px;
+    border: 1px solid $mainBlueCol;
+    border-radius: 30%;
+}
