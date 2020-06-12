@@ -1,0 +1,156 @@
+@mixin centerFlex {
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin rowFlex {
+    flex-direction: row;
+}
+
+@mixin colFlex {
+    flex-direction: column;
+}
+
+@mixin headerBot {
+    color: $white;
+    font-family: "Open Sans";
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0.26px;
+}
+
+@mixin mainMenuItem {
+    color: $white;
+    font-family: "Poppins - Semi Bold";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+@mixin btnCommon {
+    width: 100px;
+    height: 40px;
+    border: $borderButton;
+}
+
+@mixin textBtn {
+    color: $white;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.24px;
+}
+
+@mixin mainInfoH {
+    font-family: Poppins;
+    font-size: 32px;
+    color: $mihCol;
+    font-weight: 400;
+}
+
+@mixin maininfoHBlue {
+    color: $mainCol;
+    letter-spacing: -0.94px;
+}
+
+@mixin label {
+    font-family: Poppins;
+    color: $white;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+@mixin dropDownItem {
+    border: $borderDropDownItem;
+    background-color: $dropDownItemBg;
+    width: 202px;
+    height: 50px;
+    display: flex;
+    @include centerFlex();
+}
+
+@mixin dropDownItemText {
+    color: $dropDownItemTextCol;
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+@mixin idItem {
+    font-family: Poppins;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+@mixin idWhiteBg {
+    color: $mainCol;
+}
+
+@mixin idBlueBg {
+    color: $white;
+}
+
+@mixin articleHeader {
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+@mixin articleHeaderBlack {
+    color: $hTextCol;
+}
+
+@mixin articleHeaderWhite {
+    color: $white;
+}
+
+@mixin paragraph {
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+@mixin paragraphWhite {
+    color: $white;
+}
+
+@mixin paragraphGrey {
+    color: $parTextCol;
+}
+
+@mixin subItemHeader {
+    font-family: Poppins;
+    font-size: 17px;
+    font-weight: 500;
+    color: $hTextCol;
+}
+
+@mixin howItWorksSubItem {
+    text-transform: uppercase;
+}
+
+@mixin offs {
+    font-family: Poppins;
+    color: $orange;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+
+@mixin blueSemiBold {
+    color: $welcomeCol;
+    font-family: "Poppins - Semi Bold";
+    font-size: 17px;
+    font-weight: 400;
+}
+
+@mixin sectionBottomHeader {
+    color: $white;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 500;
+}

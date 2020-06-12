@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import "mixins.scss";
+@import "variables.scss";
 
 @font-face {
     font-family: 'Gabriola';
@@ -8,16 +10,9 @@
     font-style: normal;
     font-display: swap;
 }
-
 body {
     margin: 0;
     padding: 0;
-}
-
-html,
-body {
-    height: 100%;
-    min-height: 100%;
 }
 
 div {
@@ -26,190 +21,15 @@ div {
 
 .main-container {
     height: 100%;
-    min-height: 100%;
+    //min-height: 100%;
     width: 100%;
-    min-width: 100%;
-}
-
-$mainCol: #03a9f4;
-$fontEssCol: #ecfa4d;
-$white: #ffffff;
-$signInCol: #0287c3;
-$orange: #f75e2e;
-$welcomeCol: #0286c3;
-$mihCol: #323538;
-$parTextCol: #51555a;
-$hTextCol: #1e2021;
-$dropDownItemBg: #f6f9f9;
-$dropDownItemTextCol: #656a70;
-
-$borderButton: 1px solid #1088c7;
-$borderDropDownItem: 1px solid #d8dadb;
-
-$subitemShadow: 0 4px 20px rgba(202, 202, 202, 0.25);
-
-
-@mixin centerFlex {
-    justify-content: center;
-    align-items: center;
-}
-
-@mixin rowFlex {
-    flex-direction: row;
-}
-
-@mixin colFlex {
-    flex-direction: column;
-}
-
-@mixin headerBot {
-    color: $white;
-    font-family: "Open Sans";
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 30px;
-    letter-spacing: 0.26px;
-}
-
-@mixin mainMenuItem {
-    color: $white;
-    font-family: "Poppins - Semi Bold";
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 16px;
-    text-transform: uppercase;
-}
-
-@mixin btnCommon {
-    width: 100px;
-    height: 40px;
-    border: $borderButton;
-}
-
-@mixin textBtn {
-    color: $white;
-    font-size: 12px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.24px;
-}
-
-@mixin mainInfoH {
-    font-family: Poppins;
-    font-size: 32px;
-    color: $mihCol;
-    font-weight: 400;
-}
-
-@mixin maininfoHBlue {
-    color: $mainCol;
-    letter-spacing: -0.94px;
-}
-
-@mixin label {
-    font-family: Poppins;
-    color: $white;
-    font-size: 13px;
-    font-weight: 500;
-}
-
-@mixin dropDownItem {
-    border: $borderDropDownItem;
-    background-color: $dropDownItemBg;
-    width: 202px;
-    height: 50px;
-    display: flex;
-    @include centerFlex();
-}
-
-@mixin dropDownItemText {
-    color: $dropDownItemTextCol;
-    font-family: Poppins;
-    font-size: 13px;
-    font-weight: 400;
-}
-
-@mixin idItem {
-    font-family: Poppins;
-    font-size: 15px;
-    font-weight: 400;
-}
-
-@mixin idWhiteBg {
-    color: $mainCol;
-}
-
-@mixin idBlueBg {
-    color: $white;
-}
-
-@mixin articleHeader {
-    font-family: Poppins;
-    font-size: 24px;
-    font-weight: 400;
-}
-
-@mixin articleHeaderBlack {
-    color: $hTextCol;
-}
-
-@mixin articleHeaderWhite {
-    color: $white;
-}
-
-@mixin paragraph {
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 22px;
-}
-
-@mixin paragraphWhite {
-    color: $white;
-}
-
-@mixin paragraphGrey {
-    color: $parTextCol;
-}
-
-@mixin subItemHeader {
-    font-family: Poppins;
-    font-size: 17px;
-    font-weight: 500;
-    color: $hTextCol;
-}
-
-@mixin howItWorksSubItem {
-    text-transform: uppercase;
-}
-
-@mixin offs {
-    font-family: Poppins;
-    color: $orange;
-    font-size: 28px;
-    font-weight: 400;
-    line-height: 40px;
-    text-transform: uppercase;
-}
-
-@mixin blueSemiBold {
-    color: $welcomeCol;
-    font-family: "Poppins - Semi Bold";
-    font-size: 17px;
-    font-weight: 400;
-}
-
-@mixin sectionBottomHeader {
-    color: $white;
-    font-family: Poppins;
-    font-size: 16px;
-    font-weight: 500;
+    //min-width: 100%;
 }
 
 .main-container {
     @include colFlex();
     align-items: center;
-    align-content: center;
+    justify-content: center;
 }
 
 .header {
@@ -277,8 +97,11 @@ $subitemShadow: 0 4px 20px rgba(202, 202, 202, 0.25);
 
 .text-button {
     @include colFlex();
+    margin-left: 5%;
 }
-
+.girl-img{
+    margin-right: 5%;
+}
 .main-info-h1 {
     @include mainInfoH();
     width: 50%;
@@ -471,31 +294,35 @@ input[type="button"] {
 
 .how-it-works {
     @include colFlex();
+    width: 80%;
 }
 
 .hiw-item {
     width: 20%;
 }
 
-.discounts-container {
+
+.discounts-testimonials-container {
+    position: relative;
     @include colFlex();
     width: 100%;
     align-items: center;
-    justify-content: center;
 }
 
-.discounts-testimonials-container {
-    @include colFlex();
-    width: 100%;
-    height: 100%;
+.offs-coupon {
+    position: absolute;
+    height: 35%;
+    width: 40%;
+    top: 12%;
 }
 
 .discount-program {
     background: url(../img/discounts-bg.png);
     background-repeat: no-repeat;
     background-size: cover;
+    height: 278px;
+    //min-height: 35%;
     width: 100%;
-    height: 100%;
     @include colFlex();
     align-items: center;
 }
@@ -503,13 +330,16 @@ input[type="button"] {
 .testimonials {
     @include colFlex();
     align-items: center;
-    height: 100%;
     width: 100%;
+    height: 50%;
+    margin-top: 10%;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
 .p-disc {
     width: 50%;
-    margin-top: 3%;
+    margin-top: 1%;
     text-align: center;
 }
 
@@ -554,5 +384,92 @@ input[type="button"] {
 }
 
 .coupon-img {
+    width: 70%;
+}
+
+.footer-container {
+    @include colFlex();
+    width: 100%;
+    background-color: $welcomeCol;
+    align-items: center;
+    hr{
+        width: 75%;
+        border: 0.5px solid $white;
+    }
+}
+
+.footer-top,
+.footer-mid,
+.footer-bot {
     width: 80%;
+    align-items: center;
+}
+
+.footer-top {
+    justify-content: space-between;
+    align-items: center;
+
+    .menu {
+        width: 60%;
+    }
+}
+
+.footer-mid-sections {
+    justify-content: space-around;
+}
+
+.footer-bot-text {
+    @include colFlex();
+    justify-content: space-between;
+
+    p {
+        &:nth-child(2n) {
+            margin-top: -5%;
+        }
+    }
+}
+
+.section-item {
+    @include colFlex();
+    align-items: center;
+
+    h4 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 12px;
+        width: 70%;
+        margin-top: -5%;
+    }
+}
+
+.my-white-ico {
+    color: $white;
+}
+
+.footer-bot {
+    justify-content: space-between;
+}
+
+.footer-bot-icon-text {
+    width: 20%;
+    align-items: center;
+
+    img {
+        width: 20%;
+        height: 20%;
+        margin-right: 2%;
+    }
+
+    .text {
+        width: 100%;
+        @include colFlex();
+
+        p {
+            &:nth-child(2n) {
+                margin-top: -5%;
+            }
+        }
+    }
 }
