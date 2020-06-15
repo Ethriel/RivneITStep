@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container">
+        <div class="reg-form">
+            <div class="img-logo">
+                <img src="img/logo.png" alt="">
+            </div>
+            <div class="inputs">
+                <input type="text" class="input-text fn" placeholder="First name">
+                <input type="text" class="input-text sn" placeholder="Second name">
+            </div>
+            <div class="genders">
+                <input type="radio" name="gender" value="male" id="genderMale">
+                <label for="genderMale">Male</label>
+                <input type="radio" name="gender" value="female" id="genderFemale">
+                <label for="genderFemale">Female</label>
+            </div>
+            <div class="inputs">
+                <input type="email" class="input-text em" placeholder="Email">
+                <input type="password" class="input-text psw" placeholder="Password">
+                <input type="password" class="input-text confirm" placeholder="Confirm password">
+            </div>
+            <input type="checkbox" value="notRobot" id="notRobot" onclick="checkNoRobot()">
+            <label for="notRobot">I am not a robot</label><br/>
+            <div class="reg-btn">
+                <input type="button" value="Register" id="btnReg" class="input-btn" onclick="btnRegClick()">
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
