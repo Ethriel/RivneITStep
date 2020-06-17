@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="recipe-container">
+            <div class="header">
+                <h2>Share a recipe</h2>
+                <h4>Share your recipe with us</h4>
+            </div>
+            <hr>
+            <div class="recipe">
+                <div class="r-name">
+                    <label for="recipeName">Recipe name:</label>
+                    <input type="text" name="" id="recipeName">
+                </div>
+    
+                <div class="r-description">
+                    <label for="recipeDescription">Description</label>
+                    <textarea name="" id="recipeDescription" cols="100" rows="10"></textarea>
+                </div>
+    
+                <div class="r-dish-type">
+                    <label for="dishType">Dish type</label>
+                    <select name="" id="dishType">
+                        <option value="Cake">Cake</option>
+                        <option value="Salad">Salad</option>
+                        <option value="Hot meal">Hot meal</option>
+                    </select>
+                </div>
+    
+                <div class="r-difficulty">
+                    <label for="">Difficulty</label>
+                    <div class="r-diff-rad-buttons">
+                        <div class="r-diff-container">
+                            <input type="radio" name="diffName" id="diffEasy" value="easy">
+                            <label for="diffEasy">Easy</label>
+                        </div>
+    
+                        <div class="r-diff-container">
+                            <input type="radio" name="diffName" id="diffModerate" value="moderate">
+                            <label for="diffModerate">Moderate</label>
+                        </div>
+    
+                        <div class="r-diff-container">
+                            <input type="radio" name="diffName" id="diffHard" value="hard">
+                            <label for="diffHard">Hard</label>
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <div class="info-ingridients-container">
+                    <div class="info-container">
+                        <div class="r-additional-info">
+                            <label for="nOfServings">No. of Servings</label>
+                            <input type="text" id="nOfServings">
+                        </div>
+                        <div class="r-additional-info">
+                            <label for="prepTime">Preparation time</label>
+                            <input type="text" id="prepTime">
+                        </div>
+    
+                        <div class="r-additional-info">
+                            <label for="cookTime">Cooking time</label>
+                            <input type="text" id="cookTime">
+                        </div>
+                    </div>
+                    <div class="ingridients">
+                        <label for="ingridientsArea">Ingridients</label>
+                        <textarea name="" id="ingridientsArea" cols="100" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <input type="button" value="Add recipe" onclick="addRecipe()">
+        </div>
+        
+
+        <div class="recipe-done">
+            <img class="r-img" alt="">
+            <h1 class="r-done-name"></h1>
+            <h4 class="r-done-type"></h4>
+            <div class="r-icons">
+                <div class="icon-text">
+                    <i class="fa fa-user"></i>
+                    <span class="r-d-text"></span>
+                </div>
+
+                <div class="icon-text">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="r-d-text"></span>
+                </div>
+
+                <div class="icon-text">
+                    <i class="diff-level"></i>
+                    <span class="r-d-text"></span>
+                </div>
+
+                <div class="icon-text">
+                    <i class="fa fa-fire"></i>
+                    <span class="r-d-text"></span>
+                </div>
+            </div>
+            <p class="r-d-descr d-1"></p>
+            <p class="r-d-descr d-2"></p>
+        </div>
+
+    </div>
+    <script src="https://kit.fontawesome.com/e5665d24cf.js" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

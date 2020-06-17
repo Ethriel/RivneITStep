@@ -1,0 +1,71 @@
+.main-container {
+    width: 90%;
+}
+
+.main-container * {
+    margin: 5px;
+    padding: 2px;
+}
+
+.main-container,
+.header,
+.recipe,
+.r-name,
+.r-description,
+.r-dish-type,
+.r-difficulty,
+.r-diff-rad-buttons,
+.info-ingridients-container,
+.r-additional-info,
+.info-container,
+.r-additional-info,
+.ingridients,
+.r-icons,
+.icon-text,
+.recipe-done,
+.recipe-container {
+    display: flex;
+}
+
+.main-container,
+.header,
+.recipe,
+.r-description,
+.r-diff-rad-buttons,
+.r-additional-info,
+.info-container,
+.recipe-done,
+.recipe-container {
+    flex-direction: column;
+}
+
+.r-name,
+.r-dish-type,
+.r-difficulty,
+.r-additional-info {
+    flex-direction: row;
+}
+
+.recipe-done {
+    display: none;
+}
+
+.r-img {
+    width: 50%;
+}
+
+.r-done-name {
+    color: #767c7e;
+}
+
+.r-done-type {
+    color: #9a9c99;
+}
+
+.icon-text i {
+    color: #03b0fa;
+}
+
+.r-d-text {
+    color: #b3b1af;
+}
