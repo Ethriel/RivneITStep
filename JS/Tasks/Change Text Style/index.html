@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="text-to-change">
+        <div class="controls">
+            <div class="control-item">
+                <label for="bold">Bold</label>
+                <input type="checkbox" name="bold">
+            </div>
+
+            <div class="control-item">
+                <label for="underline">Underline</label>
+                <input type="checkbox" name="underline">
+            </div>
+
+            <div class="control-item">
+                <label for="italic">Italic</label>
+                <input type="checkbox" name="italic">
+            </div>
+
+            <div class="control-item">
+                <label for="left">Left</label>
+                <input type="radio" name="textType" id="left">
+            </div>
+
+            <div class="control-item">
+                <label for="right">Right</label>
+                <input type="radio" name="textType" id="right">
+            </div>
+
+            <div class="control-item">
+                <label for="justify">Justify</label>
+                <input type="radio" name="textType" id="justify">
+            </div>
+        </div>
+        <textarea name="" id="textToChange" cols="30"
+            rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia delectus accusamus dolorem aspernatur reiciendis quis sunt praesentium quasi corrupti, vel nulla dolores culpa aperiam, totam voluptas explicabo illo! Iusto, assumenda.</textarea>
+        <br>
+        <button>Change text</button>
+        <p>Result:</p>
+        <p class="changed-text"></p>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

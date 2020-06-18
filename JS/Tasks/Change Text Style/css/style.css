@@ -1,0 +1,39 @@
+.text-to-change {
+    width: 80%;
+}
+
+.controls {
+    display: flex;
+    margin: 5px;
+}
+.controls *{
+    margin: 5px;
+}
+
+.control-item * {
+    margin: 2px;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.justify {
+    text-align: justify;
+}
