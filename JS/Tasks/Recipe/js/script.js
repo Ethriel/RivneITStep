@@ -3,35 +3,29 @@ let images = ["../img/salad.png", "../img/cake.png", "../img/hotMeal.jpg"];
 
 function addRecipe() {
 
-    let allValues = [];
-
-    pushValueBySelectorToArray("#recipeName", allValues);
-    pushValueBySelectorToArray("#recipeDescription", allValues);
-    pushValueBySelectorToArray("select", allValues);
-    allValues.push(getDiffValue());
-    pushValueBySelectorToArray("#nOfServings", allValues);
-    pushValueBySelectorToArray("#prepTime", allValues);
-    pushValueBySelectorToArray("#cookTime", allValues);
-    pushValueBySelectorToArray("#ingridientsArea", allValues);
-
-    for (let i = 0; i < allValues.length; i++) {
-        if (isStringEmptyOrNull(allValues[i])) {
-            alert("Some fields are empty. Fill them, please");
-            return;
-        }
-    }
-
     // recipe obj
     let recipe = {
-        rName: allValues[0],
-        rDescription: allValues[1],
-        rType: allValues[2],
-        rDifficulty: allValues[3],
-        rNOfServings: allValues[4],
-        rPreparationTime: allValues[5],
-        rCookingTime: allValues[6],
-        rIngridients: allValues[7]
+        rName: "",
+        rDescription: "",
+        rType: "",
+        rDifficulty: "",
+        rNOfServings: "",
+        rPreparationTime: "",
+        rCookingTime: "",
+        rIngridients: ""
     };
+    setObjectPropertyValue("#recipeName", recipe, "rName");
+    setObjectPropertyValue("#recipeDescription", recipe, "rDescription");
+    setObjectPropertyValue("select", recipe, "rType");
+    recipe.rDifficulty = getDiffValue();
+    setObjectPropertyValue("#nOfServings", recipe, "rNOfServings");
+    setObjectPropertyValue("#prepTime", recipe, "rPreparationTime");
+    setObjectPropertyValue("#cookTime", recipe, "rCookingTime");
+    setObjectPropertyValue("#ingridientsArea", recipe, "rIngridients");
+
+    if (!checkRecipe(recipe)) {
+        return;
+    }
 
     recipeDone(recipe);
 }
@@ -98,12 +92,22 @@ function getValueOfElement(selector) {
     return val;
 };
 
-// push a value of an element chosen by selector to given array
-function pushValueBySelectorToArray(selector, arr) {
+// select an element by selector. get value of it and set this value to obj's property
+function setObjectPropertyValue(selector, obj, propName) {
     let value = getValueOfElement(selector);
-    arr.push(value);
-    console.log(value);
+    obj[propName] = value;
 };
+
+// check if recipe's properties are not empty or null
+function checkRecipe(recipe) {
+    for (key in recipe) {
+        if (isStringEmptyOrNull(recipe[key])) {
+            alert("Some fields are empty. Fill them, please");
+            return false;
+        }
+    }
+    return true;
+}
 
 // get difficulty level
 function getDiffValue() {
@@ -126,8 +130,6 @@ function isStringEmptyOrNull(str) {
 // get icon of difficulty level
 function getDiffIcon(diff) {
     let d = "";
-    console.log(diff);
-
     switch (diff) {
         case "hard":
             d = diffIcons[0];
