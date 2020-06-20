@@ -1,0 +1,42 @@
+body * {
+    margin: 1%;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#countryEnter {
+    width: 30%;
+}
+
+.tips {
+    background-color: bisque;
+    width: 30%;
+    list-style-type: none;
+    padding: 0.5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tip {
+    display: inline-block;
+    border: 0.5px solid black;
+    margin-left: 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.tip:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.bold-text {
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px;
+    color: red;
+}
