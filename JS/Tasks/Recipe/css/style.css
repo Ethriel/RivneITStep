@@ -2,7 +2,7 @@
     width: 90%;
 }
 
-.main-container * {
+.main-container {
     margin: 5px;
     padding: 2px;
 }
@@ -25,6 +25,8 @@
 .recipe-done,
 .recipe-container {
     display: flex;
+    margin: 5px;
+    padding: 2px;
 }
 
 .main-container,
@@ -48,24 +50,40 @@
 
 .recipe-done {
     display: none;
+    margin: 5px;
+    padding: 2px;
 }
 
 .r-img {
     width: 50%;
+    margin: 5px;
+    padding: 2px;
 }
 
 .r-done-name {
     color: #767c7e;
+    margin: 5px;
+    padding: 2px;
 }
 
 .r-done-type {
     color: #9a9c99;
+    margin: 5px;
+    padding: 2px;
 }
 
 .icon-text i {
     color: #03b0fa;
+    margin: 5px;
+    padding: 2px;
 }
 
 .r-d-text {
     color: #b3b1af;
+    margin: 5px;
+    padding: 2px;
+}
+
+input[type='button'] {
+    width: 100px;
 }
