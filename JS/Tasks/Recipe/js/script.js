@@ -14,6 +14,17 @@ function addRecipe() {
         rCookingTime: "",
         rIngridients: ""
     };
+
+    setRecipeObject(recipe);
+
+    if (!checkRecipe(recipe)) {
+        return;
+    }
+
+    recipeDone(recipe);
+}
+
+function setRecipeObject(recipe) {
     setObjectPropertyValue("#recipeName", recipe, "rName");
     setObjectPropertyValue("#recipeDescription", recipe, "rDescription");
     setObjectPropertyValue("select", recipe, "rType");
@@ -22,12 +33,6 @@ function addRecipe() {
     setObjectPropertyValue("#prepTime", recipe, "rPreparationTime");
     setObjectPropertyValue("#cookTime", recipe, "rCookingTime");
     setObjectPropertyValue("#ingridientsArea", recipe, "rIngridients");
-
-    if (!checkRecipe(recipe)) {
-        return;
-    }
-
-    recipeDone(recipe);
 }
 
 // compose recipe info div
