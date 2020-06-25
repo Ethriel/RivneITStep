@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="main-contaner display-flex col-flex j-center al-center">
+        <div class="form-container display-flex col-flex j-center">
+
+            <div class="reg-form display-flex col-flex j-center display-none">
+
+                <div class="input-container display-flex row-flex j-center">
+                    <label for="_name" class="text-label">Name</label>
+                    <input type="text" id="_name" class="input-text">
+                </div>
+
+                <div class="input-container display-flex row-flex j-center">
+                    <label for="_email" class="text-label">Email</label>
+                    <input type="text" id="_email" class="input-text">
+                </div>
+            </div>
+
+            <div class="log-form display-flex col-flex j-center">
+
+                <div class="input-container display-flex row-flex j-center">
+                    <label for="_login" class="text-label">Login</label>
+                    <input type="text" id="_login" class="input-text">
+                </div>
+
+                <div class="input-container display-flex row-flex j-center">
+                    <label for="_password" class="text-label">Password</label>
+                    <input type="password" id="_password" class="input-text">
+                </div>
+
+            </div>
+
+            <button class="btn" onclick="composeUser()">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-arrow-right fa-stack-1x my-i"></i>
+                </span>
+            </button>
+        </div>
+
+        <span class="span-switch" onclick="switchForms()">Sign in</span>
+    </div>
+
+
+    
+    <script src="https://kit.fontawesome.com/e5665d24cf.js" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

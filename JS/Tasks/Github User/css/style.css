@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+}
+
+.main-container,
+.person-container,
+.github-info-container,
+.github-info-item,
+.search-container,
+.info-contaner {
+    display: flex;
+}
+
+.main-container {
+    margin: 0 auto;
+    width: 70%;
+    padding: 1%;
+    justify-content: space-between;
+    box-shadow:
+        0px 1px 2px 4px rgba(0, 0, 0, 0.3),
+        0px 2px 4px 8px rgba(0, 0, 0, 0.3),
+        0px 4px 8px 16px rgba(0, 0, 0, 0.3),
+        0px 8px 16px 32px rgba(0, 0, 0, 0.3);
+    background-color: #f8f7f6;
+    flex-direction: column;
+}
+
+.search-container {
+    width: 100%;
+}
+
+.search-container * {
+    margin: 0.5%;
+    padding: 0.5%;
+}
+
+.search-container,
+.github-info-item,
+.info-contaner {
+    flex-direction: row;
+    background-color: transparent;
+}
+
+.person-container,
+.github-info-container {
+    width: 50%;
+    flex-direction: column;
+}
+
+.person-container * {
+    margin: 0.5%;
+    padding: 0.5%;
+}
+
+.github-info-item,
+.info-contaner {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.github-info-container,
+.person-container {
+    justify-content: space-between;
+}
+
+.github-info-item * {
+    margin: 0.5%;
+    padding: 0.5%;
+}
+
+.img {
+    width: 100px;
+    height: 100px;
+}
+
+.p-item {
+    color: #627084;
+    font-weight: bold;
+    min-width: 110px;
+}
+
+.p-descr {
+    color: #aeaba8;
+    min-width: 150px;
+}
+
+.btn {
+    color: white;
+    font-weight: bold;
+    background-color: rgb(77, 77, 230);
+    width: 100px;
+    height: 40px;
+}
+
+.inp {
+    min-width: 200px;
+}
