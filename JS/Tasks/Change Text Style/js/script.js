@@ -27,7 +27,7 @@ let btn = document.querySelector("button");
 btn.addEventListener("click", changeTextClick);
 
 let chText = document.querySelector(".changed-text");
-
+chText.style.display = "none";
 let styles = [];
 let prevStyles = [];
 let fontStyle = "";
@@ -52,7 +52,7 @@ function rbCheckedChanged(event) {
 function changeTextClick() {
     let ta = document.querySelector("#textToChange");
     let text = ta.value;
-    
+
     for (let i = 0; i < prevStyles.length; i++) {
         chText.classList.remove(prevStyles[i]);
     }
@@ -67,5 +67,6 @@ function changeTextClick() {
 
     prevStyles = styles;
     chText.innerText = text;
+    chText.style.display = "inline-block";
     ta.innerText = "";
 }

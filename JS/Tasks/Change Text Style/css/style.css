@@ -5,13 +5,26 @@
 .controls {
     display: flex;
     margin: 5px;
+    width: 45%;
 }
-.controls *{
+
+.controls,
+.changed-text,
+#textToChange {
+    background-color: #fbf2e9;
+}
+
+.controls * {
     margin: 5px;
 }
 
 .control-item * {
     margin: 2px;
+}
+
+.changed-text {
+    border: 1px solid black;
+    width: 45%;
 }
 
 .underline {
