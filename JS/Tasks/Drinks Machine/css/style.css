@@ -1,0 +1,67 @@
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.container,
+.machine,
+.drinks-types,
+.drink,
+.ingredients,
+.creating,
+.done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container,
+.machine,
+.drink,
+.creating,
+.done {
+    flex-direction: column;
+}
+
+.drink {
+    width: 27%;
+}
+
+.drinks-types {
+    justify-content: space-between;
+}
+
+.machine {
+    width: 60%;
+    background-color: rgb(68, 128, 68);
+}
+
+.drinks-types,
+.ingredients,
+.creating,
+.done {
+    width: 50%;
+}
+
+.drink-text {
+    color: white;
+}
+
+.coffee {
+    background-color: rgb(31, 11, 11);
+}
+
+.tea {
+    background-color: rgb(141, 21, 21);
+}
+
+.cappuccino {
+    background-color: rgb(105, 58, 58);
+}
