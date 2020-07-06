@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="main">
+        <div class="search display-flex">
+            <h3 class="h3-current-weather">Current weather</h3>
+            <form class="form-inline d-flex justify-content-center md-form form-sm mt-0 my-form-search">
+                <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Enter city name"
+                aria-label="Search" value="Rivne">
+                <i class="fas fa-search my-i-search" aria-hidden="true"></i>
+              </form>
+        </div>
+        <div class="display-flex col-flex container-not-found display-none">
+            <h3 class="header-not-found">404</h3>
+            <h3 class="header-not-found-2">NOT FOUND</h3>
+            <p class="par-not-found">Please enter a different city</p>
+        </div>
+        <div class="content display-flex col-flex">
+            <div class="current display-flex">
+                <div class="current-top display-flex"></div>
+                <div class="current-bot display-flex"></div>
+            </div>
+            <div class="hourly display-flex"></div>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://kit.fontawesome.com/e5665d24cf.js" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
