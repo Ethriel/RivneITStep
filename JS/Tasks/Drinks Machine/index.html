@@ -1,47 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet" />
 </head>
+
 <body>
     <div class="container">
         <div class="machine">
+            <div class="actions">
+                <div class="refill-ingridients">
+                    <p>Refill ingridients</p>
+                </div>
+                <div class="get-drinks">
+                    <p>Get drinks</p>
+                </div>
+            </div>
+            <div class="refill-actions display-none">
+                <div class="refill-types">
+                    <div class="refill">
+                        <p>Coffee</p>
+                    </div>
+                    <div class="refill">
+                        <p>Tea</p>
+                    </div>
+                    <div class="refill">
+                        <p>Cappuccino</p>
+                    </div>
+                    <div class="refill">
+                        <p>Water</p>
+                    </div>
+                </div>
+                
+                <div class="select-refill">
+                    <label for="">Enter amount</label>
+                    <input class="drink-input" type="number" value="1" min="1">
+                </div>
+            </div>
+           
+            <div class="drinks display-none">
+                <h3>Select a drink type</h3>
+                <div class="drinks-types">
+                    <div class="coffee drink">
+                        <p class="drink-text">Coffee</p>
+                    </div>
 
-            <h3>Select a drink type</h3>
-            <div class="drinks-types">
-                <div class="coffee drink">
-                    <p class="drink-text">Coffee</p>
+                    <div class="tea drink">
+                        <p class="drink-text">Tea</p>
+                    </div>
+
+                    <div class="cappuccino drink">
+                        <p class="drink-text">Cappuccino</p>
+                    </div>
+
                 </div>
 
-                <div class="tea drink">
-                    <p>Tea</p>
+                <div class="ingredients">
+                    <div class="select">
+                        <label for="">Enter amount</label>
+                        <input class="drink-input" type="number" value="1" min="1">
+                    </div>
+
                 </div>
 
-                <div class="cappuccino drink">
-                    <p>Cappucino</p>
+                <div class="creating display-none">
+                    <p>Creating...</p>
                 </div>
-
+                <div class="error">
+                    <p></p>
+                </div>
+                <div class="done display-none">
+                    <p></p>
+                </div>
             </div>
-
-            <div class="ingredients">
-                <p></p>
-            </div>
-
-            <div class="creating">
-                <p></p>
-            </div>
-
-            <div class="done">
-                <p></p>
-            </div>
-
         </div>
-        
+
 
     </div>
     <script src="js/script.js"></script>
 </body>
+
 </html>
