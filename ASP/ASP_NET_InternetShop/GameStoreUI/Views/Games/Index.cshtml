@@ -1,0 +1,16 @@
+﻿@model IEnumerable<GameStoreUI.Models.GameViewModel>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@{
+    Html.RenderPartial("Partial/Sidebar");
+}
+<div class="content-wrapper">
+    <div class="container my-container" id="games">
+        @{ 
+            Html.RenderPartial("Partial/GamesPartial", Model);
+        }
+    </div>
+</div>

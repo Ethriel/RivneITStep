@@ -1,0 +1,17 @@
+﻿@model IEnumerable<GameStoreUI.Models.DeveloperViewModel>
+
+@{
+    ViewBag.Title = "Developers";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@{
+    Html.RenderPartial("Partial/Sidebar");
+}
+<div class="content-wrapper">
+    <div class="container my-container" id="developers">
+        @{
+            Html.RenderPartial("Partial/DevelopersPartial", Model);
+        }
+    </div>
+</div>
