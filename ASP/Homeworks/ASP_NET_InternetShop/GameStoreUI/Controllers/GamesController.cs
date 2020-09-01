@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using GameStoreBLL.Filters;
-using GameStoreBLL.Services;
 using GameStoreBLL.Services.Abstraction;
 using GameStoreDAL.Entities;
+using GameStoreUI.Helpers;
 using GameStoreUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -141,6 +143,35 @@ namespace GameStoreUI.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public ActionResult CreateWithCustomImage(CreateGameViewModel model, HttpPostedFileBase imageFile)
+        {
+            var fileName = string.Concat(Guid.NewGuid().ToString(), ".jpg");
+
+            var fullPathImage = string.Concat(Server.MapPath(Config.GamesImagesPath), "\\", fileName);
+
+            using (var bmp = new Bitmap(imageFile.InputStream))
+            {
+                var readyImage = ImageHelper.CreateImage(bmp, 450, 450);
+
+                if (readyImage != null)
+                {
+                    readyImage.Save(fullPathImage, ImageFormat.Jpeg);
+
+                    readyImage.Dispose();
+
+                    var game = mapper.Map<CreateGameViewModel, Game>(model);
+
+                    game.Image = fileName;
+
+                    gameService.CreateGame(game);
+                }
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpGet]
         public ActionResult Edit(int id)
         {

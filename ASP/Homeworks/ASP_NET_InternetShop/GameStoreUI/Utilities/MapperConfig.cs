@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GameStoreDAL.Entities;
+using GameStoreUI.Helpers;
 using GameStoreUI.Models;
 using System.Linq;
 
@@ -18,7 +19,8 @@ namespace GameStoreUI.Utilities
         {
             CreateMap<Game, GameViewModel>()
                 .ForMember(x => x.Genre, opt => opt.MapFrom(x => x.Genre.Name))
-                .ForMember(x => x.Developer, opt => opt.MapFrom(x => x.Developer.Name));
+                .ForMember(x => x.Developer, opt => opt.MapFrom(x => x.Developer.Name))
+                .ForMember(x => x.Image, opt => opt.MapFrom(x => string.Concat(Config.Domain, Config.GamesImagesOut, "\\", x.Image)));
 
             CreateMap<GameViewModel, Game>();
 
