@@ -13,7 +13,7 @@ namespace GameStoreDAL
         public ApplicationContext()
             : base("name=GamesConnectionString")
         {
-            //Database.SetInitializer(new GamesInitializer());
+            Database.SetInitializer(new GamesInitializer());
         }
     }
 }
