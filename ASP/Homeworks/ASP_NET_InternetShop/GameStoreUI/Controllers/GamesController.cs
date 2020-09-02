@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -28,6 +29,7 @@ namespace GameStoreUI.Controllers
             this.genreService = genreService;
             this.mapper = mapper;
         }
+
         public ActionResult Index()
         {
             var games = gameService.GetAllGames();
@@ -130,6 +132,7 @@ namespace GameStoreUI.Controllers
 
             return View();
         }
+
         [HttpPost]
         public ActionResult Create(CreateGameViewModel model)
         {
@@ -147,27 +150,11 @@ namespace GameStoreUI.Controllers
         [HttpPost]
         public ActionResult CreateWithCustomImage(CreateGameViewModel model, HttpPostedFileBase imageFile)
         {
-            var fileName = string.Concat(Guid.NewGuid().ToString(), ".jpg");
+            var game = mapper.Map<CreateGameViewModel, Game>(model);
 
-            var fullPathImage = string.Concat(Server.MapPath(Config.GamesImagesPath), "\\", fileName);
+            SaveImage(ref game, imageFile);
 
-            using (var bmp = new Bitmap(imageFile.InputStream))
-            {
-                var readyImage = ImageHelper.CreateImage(bmp, 450, 450);
-
-                if (readyImage != null)
-                {
-                    readyImage.Save(fullPathImage, ImageFormat.Jpeg);
-
-                    readyImage.Dispose();
-
-                    var game = mapper.Map<CreateGameViewModel, Game>(model);
-
-                    game.Image = fileName;
-
-                    gameService.CreateGame(game);
-                }
-            }
+            gameService.CreateGame(game);
 
             return RedirectToAction(nameof(Index));
         }
@@ -183,6 +170,7 @@ namespace GameStoreUI.Controllers
 
             return View(model);
         }
+
         [HttpPost]
         public ActionResult Edit(EditGameViewModel model)
         {
@@ -197,9 +185,31 @@ namespace GameStoreUI.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public ActionResult EditWithCustomImage(EditGameViewModel model, HttpPostedFileBase imageFile)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Edit(model.Id);
+            }
+
+            var game = mapper.Map<EditGameViewModel, Game>(model);
+
+            DeleteImage(game.Id);
+
+            SaveImage(ref game, imageFile);
+
+            gameService.UpdateGame(game);
+
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            DeleteImage(id);
+
             gameService.DeleteGame(id);
 
             return RedirectToAction(nameof(Index));
@@ -209,6 +219,48 @@ namespace GameStoreUI.Controllers
         {
             ViewBag.Genres = genreService.GetGenresNames();
             ViewBag.Developers = developerService.GetDevelopersNames();
+        }
+
+        private void DeleteImage(int id)
+        {
+            var game = gameService.GetGameById(id);
+
+            var imgName = game.Image;
+
+            var imgFolder = Server.MapPath(Config.GamesImagesPath);
+
+            var fullPath = Path.Combine(imgFolder, imgName);
+
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
+        }
+
+        private void SaveImage(ref Game game, HttpPostedFileBase imageFile)
+        {
+            if (imageFile == null)
+            {
+                return;
+            }
+            else
+            {
+                var fileName = string.Concat(Guid.NewGuid().ToString(), ".jpg");
+
+                var fullPathImage = string.Concat(Server.MapPath(Config.GamesImagesPath), "\\", fileName);
+
+                using (var bmp = new Bitmap(imageFile.InputStream))
+                {
+                    var readyImage = ImageHelper.CreateImage(bmp, 450, 450);
+
+                    if (readyImage != null)
+                    {
+                        readyImage.Save(fullPathImage, ImageFormat.Jpeg);
+
+                        game.Image = fileName;
+                    }
+                }
+            }
         }
     }
 }

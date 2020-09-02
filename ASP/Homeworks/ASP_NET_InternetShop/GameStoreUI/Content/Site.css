@@ -31,3 +31,10 @@
 .center-div {
     margin: 0 auto;
 }
+
+.game-img {
+    height: auto;
+    min-height: 135px;
+    max-height: 135px;
+    width: 98%;
+}
