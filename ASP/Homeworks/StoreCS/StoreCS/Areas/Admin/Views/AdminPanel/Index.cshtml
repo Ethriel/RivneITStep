@@ -1,8 +1,8 @@
 ﻿@model StoreCS.Models.AdminViewModel
 @{
     ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container">
 
 
@@ -27,13 +27,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => user.Email)
                 </td>
-                @using (Html.BeginForm("Admin", "Home", new { id = user.Id }, FormMethod.Post))
+                @using (Html.BeginForm("Index", "AdminPanel", new { id = user.Id }, FormMethod.Post))
                 {
                     <td>
                         <select name="role" class="form-control">
                             @foreach (var role in Model.Roles)
                             {
-                                <option selected=@user.Role>@role</option>
+                                if (user.Role.Equals(role))
+                                {
+                                    <option selected>@role</option>
+                                }
+                                <option>@role</option>
                             }
                         </select>
                     </td>
@@ -44,6 +48,7 @@
             </tr>
         }
     </table>
-
+    @Html.ActionLink("Create role", "CreateRole", null, new { @class = "btn-sm btn-warning" })
+    @Html.ActionLink("Create category", "CreateCategory", null, new { @class = "btn-sm btn-warning" })
 
 </div>

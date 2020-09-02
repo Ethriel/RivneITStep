@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using StoreCS.Entity;
 using StoreCS.Helpers;
 
 namespace StoreCS.Models
@@ -21,8 +22,10 @@ namespace StoreCS.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<News> News { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public ApplicationDbContext()
-            : base(Config.DefaultConnection, throwIfV1Schema: false)
+            : base(Config.LocalConnection, throwIfV1Schema: false)
         {
             //Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDbContext>());
         }
