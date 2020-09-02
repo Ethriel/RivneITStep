@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using StoreCS.Helpers;
 
 namespace StoreCS.Models
 {
@@ -21,8 +22,9 @@ namespace StoreCS.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base(Config.DefaultConnection, throwIfV1Schema: false)
         {
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()

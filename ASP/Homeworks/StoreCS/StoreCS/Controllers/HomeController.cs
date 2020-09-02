@@ -25,34 +25,42 @@ namespace StoreCS.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Admin()
         {
-            var roles = context.Set<IdentityRole>()
-                               .Select(x => x.Name)
-                               .ToArray();
-
-
-            var usersModels = context.Users.Select(x => new UserViewModel
-            {
-                Id = x.Id,
-                Email = x.Email,
-                RoleId = context.Roles.FirstOrDefault(y => y.Id.Equals(x.Id)).Id
-            });
-
-            var adminModel = new AdminViewModel
-            {
-                Users = usersModels,
-                Roles = roles
-            };
+            var adminModel = GetAdminViewModel();
 
             return View(adminModel);
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Admin(AdminViewModel model)
+        public ActionResult Admin(string id, string role)
         {
-            var m = model;
+            var user = context.Users
+                              .FirstOrDefault(x => x.Id.Equals(id));
 
-            return View();
+            var newRole = context.Roles
+                                 .FirstOrDefault(x => x.Name.Equals(role));
+
+            var identityUserRoles = context.Set<IdentityUserRole>();
+
+            var identityUserRole = identityUserRoles.FirstOrDefault(x => x.UserId.Equals(user.Id));
+
+            identityUserRoles.Remove(identityUserRole);
+
+            user.Roles.Clear();
+
+            context.SaveChanges();
+
+            var newIdentityUserRole = new IdentityUserRole { RoleId = newRole.Id, UserId = user.Id };
+
+            identityUserRoles.Add(identityUserRole);
+
+            user.Roles.Add(identityUserRole);
+
+            context.SaveChanges();
+
+            var adminModel = GetAdminViewModel();
+
+            return View(adminModel);
         }
 
         [Authorize]
@@ -68,6 +76,47 @@ namespace StoreCS.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        private AdminViewModel GetAdminViewModel()
+        {
+            var roles = GetRoles();
+
+            var usersModels = GetUserViewModels();
+
+            var adminModel = new AdminViewModel
+            {
+                Users = usersModels,
+                Roles = roles
+            };
+
+            return adminModel;
+        }
+
+        private IEnumerable<string> GetRoles()
+        {
+            var roles = context.Set<IdentityRole>()
+                               .Select(x => x.Name)
+                               .ToArray();
+
+            return roles;
+        }
+
+        private IEnumerable<UserViewModel> GetUserViewModels()
+        {
+            var usersModels = context.Users.Select(x => new UserViewModel
+            {
+                Id = x.Id,
+                Email = x.Email,
+                RoleId = context.Set<IdentityUserRole>().FirstOrDefault(y => y.UserId.Equals(x.Id)).RoleId,
+            }).Where(y => y.RoleId != null).ToList();
+
+            foreach (var user in usersModels)
+            {
+                user.Role = context.Roles.FirstOrDefault(x => x.Id.Equals(user.RoleId)).Name;
+            }
+
+            return usersModels;
         }
     }
 }

@@ -86,7 +86,7 @@ namespace StoreCS.Controllers
 
                     var roleId = _context.Set<IdentityUserRole>().FirstOrDefault(x => x.UserId.Equals(userId)).RoleId;
 
-                    return roleId.Equals(1) ? RedirectToAction("Index", "Home") : RedirectToAction("Admin", "Home");
+                    return roleId.Equals("2") ? RedirectToAction("Admin", "Home") : RedirectToAction("Index", "Home");
 
                     //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
