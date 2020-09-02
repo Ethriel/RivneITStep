@@ -1,0 +1,47 @@
+﻿@model StoreCS.Models.AdminViewModel
+@{
+    ViewBag.Title = "Admin";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Admin", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <table class="table">
+            <tr>
+                <th>
+                    Email
+                </th>
+
+                <th>
+                    Roles
+                </th>
+
+                <th>
+                    Action
+                </th>
+            </tr>
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        <select id="Roles" name="Roles">
+                            @foreach (var role in Model.Roles)
+                            {
+                                <option>@role</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <button type="submit">Set</button>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
+</div>
