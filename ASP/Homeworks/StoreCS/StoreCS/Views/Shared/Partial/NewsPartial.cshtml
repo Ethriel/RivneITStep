@@ -1,51 +1,5 @@
 ﻿@model IEnumerable<StoreCS.Models.NewsViewModel>
 
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Header)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Header)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
-
-    </table>*@
 
 <div class="row">
     @foreach (var news in Model)
@@ -67,6 +21,13 @@
                     <p>Date: @news.Date</p>
                     <p>Category: @news.Category</p>
                 </div>
+                @if (news.IsManager)
+                {
+                    using (Html.BeginForm("RemoveNews", "ManagerPanel", new { id = news.Id, area = "Manager" }, FormMethod.Post))
+                    {
+                        <input type="submit" value="Delete" class="btn-sm btn-danger" />
+                    }
+                }
             </div>
         </div>
     }

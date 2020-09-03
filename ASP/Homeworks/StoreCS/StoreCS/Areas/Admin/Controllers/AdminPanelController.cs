@@ -89,6 +89,56 @@ namespace StoreCS.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public ActionResult ListRoles()
+        {
+            var roles = context.Roles.ToArray();
+
+            var models = roles.Select(x => new RoleViewModel
+            {
+                Id = x.Id,
+                Name = x.Name
+            });
+
+            return View(models);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> RemoveRole(string id)
+        {
+            var role = await roleManager.FindByIdAsync(id);
+
+            var deleteResult = await roleManager.DeleteAsync(role);
+
+            return RedirectToAction(nameof(ListRoles));
+        }
+
+        [HttpGet]
+        public ActionResult ListCategories()
+        {
+            var categories = context.Categories.ToArray();
+
+            var models = categories.Select(x => new CategoryViewModel
+            {
+                Id = x.Id,
+                Name = x.Name
+            });
+
+            return View(models);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> RemoveCategory(int id)
+        {
+            var category = context.Categories.FirstOrDefault(x => x.Id.Equals(id));
+
+            context.Categories.Remove(category);
+
+            var res = await context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(ListCategories));
+        }
+
         private AdminViewModel GetAdminViewModel()
         {
             var roles = GetRoles();

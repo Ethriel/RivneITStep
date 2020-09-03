@@ -1,0 +1,39 @@
+﻿@model IEnumerable<StoreCS.Areas.Admin.Models.RoleViewModel>
+
+@{
+    ViewBag.Title = "ListRoles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Roles</h2>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => role.Name)
+                </td>
+                @using (Html.BeginForm("RemoveRole", "AdminPanel", new { id = role.Id }, FormMethod.Post))
+                {
+                    <td>
+                        <input type="submit" value="Delete" class="btn-sm btn-danger"/>
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+
+    @Html.ActionLink("Create role", "CreateRole", null, new { @class = "btn-sm btn-warning" })
+</div>

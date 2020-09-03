@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -31,7 +32,8 @@ namespace StoreCS.Areas.Manager.Controllers
                 Date = x.Date.ToShortDateString(),
                 Header = x.Header,
                 Id = x.Id,
-                Image = string.Concat(Config.GetAbsoluteUri(Request), Config.NewsImagePathOut, x.Image)
+                Image = string.Concat(Config.GetAbsoluteUri(Request), Config.NewsImagePathOut, x.Image),
+                IsManager = true
             });
 
             return View(models);
@@ -67,6 +69,18 @@ namespace StoreCS.Areas.Manager.Controllers
             context.News.Add(news);
 
             context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> RemoveNews(int id)
+        {
+            var news = context.News.FirstOrDefault(x => x.Id.Equals(id));
+
+            context.News.Remove(news);
+
+            var res = await context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }

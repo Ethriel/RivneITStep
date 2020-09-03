@@ -2,10 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using StoreCS.Helpers;
 using StoreCS.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StoreCS.Controllers
@@ -32,11 +29,11 @@ namespace StoreCS.Controllers
 
                 if (role.Name.Equals("Admin"))
                 {
-                    RedirectToAction("Index", "AdminPanel", new { area = "Admin" });
+                    return RedirectToAction("Index", "AdminPanel", new { area = "Admin" });
                 }
                 else if (role.Name.Equals("Manager"))
                 {
-                    RedirectToAction("Index", "ManagerPanel", new { area = "Manager" });
+                    return RedirectToAction("Index", "ManagerPanel", new { area = "Manager" });
                 }
             }
 
@@ -49,7 +46,8 @@ namespace StoreCS.Controllers
                 Date = x.Date.ToShortDateString(),
                 Header = x.Header,
                 Id = x.Id,
-                Image = string.Concat(Config.GetAbsoluteUri(Request), Config.NewsImagePathOut, x.Image)
+                Image = string.Concat(Config.GetAbsoluteUri(Request), Config.NewsImagePathOut, x.Image),
+                IsManager = false
             });
 
             return View(models);

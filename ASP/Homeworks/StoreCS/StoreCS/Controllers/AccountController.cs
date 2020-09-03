@@ -14,6 +14,7 @@ using StoreCS.Models;
 namespace StoreCS.Controllers
 {
     [Authorize]
+    [RouteArea("")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

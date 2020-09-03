@@ -29,14 +29,25 @@ textarea {
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin: 0.5rem;
 }
+
+    .news-card:hover {
+        transform: scale(1.05);
+/*        cursor: pointer;*/
+        transition: 0.5s;
+    }
 
 .news-card-image {
     width: 100%;
-    height: auto;
-    min-height: 150px;
-    max-height: 150px;
 }
+
+    .news-card-image img {
+        width: inherit;
+        height: auto;
+        min-height: 220px;
+        max-height: 220px;
+    }
 
 .news-card-header {
     width: 100%;
@@ -52,6 +63,11 @@ textarea {
 
 .news-card-footer {
     display: flex;
-    justify-content: space-around;
-    width: 90%;
+    justify-content: space-between;
+    width: 100%;
+}
+.news-card-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }

@@ -8,5 +8,6 @@
         public string Date { get; set; }
         public string Content { get; set; }
         public string Category { get; set; }
+        public bool IsManager { get; set; }
     }
 }

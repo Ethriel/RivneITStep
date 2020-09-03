@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-
-
     @Html.AntiForgeryToken()
     <table class="table">
         <tr>
@@ -52,7 +50,9 @@
             </tr>
         }
     </table>
-    @Html.ActionLink("Create role", "CreateRole", null, new { @class = "btn-sm btn-warning" })
-    @Html.ActionLink("Create category", "CreateCategory", null, new { @class = "btn-sm btn-warning" })
+    
+    
+    @Html.ActionLink("List categories", "ListCategories", null, new { @class = "btn-sm btn-warning" })
+    @Html.ActionLink("List roles", "ListRoles", null, new { @class = "btn-sm btn-warning" })
 
 </div>

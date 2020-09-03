@@ -12,7 +12,9 @@ namespace StoreCS.Helpers
 
         public static string GetAbsoluteUri(HttpRequestBase request)
         {
-            return request.Url.AbsoluteUri;
+            var authority = request.Url.Authority;
+            var uri = $"https://{authority}";
+            return uri;
         }
     }
 }
