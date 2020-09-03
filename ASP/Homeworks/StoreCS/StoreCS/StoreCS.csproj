@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Models\CreateRoleViewModel.cs" />
     <Compile Include="Areas\Manager\Controllers\ManagerPanelController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Models\CreateNewsViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -182,6 +183,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Config.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Migrations\202009021710479_Initial.cs" />
     <Compile Include="Migrations\202009021710479_Initial.Designer.cs">
       <DependentUpon>202009021710479_Initial.cs</DependentUpon>
@@ -191,6 +193,7 @@
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -211,6 +214,8 @@
     <Content Include="Areas\Admin\Views\AdminPanel\CreateRole.cshtml" />
     <Content Include="Areas\Manager\Views\web.config" />
     <Content Include="Areas\Admin\Views\AdminPanel\CreateCategory.cshtml" />
+    <Content Include="Areas\Manager\Views\ManagerPanel\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\ManagerPanel\CreateNews.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -256,14 +261,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Partial\NewsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Manager\Data\" />
-    <Folder Include="Areas\Manager\Views\ManagerPanel\" />
     <Folder Include="Areas\Manager\Views\Shared\" />
+    <Folder Include="Images\News\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

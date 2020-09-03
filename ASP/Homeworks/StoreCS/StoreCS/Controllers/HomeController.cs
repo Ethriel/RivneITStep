@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using StoreCS.Helpers;
 using StoreCS.Models;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,19 @@ namespace StoreCS.Controllers
                 }
             }
 
-            return View();
+            var news = context.News.ToArray();
+
+            var models = news.Select(x => new NewsViewModel
+            {
+                Category = x.Category.Name,
+                Content = x.Content,
+                Date = x.Date.ToShortDateString(),
+                Header = x.Header,
+                Id = x.Id,
+                Image = string.Concat(Config.GetAbsoluteUri(Request), Config.NewsImagePathOut, x.Image)
+            });
+
+            return View(models);
         }
 
         [Authorize]

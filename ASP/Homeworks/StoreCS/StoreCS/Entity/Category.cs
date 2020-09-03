@@ -8,7 +8,7 @@ namespace StoreCS.Entity
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<News> News { get; set; }
+        public virtual ICollection<News> News { get; set; }
         public Category()
         {
             News = new HashSet<News>();

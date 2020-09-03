@@ -1,14 +1,12 @@
-﻿using System;
-
-namespace StoreCS.Entity
+﻿namespace StoreCS.Models
 {
-    public class News
+    public class NewsViewModel
     {
         public int Id { get; set; }
         public string Header { get; set; }
         public string Image { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public string Content { get; set; }
-        public virtual Category Category { get; set; }
+        public string Category { get; set; }
     }
 }
