@@ -173,6 +173,9 @@
     <Compile Include="Areas\Admin\Models\CreateCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CreateRoleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />
+    <Compile Include="Areas\ManageAccount\Controllers\ManageAccountPanelController.cs" />
+    <Compile Include="Areas\ManageAccount\ManageAccountAreaRegistration.cs" />
+    <Compile Include="Areas\ManageAccount\Models\UserAddInfoViewModel.cs" />
     <Compile Include="Areas\Manager\Controllers\ManagerPanelController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Areas\Manager\Models\CreateNewsViewModel.cs" />
@@ -225,6 +228,7 @@
     <Content Include="Areas\Manager\Views\ManagerPanel\CreateNews.cshtml" />
     <Content Include="Areas\Admin\Views\AdminPanel\ListRoles.cshtml" />
     <Content Include="Areas\Admin\Views\AdminPanel\ListCategories.cshtml" />
+    <Content Include="Areas\ManageAccount\Views\web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -276,9 +280,13 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\ManageAccount\Data\" />
+    <Folder Include="Areas\ManageAccount\Views\ManageAccountPanel\" />
+    <Folder Include="Areas\ManageAccount\Views\Shared\" />
     <Folder Include="Areas\Manager\Data\" />
     <Folder Include="Areas\Manager\Views\Shared\" />
     <Folder Include="Images\News\" />
+    <Folder Include="Images\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

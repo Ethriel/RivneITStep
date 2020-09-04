@@ -1,17 +1,17 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
+    var userName = User.Identity.GetUserName();
+    var msg = $"Hello, {userName}!";
     using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink(msg, "Index", "ManageAccountPanel", new { area = "ManageAccount" }, new { title = "Manage account" })
             </li>
-            <li>@*<a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>*@</li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
-            @*@Html.ActionLink("Log out", "LogOff")*@
         </ul>
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Web;
 
 namespace StoreCS.Helpers
 {
@@ -54,6 +55,36 @@ namespace StoreCS.Helpers
             catch
             {
                 return null;
+            }
+        }
+
+        public static string SaveImage(int maxWidth, int maxHeight, HttpServerUtilityBase server, HttpPostedFileBase imageFile)
+        {
+            if (imageFile == null)
+            {
+                return null;
+            }
+            else
+            {
+                var fileName = string.Concat(Guid.NewGuid().ToString(), ".jpg");
+
+                var fullPathImage = string.Concat(server.MapPath(Config.UsersAvatarsPath), "\\", fileName);
+
+                using (var bmp = new Bitmap(imageFile.InputStream))
+                {
+                    var readyImage = ImageHelper.CreateImage(bmp, 450, 450);
+
+                    if (readyImage != null)
+                    {
+                        readyImage.Save(fullPathImage, ImageFormat.Jpeg);
+
+                        return fileName;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
             }
         }
     }
