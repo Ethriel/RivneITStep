@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace StoreCS.Models
@@ -79,6 +80,14 @@ namespace StoreCS.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "First name is required")]
+        [DisplayName("First name")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "First name is required")]
+        [DisplayName("Last name")]
+        public string LastName { get; set; }
     }
 
     public class ResetPasswordViewModel
