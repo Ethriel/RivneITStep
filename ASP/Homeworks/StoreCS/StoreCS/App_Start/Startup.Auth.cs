@@ -54,15 +54,15 @@ namespace StoreCS
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "795761767835564",
+               appSecret: "e6f2b1f7fd461d48bd3c8b349846ca73");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "648377526656-3dpf4l5ev27tatemfn83a1crjsm4093l.apps.googleusercontent.com",
+                ClientSecret = "MnCQE8lRSSuFtGv8ghcsoi_3"
+            });
         }
     }
 }

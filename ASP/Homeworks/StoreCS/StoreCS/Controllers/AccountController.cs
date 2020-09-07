@@ -20,13 +20,13 @@ namespace StoreCS.Controllers
     [RouteArea("")]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        private ApplicationDbContext _context;
+        private ApplicationSignInManager signInManager;
+        private ApplicationUserManager userManager;
+        private ApplicationDbContext context;
 
         public AccountController()
         {
-            _context = new ApplicationDbContext();
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -39,11 +39,11 @@ namespace StoreCS.Controllers
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
             private set
             {
-                _signInManager = value;
+                signInManager = value;
             }
         }
 
@@ -51,11 +51,11 @@ namespace StoreCS.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
-                _userManager = value;
+                userManager = value;
             }
         }
 
@@ -86,11 +86,11 @@ namespace StoreCS.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    var userId = _context.Users.FirstOrDefault(x => x.Email.Equals(model.Email)).Id;
+                    var userId = context.Users.FirstOrDefault(x => x.Email.Equals(model.Email)).Id;
 
-                    var roleId = _context.Set<IdentityUserRole>().FirstOrDefault(x => x.UserId.Equals(userId)).RoleId;
+                    var roleId = context.Set<IdentityUserRole>().FirstOrDefault(x => x.UserId.Equals(userId)).RoleId;
 
-                    var role = _context.Roles.FirstOrDefault(x => x.Id.Equals(roleId)).Name;
+                    var role = context.Roles.FirstOrDefault(x => x.Id.Equals(roleId)).Name;
 
                     switch (role)
                     {
@@ -199,10 +199,7 @@ namespace StoreCS.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-
-                    var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(_context));
-
-                    userManager.AddToRole(user.Id, "User");
+                    UserManager.AddToRole(user.Id, "User");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -443,6 +440,9 @@ namespace StoreCS.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        UserManager.AddToRole(user.Id, "User");
+
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -475,16 +475,16 @@ namespace StoreCS.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (userManager != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    userManager.Dispose();
+                    userManager = null;
                 }
 
-                if (_signInManager != null)
+                if (signInManager != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    signInManager.Dispose();
+                    signInManager = null;
                 }
             }
 
