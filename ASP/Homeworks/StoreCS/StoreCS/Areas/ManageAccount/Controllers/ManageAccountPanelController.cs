@@ -75,7 +75,8 @@ namespace StoreCS.Areas.ManageAccount.Controllers
             {
                 Id = addInfo.Id,
                 FirstName = addInfo.Id,
-                LastName = addInfo.LastName
+                LastName = addInfo.LastName,
+                Email = user.Email
             };
 
             if (!string.IsNullOrWhiteSpace(addInfo.Image))

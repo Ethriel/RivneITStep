@@ -1,18 +1,17 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using StoreCS.Helpers;
 using StoreCS.Models;
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace StoreCS.Controllers
 {
@@ -20,30 +19,28 @@ namespace StoreCS.Controllers
     [RouteArea("")]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        private ApplicationDbContext _context;
+        private ApplicationSignInManager signInManager;
+        private ApplicationUserManager userManager;
+        private ApplicationDbContext context;
+        private readonly IMapper mapper;
 
-        public AccountController()
-        {
-            _context = new ApplicationDbContext();
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationDbContext context, IMapper mapper)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this.context = context;
+            this.mapper = mapper;
         }
 
         public ApplicationSignInManager SignInManager
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
             private set
             {
-                _signInManager = value;
+                signInManager = value;
             }
         }
 
@@ -51,11 +48,11 @@ namespace StoreCS.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
-                _userManager = value;
+                userManager = value;
             }
         }
 
@@ -86,11 +83,11 @@ namespace StoreCS.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    var userId = _context.Users.FirstOrDefault(x => x.Email.Equals(model.Email)).Id;
+                    var userId = context.Users.FirstOrDefault(x => x.Email.Equals(model.Email)).Id;
 
-                    var roleId = _context.Set<IdentityUserRole>().FirstOrDefault(x => x.UserId.Equals(userId)).RoleId;
+                    var roleId = context.Set<IdentityUserRole>().FirstOrDefault(x => x.UserId.Equals(userId)).RoleId;
 
-                    var role = _context.Roles.FirstOrDefault(x => x.Id.Equals(roleId)).Name;
+                    var role = context.Roles.FirstOrDefault(x => x.Id.Equals(roleId)).Name;
 
                     switch (role)
                     {
@@ -177,6 +174,10 @@ namespace StoreCS.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
+                var additionalInfo = mapper.Map<RegisterViewModel, UserAddInfo>(model);
+
+                additionalInfo.Id = user.Id;
+
                 var additionalInfo = new UserAddInfo
                 {
                     Id = user.Id,
@@ -200,7 +201,7 @@ namespace StoreCS.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
 
-                    var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(_context));
+                    var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
 
                     userManager.AddToRole(user.Id, "User");
 
@@ -475,16 +476,16 @@ namespace StoreCS.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (userManager != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    userManager.Dispose();
+                    userManager = null;
                 }
 
-                if (_signInManager != null)
+                if (signInManager != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    signInManager.Dispose();
+                    signInManager = null;
                 }
             }
 

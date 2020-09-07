@@ -1,0 +1,22 @@
+﻿@model StoreCS.Areas.ManageAccount.Models.UserAddInfoViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var fullName = $"{Model.FirstName} {Model.LastName}";
+}
+
+<div class="jumbotron">
+    <h3>Hello, @fullName!</h3>
+    <div class="user-info">
+        <div class="user-image">
+            <img src="@Model.Image" alt="user img"/>
+        </div>
+        <div class="user-info-inner">
+            <p class="text-center">@Model.Email</p>
+            <p class="text-center">@Model.FirstName</p>
+            <p class="text-center">@Model.LastName</p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class="btn-sm btn-warning"})
+        </div>
+    </div>    
+</div>

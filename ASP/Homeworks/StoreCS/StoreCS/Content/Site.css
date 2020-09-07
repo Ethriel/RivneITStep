@@ -34,7 +34,7 @@ textarea {
 
     .news-card:hover {
         transform: scale(1.05);
-/*        cursor: pointer;*/
+        /*        cursor: pointer;*/
         transition: 0.5s;
     }
 
@@ -66,8 +66,35 @@ textarea {
     justify-content: space-between;
     width: 100%;
 }
+
 .news-card-actions {
     display: flex;
     justify-content: center;
     width: 100%;
 }
+
+.user-info {
+    margin: 0.5rem auto;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user-info-inner{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.user-image {
+    width: 50%;
+}
+
+    .user-image img {
+        width: inherit;
+        height: auto;
+        min-height: 250px;
+        max-height: 250px;
+    }

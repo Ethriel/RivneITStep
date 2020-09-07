@@ -18,24 +18,24 @@ namespace StoreCS.Controllers
         }
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
+            //var userId = User.Identity.GetUserId();
 
-            if (userId != null)
-            {
-                var roleId = context.Set<IdentityUserRole>()
-                                .FirstOrDefault(x => x.UserId.Equals(userId)).RoleId;
+            //if (userId != null)
+            //{
+            //    var roleId = context.Set<IdentityUserRole>()
+            //                    .FirstOrDefault(x => x.UserId.Equals(userId)).RoleId;
 
-                var role = context.Roles.FirstOrDefault(x => x.Id.Equals(roleId));
+            //    var role = context.Roles.FirstOrDefault(x => x.Id.Equals(roleId));
 
-                if (role.Name.Equals("Admin"))
-                {
-                    return RedirectToAction("Index", "AdminPanel", new { area = "Admin" });
-                }
-                else if (role.Name.Equals("Manager"))
-                {
-                    return RedirectToAction("Index", "ManagerPanel", new { area = "Manager" });
-                }
-            }
+            //    if (role.Name.Equals("Admin"))
+            //    {
+            //        return RedirectToAction("Index", "AdminPanel", new { area = "Admin" });
+            //    }
+            //    else if (role.Name.Equals("Manager"))
+            //    {
+            //        return RedirectToAction("Index", "ManagerPanel", new { area = "Manager" });
+            //    }
+            //}
 
             var news = context.News.ToArray();
 
