@@ -1,0 +1,28 @@
+﻿@model StoreCS.Areas.ManageAccount.Models.UserAddInfoViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="user-card">
+        <div class="user-card-img-container">
+            <img src="@Model.Image" alt="your avatar" />
+        </div>
+        <div class="user-card-body">
+            <div class="user-card-info">
+                @Html.LabelFor(x => x.FirstName, htmlAttributes: new { @class = "control-label" })
+                <p>@Model.FirstName</p>
+            </div>
+            <div class="user-card-info">
+                @Html.LabelFor(x => x.LastName, htmlAttributes: new { @class = "control-label" })
+                <p>@Model.LastName</p>
+            </div>
+            @Html.ActionLink("Manage account", "ManageAccount", "ManageAccountPanel", new { area = "ManageAccount" }, new { @class = "btn-sm btn-warning text-center" })
+        </div>
+    </div>
+</div>
+<p>
+    
+</p>

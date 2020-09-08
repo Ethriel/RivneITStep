@@ -3,9 +3,6 @@ using StoreCS.Entity;
 using StoreCS.Helpers;
 using StoreCS.Models;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -23,18 +20,7 @@ namespace StoreCS.Areas.Manager.Controllers
         }
         public ActionResult Index()
         {
-            var news = context.News.ToArray();
-
-            var models = news.Select(x => new NewsViewModel
-            {
-                Category = x.Category.Name,
-                Content = x.Content,
-                Date = x.Date.ToShortDateString(),
-                Header = x.Header,
-                Id = x.Id,
-                Image = string.Concat(Config.GetAbsoluteUri(Request), Config.NewsImagePathOut, x.Image),
-                IsManager = true
-            });
+            var models = ModelHelper.GetNewsViewModels(context, Request, true);
 
             return View(models);
         }
@@ -54,7 +40,8 @@ namespace StoreCS.Areas.Manager.Controllers
         [HttpPost]
         public ActionResult CreateNews(CreateNewsViewModel model, HttpPostedFileBase imageFile)
         {
-            var category = context.Categories.FirstOrDefault(x => x.Name.Equals(model.Category));
+            var category = context.Categories
+                                  .FirstOrDefault(x => x.Name.Equals(model.Category));
 
             var news = new News
             {
@@ -64,7 +51,7 @@ namespace StoreCS.Areas.Manager.Controllers
                 Header = model.Header
             };
 
-            SaveImage(ref news, imageFile);
+            news.Image = ImageHelper.SaveImage(Server, imageFile, isNews: true);
 
             context.News.Add(news);
 
@@ -83,32 +70,6 @@ namespace StoreCS.Areas.Manager.Controllers
             var res = await context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
-        }
-
-        private void SaveImage(ref News news, HttpPostedFileBase imageFile)
-        {
-            if (imageFile == null)
-            {
-                return;
-            }
-            else
-            {
-                var fileName = string.Concat(Guid.NewGuid().ToString(), ".jpg");
-
-                var fullPathImage = string.Concat(Server.MapPath(Config.NewsImagePath), "\\", fileName);
-
-                using (var bmp = new Bitmap(imageFile.InputStream))
-                {
-                    var readyImage = ImageHelper.CreateImage(bmp, 450, 450);
-
-                    if (readyImage != null)
-                    {
-                        readyImage.Save(fullPathImage, ImageFormat.Jpeg);
-
-                        news.Image = fileName;
-                    }
-                }
-            }
         }
     }
 }

@@ -34,7 +34,7 @@ textarea {
 
     .news-card:hover {
         transform: scale(1.05);
-/*        cursor: pointer;*/
+        /*        cursor: pointer;*/
         transition: 0.5s;
     }
 
@@ -66,8 +66,51 @@ textarea {
     justify-content: space-between;
     width: 100%;
 }
+
 .news-card-actions {
     display: flex;
     justify-content: center;
     width: 100%;
 }
+
+.user-card {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
+    margin: 1.5rem auto;
+    max-width: 550px;
+}
+
+.user-card-img-container {
+    width: 100%;
+    margin: 0.2rem auto;
+}
+
+    .user-card-img-container img {
+        width: inherit;
+        max-width: 250px;
+        height: auto;
+        min-height: 250px;
+        max-height: 250px;
+        display: block;
+        margin: 0.2rem auto;
+    }
+
+.user-card-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0.3rem;
+}
+
+.user-card-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: inherit;
+}
+
+    .user-card-info p {
+        text-align: justify;
+    }

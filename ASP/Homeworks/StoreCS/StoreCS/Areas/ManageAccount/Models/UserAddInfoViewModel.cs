@@ -5,7 +5,7 @@ namespace StoreCS.Areas.ManageAccount.Models
 {
     public class UserAddInfoViewModel
     {
-        public string Id { get; set; }
+        //public string Id { get; set; }
 
         [Required(ErrorMessage = "First name is required")]
         [DisplayName("First name")]

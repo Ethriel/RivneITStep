@@ -2,12 +2,10 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using StoreCS.Areas.Admin.Models;
 using StoreCS.Entity;
+using StoreCS.Helpers;
 using StoreCS.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StoreCS.Areas.Admin.Controllers
@@ -26,7 +24,7 @@ namespace StoreCS.Areas.Admin.Controllers
         }
         public ActionResult Index()
         {
-            var adminModel = GetAdminViewModel();
+            var adminModel = ModelHelper.GetAdminViewModel(context, roleManager);
 
             return View(adminModel);
         }
@@ -37,7 +35,9 @@ namespace StoreCS.Areas.Admin.Controllers
             var user = context.Users
                               .FirstOrDefault(x => x.Id.Equals(id));
 
-            var currentRoleId = context.Set<IdentityUserRole>().FirstOrDefault(x => x.UserId.Equals(id)).RoleId;
+            var currentRoleId = context.Set<IdentityUserRole>()
+                                       .FirstOrDefault(x => x.UserId.Equals(id))
+                                       .RoleId;
 
             var currentRole = roleManager.FindById(currentRoleId).Name;
 
@@ -45,7 +45,7 @@ namespace StoreCS.Areas.Admin.Controllers
 
             var addResult = await userManager.AddToRoleAsync(user.Id, role);
 
-            var adminModel = GetAdminViewModel();
+            var adminModel = ModelHelper.GetAdminViewModel(context, roleManager);
 
             return View(adminModel);
         }
@@ -92,13 +92,7 @@ namespace StoreCS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ListRoles()
         {
-            var roles = context.Roles.ToArray();
-
-            var models = roles.Select(x => new RoleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name
-            });
+            var models = ModelHelper.GetRoleViewModels(context);
 
             return View(models);
         }
@@ -116,13 +110,7 @@ namespace StoreCS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult ListCategories()
         {
-            var categories = context.Categories.ToArray();
-
-            var models = categories.Select(x => new CategoryViewModel
-            {
-                Id = x.Id,
-                Name = x.Name
-            });
+            var models = ModelHelper.GetCategoryViewModels(context);
 
             return View(models);
         }
@@ -130,54 +118,15 @@ namespace StoreCS.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> RemoveCategory(int id)
         {
-            var category = context.Categories.FirstOrDefault(x => x.Id.Equals(id));
+            var category = context.Categories
+                                  .FirstOrDefault(x => x.Id.Equals(id));
 
-            context.Categories.Remove(category);
+            context.Categories
+                   .Remove(category);
 
             var res = await context.SaveChangesAsync();
 
             return RedirectToAction(nameof(ListCategories));
-        }
-
-        private AdminViewModel GetAdminViewModel()
-        {
-            var roles = GetRoles();
-
-            var usersModels = GetUserViewModels();
-
-            var adminModel = new AdminViewModel
-            {
-                Users = usersModels,
-                Roles = roles
-            };
-
-            return adminModel;
-        }
-
-        private IEnumerable<string> GetRoles()
-        {
-            var roles = context.Set<IdentityRole>()
-                               .Select(x => x.Name)
-                               .ToArray();
-
-            return roles;
-        }
-
-        private IEnumerable<UserViewModel> GetUserViewModels()
-        {
-            var usersModels = context.Users.Select(x => new UserViewModel
-            {
-                Id = x.Id,
-                Email = x.Email,
-                RoleId = context.Set<IdentityUserRole>().FirstOrDefault(y => y.UserId.Equals(x.Id)).RoleId,
-            }).Where(y => y.RoleId != null).ToList();
-
-            foreach (var user in usersModels)
-            {
-                user.Role = roleManager.FindById(user.RoleId).Name;
-            }
-
-            return usersModels;
         }
     }
 }

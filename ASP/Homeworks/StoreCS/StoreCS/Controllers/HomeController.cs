@@ -18,7 +18,7 @@ namespace StoreCS.Controllers
         }
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
+            //var userId = User.Identity.GetUserId();
 
             //if (userId != null)
             //{
@@ -37,18 +37,7 @@ namespace StoreCS.Controllers
             //    }
             //}
 
-            var news = context.News.ToArray();
-
-            var models = news.Select(x => new NewsViewModel
-            {
-                Category = x.Category.Name,
-                Content = x.Content,
-                Date = x.Date.ToShortDateString(),
-                Header = x.Header,
-                Id = x.Id,
-                Image = string.Concat(Config.GetAbsoluteUri(Request), Config.NewsImagePathOut, x.Image),
-                IsManager = false
-            });
+            var models = ModelHelper.GetNewsViewModels(context, Request);
 
             return View(models);
         }

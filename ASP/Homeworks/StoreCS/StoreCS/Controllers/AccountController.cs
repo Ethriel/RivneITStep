@@ -184,11 +184,12 @@ namespace StoreCS.Controllers
                     LastName = model.LastName
                 };
 
-                SaveImage(ref additionalInfo, imageFile);
+                additionalInfo.Image = ImageHelper.SaveImage(Server, imageFile);
 
                 user.UserAddInfo = additionalInfo;
 
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -209,33 +210,6 @@ namespace StoreCS.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        private void SaveImage(ref UserAddInfo info, HttpPostedFileBase imageFile)
-        {
-            if (imageFile == null)
-            {
-                return;
-            }
-            else
-            {
-                var fileName = string.Concat(Guid.NewGuid().ToString(), ".jpg");
-
-                var fullPathImage = string.Concat(Server.MapPath(Config.UsersAvatarsPath), "\\", fileName);
-
-                using (var bmp = new Bitmap(imageFile.InputStream))
-                {
-                    var readyImage = ImageHelper.CreateImage(bmp, 450, 450);
-
-                    if (readyImage != null)
-                    {
-                        readyImage.Save(fullPathImage, ImageFormat.Jpeg);
-
-                        info.Image = fileName;
-                    }
-                }
-            }
-        }
-
 
         //
         // GET: /Account/ConfirmEmail

@@ -7,6 +7,7 @@ namespace StoreCS.Helpers
 {
     public static class ImageHelper
     {
+        public static string NewImageName { get => string.Concat(Guid.NewGuid().ToString(), ".jpg"); }
         public static Bitmap CreateImage(Bitmap originalPic, int maxWidth, int maxHeight)
         {
             try
@@ -58,7 +59,7 @@ namespace StoreCS.Helpers
             }
         }
 
-        public static string SaveImage(int maxWidth, int maxHeight, HttpServerUtilityBase server, HttpPostedFileBase imageFile)
+        public static string SaveImage(HttpServerUtilityBase server, HttpPostedFileBase imageFile, int maxWidth = 450, int maxHeight = 450, bool isNews = false)
         {
             if (imageFile == null)
             {
@@ -66,13 +67,13 @@ namespace StoreCS.Helpers
             }
             else
             {
-                var fileName = string.Concat(Guid.NewGuid().ToString(), ".jpg");
+                var fileName = NewImageName;
 
-                var fullPathImage = string.Concat(server.MapPath(Config.UsersAvatarsPath), "\\", fileName);
+                var fullPathImage = isNews ? GetNewsImageFullPath(server, fileName) : GetUserImageFullPath(server, fileName);
 
                 using (var bmp = new Bitmap(imageFile.InputStream))
                 {
-                    var readyImage = ImageHelper.CreateImage(bmp, 450, 450);
+                    var readyImage = CreateImage(bmp, maxWidth, maxHeight);
 
                     if (readyImage != null)
                     {
@@ -86,6 +87,14 @@ namespace StoreCS.Helpers
                     }
                 }
             }
+        }
+        public static string GetUserImageFullPath(HttpServerUtilityBase server, string fileName)
+        {
+            return string.Concat(server.MapPath(Config.UsersAvatarsPath), "\\", fileName);
+        }
+        public static string GetNewsImageFullPath(HttpServerUtilityBase server, string fileName)
+        {
+            return string.Concat(server.MapPath(Config.NewsImagePath), "\\", fileName);
         }
     }
 }

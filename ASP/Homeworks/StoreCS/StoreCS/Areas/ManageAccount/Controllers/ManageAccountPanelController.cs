@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using StoreCS.Helpers;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Threading.Tasks;
 
 namespace StoreCS.Areas.ManageAccount.Controllers
 {
@@ -18,6 +21,33 @@ namespace StoreCS.Areas.ManageAccount.Controllers
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
         private ApplicationDbContext context;
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                signInManager = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                userManager = value;
+            }
+        }
+        public ManageAccountPanelController()
+        {
+            context = new ApplicationDbContext();
+        }
         public ManageAccountPanelController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             context = new ApplicationDbContext();
@@ -27,7 +57,7 @@ namespace StoreCS.Areas.ManageAccount.Controllers
         // GET: ManageAccount/ManageAccountPanel
         public ActionResult Index()
         {
-            var model = GetCurrentUserModel();
+            var model = ModelHelper.GetUserAddInfoViewModel(User, UserManager, Request);
 
             return View(model);
         }
@@ -35,7 +65,7 @@ namespace StoreCS.Areas.ManageAccount.Controllers
         [HttpGet]
         public ActionResult ManageAccount()
         {
-            var model = GetCurrentUserModel();
+            var model = ModelHelper.GetUserAddInfoViewModel(User, UserManager, Request);
 
             return View(model);
         }
@@ -49,41 +79,62 @@ namespace StoreCS.Areas.ManageAccount.Controllers
             }
             else
             {
-                var user = userManager.FindById(model.Id);
+                var userId = User.Identity.GetUserId();
+
+                var user = UserManager.FindById(userId);
 
                 var addInfo = user.UserAddInfo;
 
-                var newAddInfo = new UserAddInfo
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Image = ImageHelper.SaveImage(450, 450, Server, imageFile)
-                };
+                var addInfoDb = context.UserAddInfos.FirstOrDefault(x => x.Id.Equals(addInfo.Id));
+
+                model.Image = ImageHelper.SaveImage(Server, imageFile);
+
+                context.Entry(addInfoDb).CurrentValues.SetValues(model);
+
+                context.SaveChanges();
             }
             return RedirectToAction(nameof(Index));
         }
 
-        private UserAddInfoViewModel GetCurrentUserModel()
+        [HttpGet]
+        public ActionResult ChangePassword()
         {
-            var userId = User.Identity.GetUserId();
+            return View();
+        }
 
-            var user = userManager.FindById(userId);
-
-            var addInfo = user.UserAddInfo;
-
-            var model = new UserAddInfoViewModel
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
             {
-                Id = addInfo.Id,
-                FirstName = addInfo.Id,
-                LastName = addInfo.LastName
-            };
-
-            if (!string.IsNullOrWhiteSpace(addInfo.Image))
-            {
-                model.Image = string.Concat(Config.GetAbsoluteUri(Request), Config.UsersAvatarsPathOut, addInfo.Image);
+                return View(model);
             }
 
-            return model;
+            var userId = User.Identity.GetUserId();
+
+            var result = await UserManager.ChangePasswordAsync(userId, model.OldPassword, model.NewPassword);
+
+            if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(userId);
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction(nameof(Index));
+            }
+
+            AddErrors(result);
+
+            return View(model);
+        }
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
     }
 }
