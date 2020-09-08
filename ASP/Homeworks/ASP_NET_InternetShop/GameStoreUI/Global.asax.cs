@@ -9,8 +9,6 @@ namespace GameStoreUI
     {
         protected void Application_Start()
         {
-            AutofacConfiguration.ConfigureAutofac();
-
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

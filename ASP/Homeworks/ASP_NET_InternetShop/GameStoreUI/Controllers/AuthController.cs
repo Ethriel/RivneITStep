@@ -1,4 +1,5 @@
-﻿using GameStoreUI.Models.Account;
+﻿using GameStoreUI.Identity;
+using GameStoreUI.Models.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,14 @@ namespace GameStoreUI.Controllers
 {
     public class AuthController : Controller
     {
+        private readonly ApplicationUserManager userManager;
+        private readonly ApplicationSignInManager signInManager;
+
+        public AuthController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        {
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+        }
         [HttpGet]
         public ActionResult Login()
         {

@@ -142,7 +142,6 @@ namespace GameStoreBLL.Services.Implementation
             var games = gamesRepo.GetAllWithIncludes(x => x.Developer, y => y.Genre);
 
             var forHome = games.OrderBy(x => rnd.Next())
-                               .Skip(2)
                                .Take(5)
                                .ToArray();
 

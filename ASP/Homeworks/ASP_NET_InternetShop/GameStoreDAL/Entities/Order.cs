@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GameStoreDAL.Entities
@@ -11,8 +10,9 @@ namespace GameStoreDAL.Entities
         public virtual OrderStatus OrderStatus { get; set; }
         public virtual ICollection<Game> Games { get; set; }
         public virtual GameStoreUser GameStoreUser { get; set; }
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
         public bool IsDone { get; set; }
+        public double TotalPrice { get; set; }
         public Order()
         {
             Games = new List<Game>();
