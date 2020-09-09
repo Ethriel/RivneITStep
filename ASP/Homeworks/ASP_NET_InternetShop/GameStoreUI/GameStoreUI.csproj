@@ -223,6 +223,8 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\Authentication\Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -306,10 +308,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\DevelopersController.cs" />
-    <Compile Include="Controllers\GamesController.cs" />
-    <Compile Include="Controllers\GenresController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
+    <Compile Include="Areas\Authentication\Controllers\AuthController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DevelopersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GamesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -319,17 +323,17 @@
     <Compile Include="Identity\ApplicationSignInManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\ApplicationUserStore.cs" />
-    <Compile Include="Models\Account\LoginViewModel.cs" />
-    <Compile Include="Models\Account\RegisterViewModel.cs" />
-    <Compile Include="Models\CreateDeveloperViewModel.cs" />
-    <Compile Include="Models\CreateGameViewModel.cs" />
-    <Compile Include="Models\CreateGenreViewModel.cs" />
-    <Compile Include="Models\DeveloperViewModel.cs" />
-    <Compile Include="Models\EditDeveloperViewModel.cs" />
-    <Compile Include="Models\EditGameViewModel.cs" />
-    <Compile Include="Models\EditGenreViewModel.cs" />
-    <Compile Include="Models\GameViewModel.cs" />
-    <Compile Include="Models\GenreViewModel.cs" />
+    <Compile Include="Areas\Authentication\Models\LoginViewModel.cs" />
+    <Compile Include="Areas\Authentication\Models\RegisterViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Developers\CreateDeveloperViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Games\CreateGameViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Genres\CreateGenreViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Developers\DeveloperViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Developers\EditDeveloperViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Games\EditGameViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Genres\EditGenreViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Games\GameViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Genres\GenreViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\AppUserManager.cs" />
@@ -351,25 +355,25 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Games\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Games\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
-    <Content Include="Views\Games\Create.cshtml" />
-    <Content Include="Views\Games\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Games\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Games\Edit.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
-    <Content Include="Views\Games\Partial\Sidebar.cshtml" />
-    <Content Include="Views\Games\Partial\GamesPartial.cshtml" />
-    <Content Include="Views\Developers\Index.cshtml" />
-    <Content Include="Views\Developers\Partial\Sidebar.cshtml" />
-    <Content Include="Views\Developers\Partial\DevelopersPartial.cshtml" />
-    <Content Include="Views\Developers\Create.cshtml" />
-    <Content Include="Views\Developers\Edit.cshtml" />
-    <Content Include="Views\Genres\Index.cshtml" />
-    <Content Include="Views\Genres\Partial\GenresPartial.cshtml" />
-    <Content Include="Views\Genres\Partial\Sidebar.cshtml" />
-    <Content Include="Views\Genres\Create.cshtml" />
-    <Content Include="Views\Genres\Edit.cshtml" />
-    <Content Include="Views\Auth\Login.cshtml" />
-    <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\Games\Partial\Sidebar.cshtml" />
+    <Content Include="Areas\Admin\Views\Games\Partial\GamesPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Developers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Developers\Partial\Sidebar.cshtml" />
+    <Content Include="Areas\Admin\Views\Developers\Partial\DevelopersPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Developers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Developers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Partial\GenresPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Partial\Sidebar.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Edit.cshtml" />
+    <Content Include="Areas\Authentication\Views\Auth\Login.cshtml" />
+    <Content Include="Areas\Authentication\Views\Auth\Register.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="scss\style.css.map" />
     <Content Include="scss\style.scss" />
@@ -393,8 +397,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Authentication\Data\" />
+    <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Content\img\" />
     <Folder Include="Images\Games\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameStoreBLL\GameStoreBLL.csproj">

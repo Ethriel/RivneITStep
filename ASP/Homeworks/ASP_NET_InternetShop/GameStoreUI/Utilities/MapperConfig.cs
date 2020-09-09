@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using GameStoreDAL.Entities;
+using GameStoreUI.Areas.Admin.Models.Developers;
+using GameStoreUI.Areas.Admin.Models.Games;
+using GameStoreUI.Areas.Admin.Models.Genres;
 using GameStoreUI.Helpers;
-using GameStoreUI.Models;
 using System.Linq;
+using System.Web;
 
 namespace GameStoreUI.Utilities
 {
@@ -20,7 +23,7 @@ namespace GameStoreUI.Utilities
             CreateMap<Game, GameViewModel>()
                 .ForMember(x => x.Genre, opt => opt.MapFrom(x => x.Genre.Name))
                 .ForMember(x => x.Developer, opt => opt.MapFrom(x => x.Developer.Name))
-                .ForMember(x => x.Image, opt => opt.MapFrom(x => string.Concat(Config.Domain, Config.GamesImagesOut, "\\", x.Image)));
+                .ForMember(x => x.Image, opt => opt.MapFrom(x => string.Concat(Config.GetUri(HttpContext.Current.Request), Config.GamesImagesOut, x.Image)));
 
             CreateMap<GameViewModel, Game>();
 

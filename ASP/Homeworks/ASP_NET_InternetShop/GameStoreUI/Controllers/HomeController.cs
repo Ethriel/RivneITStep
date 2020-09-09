@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using GameStoreBLL.Services.Abstraction;
 using GameStoreDAL.Entities;
-using GameStoreUI.Models;
+using GameStoreUI.Areas.Admin.Models.Games;
 using System.Collections.Generic;
 using System.Web.Mvc;
 

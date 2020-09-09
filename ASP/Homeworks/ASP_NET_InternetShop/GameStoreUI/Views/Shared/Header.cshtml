@@ -5,22 +5,22 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            @Html.ActionLink("Home", "Index", "Home", "", new { @class = "nav-link" })
+            @Html.ActionLink("Home", "Index", "Home", new { area = ""}, new { @class = "nav-link" })
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            @Html.ActionLink("Games", "Index", "Games", "", new { @class = "nav-link" })
+            @Html.ActionLink("Games", "Index", "Games", new { area = "Admin" }, new { @class = "nav-link" })
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            @Html.ActionLink("Developers", "Index", "Developers", "", new { @class = "nav-link" })
+            @Html.ActionLink("Developers", "Index", "Developers", new { area = "Admin" }, new { @class = "nav-link" })
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            @Html.ActionLink("Genres", "Index", "Genres", "", new { @class = "nav-link" })
+            @Html.ActionLink("Genres", "Index", "Genres", new { area = "Admin" }, new { @class = "nav-link" })
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            @Html.ActionLink("Sign in", "Login", "Auth", "", new { @class = "nav-link" })
+            @Html.ActionLink("Sign in", "Login", "Auth", new { area = "Authentication" }, new { @class = "nav-link" })
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            @Html.ActionLink("Sign up", "Register", "Auth", "", new { @class = "nav-link" })
+            @Html.ActionLink("Sign up", "Register", "Auth", new { area = "Authentication" }, new { @class = "nav-link" })
         </li>
     </ul>
 

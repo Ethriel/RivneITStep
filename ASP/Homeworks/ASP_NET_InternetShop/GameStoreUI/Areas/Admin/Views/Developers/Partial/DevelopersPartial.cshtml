@@ -1,0 +1,38 @@
+﻿@model IEnumerable<GameStoreUI.Areas.Admin.Models.Developers.DeveloperViewModel>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            Games Count
+        </th>
+        <th>
+            Actions
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (@Html.BeginForm("Delete", "Developers", new { area = "Admin", id = item.Id  }, FormMethod.Post))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GamesCount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { area = "Admin", id = item.Id  }, new { @class = "btn-sm btn-warning" })
+                    <input type="submit" value="Delete" class="btn-sm btn-danger" />
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>
