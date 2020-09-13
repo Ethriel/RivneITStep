@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Web;
 
 namespace GameStoreUI.Helpers
 {
     public static class ImageHelper
     {
+        public static string NewImageName { get => string.Concat(Guid.NewGuid().ToString(), ".jpg"); }
         public static Bitmap CreateImage(Bitmap originalPic, int maxWidth, int maxHeight)
         {
             try
@@ -55,6 +57,45 @@ namespace GameStoreUI.Helpers
             {
                 return null;
             }
+        }
+
+        public static string SaveImage(HttpServerUtilityBase server, HttpPostedFileBase imageFile, int maxWidth = 450, int maxHeight = 450, bool isGames = true)
+        {
+            if (imageFile == null)
+            {
+                return null;
+            }
+            else
+            {
+                var fileName = NewImageName;
+
+                var fullPathImage = isGames ? GetGamesImageFullPath(server, fileName) : GetUserImageFullPath(server, fileName);
+
+                using (var bmp = new Bitmap(imageFile.InputStream))
+                {
+                    var readyImage = CreateImage(bmp, maxWidth, maxHeight);
+
+                    if (readyImage != null)
+                    {
+                        readyImage.Save(fullPathImage, ImageFormat.Jpeg);
+
+                        return fileName;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        public static string GetGamesImageFullPath(HttpServerUtilityBase server, string fileName)
+        {
+            return string.Concat(server.MapPath(Config.GamesImagesPath), "\\", fileName);
+        }
+        public static string GetUserImageFullPath(HttpServerUtilityBase server, string fileName)
+        {
+            return string.Concat(server.MapPath(Config.UsersImagesPath), "\\", fileName);
         }
     }
 }

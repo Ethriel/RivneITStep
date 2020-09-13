@@ -4,6 +4,8 @@ using GameStoreDAL.Entities;
 using GameStoreUI.Areas.Admin.Models.Games;
 using GameStoreUI.Identity;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace GameStoreUI.Controllers
@@ -12,13 +14,11 @@ namespace GameStoreUI.Controllers
     {
         private readonly IGameService gameService;
         private readonly IMapper mapper;
-        private readonly ApplicationRoleManager roleManager;
 
-        public HomeController(IGameService gameService, IMapper mapper, ApplicationRoleManager roleManager)
+        public HomeController(IGameService gameService, IMapper mapper)
         {
             this.gameService = gameService;
             this.mapper = mapper;
-            this.roleManager = roleManager;
         }
         public ActionResult Index()
         {

@@ -1,6 +1,6 @@
-﻿@model IEnumerable<GameStoreUI.Areas.Admin.Models.Games.GameViewModel>
+﻿@model GameStoreUI.Areas.Admin.Models.Games.GamesModel
 
-@if (!Model.Any())
+@if (!Model.Games.Any())
 {
     <div class="container">
         <div class="row">
@@ -13,13 +13,13 @@
 else
 {
     <div class="row">
-        @foreach (var game in Model)
+        @foreach (var game in Model.Games)
         {
             <div class="col-6 col-md-4 col-lg-3">
                 @using (@Html.BeginForm("Delete", "Games", new { area = "Admin", id = game.Id }, FormMethod.Post))
                 {
                     <div class="card mb-4 my-card">
-                        <img class="card-img-top game-img" src="@game.Image" alt="Card image cap">
+                        <img class="card-img-top game-img" src="@game.Image" alt="@game.Name image">
                         <div class="card-body">
                             <h5 class="card-title">@game.Name</h5>
                             <p class="card-text">@game.Description</p>
@@ -31,11 +31,16 @@ else
                             <li class="list-group-item text-right"><span class="font-weight-bold">Price:</span> @game.Price$</li>
                         </ul>
                         <div class="card-body">
-                            @Html.ActionLink("Details", "Details", "Games", new { area = "Admin", id = game.Id  }, new { @class = "btn-sm btn-success" })
-                            @*<a href="/Games/Details?id=@game.Id" class="btn-sm btn-success">Details</a>*@
-                            @Html.ActionLink("Edit", "Edit", "Games", new { area = "Admin", id = game.Id  }, new { @class = "btn-sm btn-success" })
-                            @*<a href="/Games/Edit?id=@game.Id" class="btn-sm btn-success">Edit</a>*@
-                            <input type="submit" value="Delete" class="btn-sm btn-danger" />
+                            @if (Model.IsAdmin)
+                            {
+                                @Html.ActionLink("Edit", "Edit", "Games", new { area = "Admin", id = game.Id }, new { @class = "btn-sm btn-success" })
+                                <input type="submit" value="Delete" class="btn-sm btn-danger" />
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Details", "Details", "Games", new { area = "Admin", id = game.Id }, new { @class = "btn-sm btn-success" })
+                                @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { area = "", id = game.Id }, new { @class = "btn-sm btn-success" })
+                            }
                         </div>
                     </div>
                 }

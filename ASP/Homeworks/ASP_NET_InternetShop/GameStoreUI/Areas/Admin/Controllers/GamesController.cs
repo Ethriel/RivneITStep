@@ -4,10 +4,8 @@ using GameStoreBLL.Services.Abstraction;
 using GameStoreDAL.Entities;
 using GameStoreUI.Areas.Admin.Models.Games;
 using GameStoreUI.Helpers;
-using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -21,13 +19,15 @@ namespace GameStoreUI.Areas.Admin.Controllers
         private readonly IDeveloperService developerService;
         private readonly IGenreService genreService;
         private readonly IMapper mapper;
+        private readonly DbContext context;
 
-        public GamesController(IGameService gameService, IDeveloperService developerService, IGenreService genreService, IMapper mapper)
+        public GamesController(IGameService gameService, IDeveloperService developerService, IGenreService genreService, IMapper mapper, DbContext context)
         {
             this.gameService = gameService;
             this.developerService = developerService;
             this.genreService = genreService;
             this.mapper = mapper;
+            this.context = context;
         }
 
         public ActionResult Index()
@@ -36,9 +36,15 @@ namespace GameStoreUI.Areas.Admin.Controllers
 
             var models = mapper.Map<IEnumerable<Game>, IEnumerable<GameViewModel>>(games);
 
+            var model = new GamesModel
+            {
+                Games = models,
+                IsAdmin = UserHelper.IsAdmin(User, context)
+            };
+
             SetGenresDevelopers();
 
-            return View(models);
+            return View(model);
         }
 
         [HttpGet]
@@ -134,25 +140,11 @@ namespace GameStoreUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CreateGameViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return Create();
-            }
-            var game = mapper.Map<CreateGameViewModel, Game>(model);
-
-            gameService.CreateGame(game);
-
-            return RedirectToAction(nameof(Index));
-        }
-
-        [HttpPost]
         public ActionResult CreateWithCustomImage(CreateGameViewModel model, HttpPostedFileBase imageFile)
         {
             var game = mapper.Map<CreateGameViewModel, Game>(model);
 
-            SaveImage(ref game, imageFile);
+            game.Image = ImageHelper.SaveImage(Server, imageFile);
 
             gameService.CreateGame(game);
 
@@ -172,21 +164,6 @@ namespace GameStoreUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(EditGameViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return Edit(model.Id);
-            }
-
-            var game = mapper.Map<EditGameViewModel, Game>(model);
-
-            gameService.UpdateGame(game);
-
-            return RedirectToAction(nameof(Index));
-        }
-
-        [HttpPost]
         public ActionResult EditWithCustomImage(EditGameViewModel model, HttpPostedFileBase imageFile)
         {
             if (!ModelState.IsValid)
@@ -198,7 +175,7 @@ namespace GameStoreUI.Areas.Admin.Controllers
 
             DeleteImage(game.Id);
 
-            SaveImage(ref game, imageFile);
+            game.Image = ImageHelper.SaveImage(Server, imageFile);
 
             gameService.UpdateGame(game);
 
@@ -234,32 +211,6 @@ namespace GameStoreUI.Areas.Admin.Controllers
             if (System.IO.File.Exists(fullPath))
             {
                 System.IO.File.Delete(fullPath);
-            }
-        }
-
-        private void SaveImage(ref Game game, HttpPostedFileBase imageFile)
-        {
-            if (imageFile == null)
-            {
-                return;
-            }
-            else
-            {
-                var fileName = string.Concat(Guid.NewGuid().ToString(), ".jpg");
-
-                var fullPathImage = string.Concat(Server.MapPath(Config.GamesImagesPath), "\\", fileName);
-
-                using (var bmp = new Bitmap(imageFile.InputStream))
-                {
-                    var readyImage = ImageHelper.CreateImage(bmp, 450, 450);
-
-                    if (readyImage != null)
-                    {
-                        readyImage.Save(fullPathImage, ImageFormat.Jpeg);
-
-                        game.Image = fileName;
-                    }
-                }
             }
         }
     }
