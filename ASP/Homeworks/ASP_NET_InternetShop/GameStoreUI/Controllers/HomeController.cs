@@ -2,6 +2,7 @@
 using GameStoreBLL.Services.Abstraction;
 using GameStoreDAL.Entities;
 using GameStoreUI.Areas.Admin.Models.Games;
+using GameStoreUI.Identity;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -11,11 +12,13 @@ namespace GameStoreUI.Controllers
     {
         private readonly IGameService gameService;
         private readonly IMapper mapper;
+        private readonly ApplicationRoleManager roleManager;
 
-        public HomeController(IGameService gameService, IMapper mapper)
+        public HomeController(IGameService gameService, IMapper mapper, ApplicationRoleManager roleManager)
         {
             this.gameService = gameService;
             this.mapper = mapper;
+            this.roleManager = roleManager;
         }
         public ActionResult Index()
         {
