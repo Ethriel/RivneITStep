@@ -18,6 +18,30 @@ namespace NewsDataAccessCore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("NewsDataAccessCore.Entity.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NewsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NewsId")
+                        .IsUnique();
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("NewsDataAccessCore.Entity.News", b =>
                 {
                     b.Property<int>("Id")
@@ -44,6 +68,15 @@ namespace NewsDataAccessCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("News");
+                });
+
+            modelBuilder.Entity("NewsDataAccessCore.Entity.Comment", b =>
+                {
+                    b.HasOne("NewsDataAccessCore.Entity.News", "News")
+                        .WithOne("Comment")
+                        .HasForeignKey("NewsDataAccessCore.Entity.Comment", "NewsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

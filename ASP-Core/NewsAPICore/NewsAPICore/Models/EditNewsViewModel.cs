@@ -1,6 +1,6 @@
 ﻿namespace NewsAPICore.Models
 {
-    public class CreateNewsViewModel
+    public class EditNewsViewModel
     {
         public string Title { get; set; }
 

@@ -57,7 +57,6 @@ namespace NewsAPICore.Controllers
             try
             {
                 await context.News.AddAsync(news);
-
                 await context.SaveChangesAsync();
 
                 result = ApiResult.CreateResult(ApiStatus.Ok, "News added");
@@ -66,6 +65,66 @@ namespace NewsAPICore.Controllers
             {
                 result = ApiResult.CreateResult(ApiStatus.ApplicationError, ex.Message);
 
+                return this.GetActionResult(result);
+            }
+
+            return this.GetActionResult(result);
+        }
+
+        [HttpPost("update/{id}")]
+        public async Task<IActionResult> UpdateNews([FromRoute] int id, [FromBody] EditNewsViewModel model)
+        {
+            var result = default(ApiResult);
+
+            try
+            {
+                var news = await context.News.FindAsync(id);
+                if (news == null)
+                {
+                    result = ApiResult.CreateResult(ApiStatus.NotFound, "News not found");
+                }
+                else
+                {
+                    context.Entry<News>(news).CurrentValues.SetValues(model);
+                    var save = await context.SaveChangesAsync();
+
+                    result = ApiResult.CreateResult(ApiStatus.Ok, "Edited successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                result = ApiResult.CreateResult(ApiStatus.ApplicationError, ex.Message);
+
+                return this.GetActionResult(result);
+            }
+
+            return this.GetActionResult(result);
+        }
+
+        [HttpGet("remove/{id}")]
+        public async Task<IActionResult> RemoveNews([FromRoute] int id)
+        {
+            var result = default(ApiResult);
+
+            try
+            {
+                var news = await context.News.FindAsync(id);
+                if (news == null)
+                {
+                    result = ApiResult.CreateResult(ApiStatus.NotFound, "News not found");
+                }
+                else
+                {
+                    context.News.Remove(news);
+                    var save = await context.SaveChangesAsync();
+
+                    result = ApiResult.CreateResult(ApiStatus.Ok, "Removed successfully");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result = ApiResult.CreateResult(ApiStatus.ApplicationError, ex.Message);
                 return this.GetActionResult(result);
             }
 
