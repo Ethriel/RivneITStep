@@ -130,5 +130,40 @@ namespace NewsAPICore.Controllers
 
             return this.GetActionResult(result);
         }
+
+        [HttpGet("get/{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var result = default(ApiResult);
+
+            try
+            {
+                var news = await context.News.FindAsync(id);
+                if (news == null)
+                {
+                    result = ApiResult.CreateResult(ApiStatus.NotFound, "News not found");
+                }
+                else
+                {
+                    var model = new NewsViewModel
+                    {
+                        Description = news.Description,
+                        Id = news.Id,
+                        ImagePath = news.ImagePath,
+                        PostDate = news.PostDate,
+                        Title = news.Title
+                    };
+
+                    result = ApiResult.CreateResult(ApiStatus.Ok, data: model);
+                }
+            }
+            catch (Exception ex)
+            {
+                result = ApiResult.CreateResult(ApiStatus.ApplicationError, ex.Message);
+                return this.GetActionResult(result);
+            }
+
+            return this.GetActionResult(result);
+        }
     }
 }

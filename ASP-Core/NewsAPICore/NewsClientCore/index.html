@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News</title>
-    <link rel="stylesheet" href="css/style.css"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-    <input type="text" id="newsTitle"/>
-    <input type="text" id="newsDescription"/>
-    <input type="button" value="Create" onclick="createNewsClick()"/>
-    <script src="js/script.js"></script>
+    <div class="container">
+        <div class="row" id="listNews">
+            
+        </div>
+
+        <form style="margin-top: 30px;">
+            <h3>Add news...</h3>
+            <div class="form-group">
+                <label for="addTitle">Title</label>
+                <input type="text" class="form-control" id="addTitle" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="addDescription">Description</label>
+                <input type="email" class="form-control" id="addDescription" placeholder="Description">
+            </div>
+            <div class="form-group">
+                <label for="addDate">Date</label>
+                <input type="date" class="form-control" id="addDate" placeholder="Date">
+            </div>
+            <div class="form-group">
+                <label for="addImage">Image</label>
+                <input type="email" class="form-control" id="addImage" placeholder="Image URL">
+            </div>
+            <input type="button" class="btn btn-primary" value="Add" id="createNews" onclick="postNews()">
+        </form>
+    </div>
+<div id="newsModal">
+
+</div>
+    
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/e5665d24cf.js" crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
+
 </html>

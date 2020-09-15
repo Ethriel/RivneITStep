@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create news</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <form>
+        <div class="form-group">
+            <label for="addTitle">Title</label>
+            <input type="text" class="form-control" id="addTitle" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="addDescription">Description</label>
+            <input type="email" class="form-control" id="addDescription" placeholder="Description">
+        </div>
+        <div class="form-group">
+            <label for="addDate">Date</label>
+            <input type="date" class="form-control" id="addDate" placeholder="Date">
+        </div>
+        <div class="form-group">
+            <label for="addImage">Image</label>
+            <input type="email" class="form-control" id="addImage" placeholder="Image URL">
+        </div>
+        <input type="button" class="btn btn-primary" value="Add" id="createNews" onclick="postNews()">
+    </form>
+</body>
+<script src="js/script.js"></script>
+
+</html>
