@@ -75,7 +75,12 @@ namespace NewsAPICore.Controllers
                 }
                 else
                 {
-                    var comments = context.Comments.Where(x => x.News.Id.Equals(newsId)).ToArray();
+                    var comments = context.Comments.Select(x => new CommentViewModel 
+                    {
+                        Id = x.Id,
+                        Message = x.Message,
+                        Name = x.Name
+                    }).ToArray();
 
                     result = ApiResult.CreateResult(ApiStatus.Ok, data: comments);
                 }
