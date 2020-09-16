@@ -36,99 +36,11 @@ namespace GameStoreUI.Areas.Admin.Controllers
 
             var models = mapper.Map<IEnumerable<Game>, IEnumerable<GameViewModel>>(games);
 
-            var model = new GamesModel
-            {
-                Games = models,
-                IsAdmin = UserHelper.IsAdmin(User, context)
-            };
+            var model = GamesModel.CreateGameModel(models, UserHelper.IsAdmin(User, context));
 
             SetGenresDevelopers();
 
             return View(model);
-        }
-
-        [HttpGet]
-        public ActionResult Search(string criteria)
-        {
-            var games = default(IEnumerable<Game>);
-
-            var criteriaNull = string.IsNullOrWhiteSpace(criteria);
-
-            if (criteriaNull)
-            {
-                games = gameService.GetAllGames();
-            }
-            else
-            {
-                games = gameService.FindGamesByCriteria(criteria);
-            }
-
-            var models = mapper.Map<IEnumerable<Game>, IEnumerable<GameViewModel>>(games);
-
-            SetGenresDevelopers();
-
-            return PartialView("Partial/GamesPartial", models);
-        }
-
-        [HttpGet]
-        public ActionResult Filter(string type, string name)
-        {
-            var games = default(IEnumerable<Game>);
-            var typeNull = string.IsNullOrWhiteSpace(type);
-            var nameNull = string.IsNullOrWhiteSpace(name);
-
-            if (!typeNull && !nameNull)
-            {
-                AddFilter(type, name);
-                games = gameService.FilterGames(Session["GameFilters"] as List<GameFilter>);
-            }
-            else
-            {
-                games = gameService.GetAllGames();
-            }
-
-            var models = mapper.Map<IEnumerable<Game>, IEnumerable<GameViewModel>>(games);
-
-            return PartialView("Partial/GamesPartial", models);
-        }
-
-        private void AddFilter(string type, string name)
-        {
-            var filters = Session["GameFilters"] as ICollection<GameFilter>;
-
-            if (filters == null)
-            {
-                filters = new List<GameFilter>();
-            }
-
-            var present = filters.FirstOrDefault(x => x.Type.Equals(type) && x.Name.Equals(name));
-
-            var filter = default(GameFilter);
-
-            if (present == null)
-            {
-                filter = new GameFilter
-                {
-                    Type = type,
-                    Name = name
-                };
-
-                if (type.Equals("Developer"))
-                {
-                    filter.Predicate = (x => x.Developer.Name.Equals(name));
-                }
-                else
-                {
-                    filter.Predicate = (x => x.Genre.Name.Equals(name));
-                }
-                filters.Add(filter);
-            }
-            else
-            {
-                filters.Remove(present);
-            }
-
-            Session["GameFilters"] = filters;
         }
 
         [HttpGet]

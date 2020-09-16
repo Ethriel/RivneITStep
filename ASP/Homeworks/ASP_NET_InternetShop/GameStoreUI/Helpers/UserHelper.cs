@@ -20,7 +20,7 @@ namespace GameStoreUI.Helpers
             }
 
             var roleId = context.Set<IdentityUserRole>()
-                                .FirstOrDefault(x => x.UserId.Equals(id));
+                                .FirstOrDefault(x => x.UserId.Equals(id)).RoleId;
 
             var role = context.Set<GameStoreRole>()
                               .FirstOrDefault(x => x.Id.Equals(roleId));

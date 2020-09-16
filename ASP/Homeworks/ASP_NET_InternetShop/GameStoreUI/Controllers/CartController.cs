@@ -1,6 +1,9 @@
-﻿using GameStoreBLL.Services.Abstraction;
+﻿using AutoMapper;
+using GameStoreBLL.Services.Abstraction;
 using GameStoreDAL.Entities;
+using GameStoreUI.Areas.Admin.Models.Games;
 using GameStoreUI.Identity;
+using GameStoreUI.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -15,12 +18,14 @@ namespace GameStoreUI.Controllers
     {
         private readonly ICartService cartService;
         private readonly IGameService gameService;
+        private readonly IMapper mapper;
         private readonly ApplicationUserManager userManager;
 
-        public CartController(ICartService cartService, IGameService gameService, ApplicationUserManager userManager)
+        public CartController(ICartService cartService, IGameService gameService, IMapper mapper, ApplicationUserManager userManager)
         {
             this.cartService = cartService;
             this.gameService = gameService;
+            this.mapper = mapper;
             this.userManager = userManager;
         }
         [HttpGet]
@@ -69,6 +74,33 @@ namespace GameStoreUI.Controllers
             };
 
             cartService.AddOrder(order);
+
+            return ReturnToGamesList();
+        }
+
+        [HttpGet]
+        public ActionResult ShowCart()
+        {
+            var cart = Session["GamesCart"] as ICollection<Game>;
+
+            var games = mapper.Map<IEnumerable<Game>, IEnumerable<GameViewModel>>(cart);
+
+            var model = CartViewModel.Create(games, games.Sum(x => x.Price));
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ClearCart()
+        {
+            var cart = Session["GamesCart"] as ICollection<Game>;
+
+            if (cart != null)
+            {
+                cart.Clear();
+                cart = null;
+                Session["GamesCart"] = cart;
+            }
 
             return ReturnToGamesList();
         }

@@ -230,6 +230,12 @@
     <Content Include="Scripts\jquery-3.0.0.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -339,6 +345,7 @@
     <Compile Include="Areas\Admin\Models\Genres\EditGenreViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Games\GameViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Genres\GenreViewModel.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\AppUserManager.cs" />
@@ -365,8 +372,8 @@
     <Content Include="Areas\Admin\Views\Games\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Games\Edit.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
-    <Content Include="Areas\Admin\Views\Games\Partial\Sidebar.cshtml" />
-    <Content Include="Areas\Admin\Views\Games\Partial\GamesPartial.cshtml" />
+    <Content Include="Views\Shared\Partial\Sidebar.cshtml" />
+    <Content Include="Views\Shared\Partial\GamesPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Developers\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Developers\Partial\Sidebar.cshtml" />
     <Content Include="Areas\Admin\Views\Developers\Partial\DevelopersPartial.cshtml" />
@@ -394,6 +401,13 @@
     <Content Include="scss\_reset.scss" />
     <Content Include="scss\_responsive.scss" />
     <Content Include="scss\_variables.scss" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\ListGames.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Cart\ShowCart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -408,8 +422,6 @@
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Content\img\" />
     <Folder Include="Images\Games\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameStoreBLL\GameStoreBLL.csproj">

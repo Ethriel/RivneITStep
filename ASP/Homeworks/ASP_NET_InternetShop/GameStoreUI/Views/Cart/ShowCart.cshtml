@@ -1,0 +1,37 @@
+﻿@model GameStoreUI.Models.CartViewModel
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h3 class="text-center">Your cart</h3>
+        <div class="row">
+            @foreach (var game in Model.Games)
+            {
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card mb-4 my-card">
+                        <img class="card-img-top game-img" src="@game.Image" alt="@game.Name image">
+                        <div class="card-body">
+                            <h5 class="card-title">@game.Name</h5>
+                            <p class="card-text">@game.Price$</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            <hr class="my-4">
+            <p class="text-center">Total price: @Model.Total$</p>
+            @Html.ActionLink("Buy", "SumbitPurchase", "Cart", new { area = "" }, new { @class = "btn-sm btn-success" })
+            @if (Model.Games.Any())
+            {
+                @Html.ActionLink("Clear cart", "ClearCart", "Cart", new { area = "" }, new { @class = "btn-sm btn-success" })
+            }
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

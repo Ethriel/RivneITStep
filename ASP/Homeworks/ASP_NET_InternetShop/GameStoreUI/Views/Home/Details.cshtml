@@ -1,0 +1,24 @@
+﻿@model GameStoreUI.Areas.Admin.Models.Games.GameViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="container">
+    <div class="card mb-4 my-card">
+        <img class="card-img-top" src="@Model.Image" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">@Model.Description</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><span class="font-weight-bold">Developer:</span> @Model.Developer</li>
+            <li class="list-group-item"><span class="font-weight-bold">Genre:</span> @Model.Genre</li>
+            <li class="list-group-item text"><span class="font-weight-bold">Year:</span> @Model.Year</li>
+            <li class="list-group-item text-right"><span class="font-weight-bold">Price:</span> @Model.Price$</li>
+        </ul>
+        @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { area = "", id = Model.Id }, new { @class = "btn-sm btn-success text-center add-to-cart-details" })
+    </div>
+</div>
+

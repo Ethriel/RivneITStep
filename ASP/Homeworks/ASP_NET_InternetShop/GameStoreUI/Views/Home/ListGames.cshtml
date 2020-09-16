@@ -1,0 +1,16 @@
+﻿@model GameStoreUI.Areas.Admin.Models.Games.GamesModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@{
+    Html.RenderPartial("Partial/Sidebar", Model);
+}
+<div class="content-wrapper">
+    <div class="container my-container" id="games">
+        @{
+            Html.RenderPartial("Partial/GamesPartial", Model);
+        }
+    </div>
+</div>
