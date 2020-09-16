@@ -11,28 +11,22 @@
 
 <body>
     <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">News</h1>
+            <p class="lead">List, add, edit news</p>
+            <hr class="my-4">
+            <p>Various news</p>
+            <p class="lead">
+                <div class="d-flex justify-content-between w-75 center-block">
+                    <button class="btn-lg btn-primary" onclick="listNews()">List News</button>
+                    <a class="btn-lg btn-primary" href="create.html">Add news</a>
+                </div>
+            </p>
+          </div>
+        
         <div class="row" id="listNews"></div>
 
-        <form style="margin-top: 30px;">
-            <h3>Add news...</h3>
-            <div class="form-group">
-                <label for="addTitle">Title</label>
-                <input type="text" class="form-control" id="addTitle" placeholder="Title">
-            </div>
-            <div class="form-group">
-                <label for="addDescription">Description</label>
-                <input type="email" class="form-control" id="addDescription" placeholder="Description">
-            </div>
-            <div class="form-group">
-                <label for="addDate">Date</label>
-                <input type="date" class="form-control" id="addDate" placeholder="Date">
-            </div>
-            <div class="form-group">
-                <label for="addImage">Image</label>
-                <input type="email" class="form-control" id="addImage" placeholder="Image URL">
-            </div>
-            <input type="button" class="btn btn-primary" value="Add" id="createNews" onclick="postNews()">
-        </form>
+        
     </div>
 <div id="newsModal"></div>
     

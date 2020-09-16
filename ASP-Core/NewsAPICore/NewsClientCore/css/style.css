@@ -1,6 +1,19 @@
-.card-img-my{
+.card-img-my {
     width: 100%;
-    max-width: 150px;
+    max-width: 220px;
     height: auto;
     margin: 0 auto;
+}
+
+.center-block {
+    margin: 0 auto;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.my-card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
 }

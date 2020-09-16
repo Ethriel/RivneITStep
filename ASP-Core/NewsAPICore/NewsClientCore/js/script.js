@@ -1,6 +1,6 @@
 let fetchedNews = [];
 
-const windowLoaded = () => {
+const listNews = () => {
     fetch("https://localhost:44340/api/News/get", {
         method: "GET",
         headers: {
@@ -23,7 +23,7 @@ const windowLoaded = () => {
         });
 };
 
-windowLoaded();
+// listNews();
 
 const removeNews = (id) => {
     fetch(`https://localhost:44340/api/News/remove/${id}`, {
@@ -37,36 +37,7 @@ const removeNews = (id) => {
         })
         .then((data) => {
             console.log(data);
-            windowLoaded();
-        })
-        .catch((reason) => {
-            console.log(reason);
-        });
-};
-
-const postNews = () => {
-    const title = document.getElementById("addTitle").value;
-    const description = document.getElementById("addDescription").value;
-    const date = document.getElementById("addDate").value;
-    const image = document.getElementById("addImage").value;
-
-    const createNewsViewModel = {
-        title: title,
-        postDate: date,
-        imagePath: image,
-        description: description
-    };
-
-    fetch("https://localhost:44340/api/News/add", {
-        method: "POST",
-        body: JSON.stringify(createNewsViewModel),
-        headers: {
-            'Content-type': 'application/json'
-        }
-    })
-        .then((response) => {
-            console.log(response)
-            windowLoaded();
+            listNews();
         })
         .catch((reason) => {
             console.log(reason);
@@ -79,13 +50,13 @@ const showDetails = (id) => {
     });
     console.log(news);
     const elem = clearNodeChildren("newsModal");
-    elem.append(getModal(news));
+    elem.append(getDetailsModal(news));
 };
 
-const getModal = (news) => {
+const getDetailsModal = (news) => {
     const modal = createElement("div", "modal fade show");
-    modal.setAttribute("id", "exampleModal");
-    modal.setAttribute("aria-labelledby", "exampleModalLabel");
+    modal.setAttribute("id", "detailsModal");
+    modal.setAttribute("aria-labelledby", "detailsModalLabel");
     modal.setAttribute("aria-hidden", "true");
     modal.setAttribute("role", "dialog");
     modal.setAttribute("tabindex", "-1");
@@ -101,7 +72,7 @@ const getModal = (news) => {
     const modalHeader = createElement("div", "modal-header");
 
     const h5 = createElement("h5", "modal-title");
-    h5.setAttribute("id", "exampleModalLabel");
+    h5.setAttribute("id", "detailsModalLabel");
     h5.innerText = news.title;
 
     const modalBody = createElement("div", "modal-body");
@@ -130,7 +101,7 @@ const getModal = (news) => {
 };
 
 const getNewsCard = (news) => {
-    const col = createElement("div", "col-md-3");
+    const col = createElement("div", "col-md-3 my-card");
 
     const card = createElement("div", "card");
 
@@ -151,21 +122,30 @@ const getNewsCard = (news) => {
     btnReadMore.onclick = function () { showDetails(news.id); };
     btnReadMore.innerText = "Read more";
     btnReadMore.dataset.toggle = "modal";
-    btnReadMore.dataset.target = "#exampleModal";
+    btnReadMore.dataset.target = "#detailsModal";
 
+    const btnEdit = createElement("a", "btn-sm btn-warning");
+    btnEdit.innerText = "Edit";
+    btnEdit.href = "edit.html";
+    btnEdit.onclick = function () { editClick(news.id) };
     const btnDelete = createElement("button", "btn-sm btn-danger");
     btnDelete.onclick = function () { removeNews(news.id); };
+    btnDelete.setAttribute("title", "Delete");
 
     const icon = createElement("i", "fa fa-trash");
 
     btnDelete.append(icon);
-    buttonsContainer.append(btnReadMore, btnDelete);
+    buttonsContainer.append(btnReadMore, btnEdit, btnDelete);
     cardBody.append(h5, p, buttonsContainer);
     card.append(img, cardBody);
     col.append(card);
 
     return col;
 };
+
+const editClick = (id) => {
+    localStorage.setItem("editNewsId", id);
+}
 
 const clearNodeChildren = (id) => {
     const elem = document.getElementById(id);

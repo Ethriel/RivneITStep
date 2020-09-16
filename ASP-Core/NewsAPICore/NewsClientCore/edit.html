@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create news</title>
+    <title>Edit</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
     <form style="margin-top: 30px;" class="w-50 center-block">
-        <h3>Add news...</h3>
+        <h3>Edit news...</h3>
         <div class="form-group">
-            <label for="addTitle">Title</label>
-            <input type="text" class="form-control" id="addTitle" placeholder="Title">
+            <label for="newsTitle">Title</label>
+            <input type="text" class="form-control" id="newsTitle" placeholder="Title">
         </div>
         <div class="form-group">
-            <label for="addDescription">Description</label>
-            <input type="email" class="form-control" id="addDescription" placeholder="Description">
+            <label for="newsDescription">Description</label>
+            <input type="email" class="form-control" id="newsDescription" placeholder="Description">
         </div>
         <div class="form-group">
-            <label for="addDate">Date</label>
-            <input type="date" class="form-control" id="addDate" placeholder="Date">
+            <label for="newsDate">Date</label>
+            <input type="date" class="form-control" id="newsDate" placeholder="Date">
         </div>
         <div class="form-group">
-            <label for="addImage">Image</label>
-            <input type="email" class="form-control" id="addImage" placeholder="Image URL">
+            <label for="newsImageURL">Image</label>
+            <input type="email" class="form-control" id="newsImageURL" placeholder="Image URL">
         </div>
         <div class="d-flex flex-row justify-content-around w-100">
-            <input type="button" class="btn-sm btn-primary" value="Add" id="createNews" onclick="postNews()">
+            <input type="button" class="btn-sm btn-primary" value="Confirm" id="btnConfirm">
             <a href="index.html" class="btn-sm btn-primary">Back</a>
         </div>
     </form>
-    
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/e5665d24cf.js" crossorigin="anonymous"></script>
-<script src="js/create.js"></script>
-
+<script src="js/edit.js"></script>
 </html>
