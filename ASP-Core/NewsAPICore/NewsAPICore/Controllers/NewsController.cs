@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewsAPICore.Extensions;
 using NewsAPICore.Models;
 using NewsDataAccessCore;
 using NewsDataAccessCore.Entity;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NewsAPICore.Controllers
 {
@@ -27,16 +26,11 @@ namespace NewsAPICore.Controllers
         {
             var result = default(ApiResult);
 
-            var news = await context.News.Select(x => new NewsViewModel
-            {
-                Description = x.Description,
-                Id = x.Id,
-                ImagePath = x.ImagePath,
-                PostDate = x.PostDate,
-                Title = x.Title
-            }).ToArrayAsync();
+            var news = await context.News.ToArrayAsync();
 
-            result = ApiResult.CreateResult(ApiStatus.Ok, data: news);
+            var models = news.Select(x => GetNewsViewModel(x));
+
+            result = ApiResult.CreateResult(ApiStatus.Ok, data: models);
 
             return this.GetActionResult(result);
         }
@@ -145,14 +139,7 @@ namespace NewsAPICore.Controllers
                 }
                 else
                 {
-                    var model = new NewsViewModel
-                    {
-                        Description = news.Description,
-                        Id = news.Id,
-                        ImagePath = news.ImagePath,
-                        PostDate = news.PostDate,
-                        Title = news.Title
-                    };
+                    var model = GetNewsViewModel(news);
 
                     result = ApiResult.CreateResult(ApiStatus.Ok, data: model);
                 }
@@ -164,6 +151,18 @@ namespace NewsAPICore.Controllers
             }
 
             return this.GetActionResult(result);
+        }
+
+        private NewsViewModel GetNewsViewModel(News news)
+        {
+            return new NewsViewModel
+            {
+                Description = news.Description,
+                Id = news.Id,
+                ImagePath = news.ImagePath,
+                PostDate = news.PostDate,
+                Title = news.Title
+            };
         }
     }
 }
