@@ -39,7 +39,7 @@ else
                             else
                             {
                                 @Html.ActionLink("Details", "Details", "Home", new { area = "", id = game.Id }, new { @class = "btn-sm btn-success" })
-                                @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { area = "", id = game.Id }, new { @class = "btn-sm btn-success" })
+                                @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { area = "", gameId = game.Id }, new { @class = "btn-sm btn-success" })
                             }
                         </div>
                     </div>

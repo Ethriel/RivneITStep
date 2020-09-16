@@ -22,12 +22,14 @@
                 </div>
             }
             <hr class="my-4">
-            <p class="text-center">Total price: @Model.Total$</p>
-            @Html.ActionLink("Buy", "SumbitPurchase", "Cart", new { area = "" }, new { @class = "btn-sm btn-success" })
-            @if (Model.Games.Any())
-            {
-                @Html.ActionLink("Clear cart", "ClearCart", "Cart", new { area = "" }, new { @class = "btn-sm btn-success" })
-            }
+            <div class="container">
+                <p class="text-center">Total price: @Model.Total$</p>
+                @if (Model.Games.Any())
+                {
+                    @Html.ActionLink("Buy", "SumbitPurchase", "Cart", new { area = "" }, new { @class = "btn-sm btn-success" })
+                    @Html.ActionLink("Clear cart", "ClearCart", "Cart", new { area = "" }, new { @class = "btn-sm btn-success" })
+                }
+            </div>
         </div>
     </div>
 </div>

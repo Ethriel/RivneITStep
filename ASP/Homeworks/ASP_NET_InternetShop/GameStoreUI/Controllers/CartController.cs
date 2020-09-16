@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GameStoreUI.Controllers
@@ -107,7 +106,7 @@ namespace GameStoreUI.Controllers
 
         private ActionResult ReturnToGamesList()
         {
-            return RedirectToAction("Index", "Games", new { area = "Admin" });
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }

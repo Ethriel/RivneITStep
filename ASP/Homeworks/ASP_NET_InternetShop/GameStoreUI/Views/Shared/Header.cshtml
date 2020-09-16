@@ -25,7 +25,7 @@
             {
                 @Html.AntiForgeryToken()
 
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+                <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
             }
         }
         else
@@ -39,7 +39,7 @@
         }
 
         <li class="nav-item d-none d-sm-inline-block">
-            @Html.ActionLink("Cart", "ShowCart", "Cart", new { area = "" }, new { @class = "nav-link" })
+            @Html.ActionLink("Cart", "ShowCart", "Cart", new { area = "" }, new { @class = "nav-link text-green" })
         </li>
     </ul>
 
