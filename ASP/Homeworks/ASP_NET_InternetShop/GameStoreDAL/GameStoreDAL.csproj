@@ -68,15 +68,15 @@
     <Compile Include="Entities\OrderStatus.cs" />
     <Compile Include="Initializer\GamesInitializer.cs" />
     <Compile Include="Migrations\202008311751490_InitialCreate.cs" />
-    <Compile Include="Migrations\202008311751490_InitialCreate.designer.cs">
+    <Compile Include="Migrations\202008311751490_InitialCreate.Designer.cs">
       <DependentUpon>202008311751490_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202009071752487_Orders.cs" />
-    <Compile Include="Migrations\202009071752487_Orders.designer.cs">
+    <Compile Include="Migrations\202009071752487_Orders.Designer.cs">
       <DependentUpon>202009071752487_Orders.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202009081653551_order-changes.cs" />
-    <Compile Include="Migrations\202009081653551_order-changes.designer.cs">
+    <Compile Include="Migrations\202009081653551_order-changes.Designer.cs">
       <DependentUpon>202009081653551_order-changes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />

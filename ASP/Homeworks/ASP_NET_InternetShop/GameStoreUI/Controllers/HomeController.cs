@@ -4,9 +4,11 @@ using GameStoreBLL.Services.Abstraction;
 using GameStoreDAL.Entities;
 using GameStoreUI.Areas.Admin.Models.Games;
 using GameStoreUI.Helpers;
+using GameStoreUI.Identity;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace GameStoreUI.Controllers

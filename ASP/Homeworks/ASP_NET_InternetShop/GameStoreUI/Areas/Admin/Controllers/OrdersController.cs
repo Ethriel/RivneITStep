@@ -25,5 +25,24 @@ namespace GameStoreUI.Areas.Admin.Controllers
 
             return View(models);
         }
+
+        public ActionResult CompleteOrder(int id)
+        {
+            orderService.UpdateOrderStatus(id);
+
+            return ReturnToOrdersList();
+        }
+
+        public ActionResult RemoveCompleted()
+        {
+            orderService.RemoveCompletedOrders();
+
+            return ReturnToOrdersList();
+        }
+
+        private ActionResult ReturnToOrdersList()
+        {
+            return RedirectToAction(nameof(ListOrders), "Orders", new { area = "Admin" });
+        }
     }
 }

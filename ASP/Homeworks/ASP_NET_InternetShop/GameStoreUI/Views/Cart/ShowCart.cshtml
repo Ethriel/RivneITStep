@@ -5,9 +5,13 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
+@{ 
+    var header = Model.Games.Any() ? "Your cart" : "Your cart is empty";
+}
+
 <div class="container">
     <div class="jumbotron">
-        <h3 class="text-center">Your cart</h3>
+        <h3 class="text-center">@header</h3>
         <div class="row">
             @foreach (var game in Model.Games)
             {
@@ -23,9 +27,9 @@
             }
             <hr class="my-4">
             <div class="container">
-                <p class="text-center">Total price: @Model.Total$</p>
                 @if (Model.Games.Any())
                 {
+                    <p class="text-center">Total price: @Model.Total$</p>
                     @Html.ActionLink("Buy", "SumbitPurchase", "Cart", new { area = "" }, new { @class = "btn-sm btn-success" })
                     @Html.ActionLink("Clear cart", "ClearCart", "Cart", new { area = "" }, new { @class = "btn-sm btn-success" })
                 }
@@ -33,7 +37,3 @@
         </div>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

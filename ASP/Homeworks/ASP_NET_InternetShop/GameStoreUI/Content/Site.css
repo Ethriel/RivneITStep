@@ -1,5 +1,9 @@
-﻿.my-wrapper {
-    background-image: url("img/home-banner.jpg");
+﻿body {
+    background-color: rgb(209, 209, 209);
+}
+
+.my-wrapper {
+    /*background-image: url("img/home-banner.jpg");*/
 }
 
 .my-container {
@@ -38,7 +42,12 @@
     max-height: 135px;
     width: 98%;
 }
-.add-to-cart-details{
+
+.details-img {
+    width: 50%;
+}
+
+.add-to-cart-details {
     width: 25%;
     margin: 0 auto;
 }

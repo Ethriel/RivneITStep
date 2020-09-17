@@ -16,7 +16,7 @@ namespace GameStoreUI.Areas.Admin.Models.Orders
         public string OrderDate { get; set; }
 
         [DisplayName("Completed")]
-        public bool IsDone { get; set; }
+        public string IsDone { get; set; }
 
         [DisplayName("Total price")]
         public double TotalPrice { get; set; }

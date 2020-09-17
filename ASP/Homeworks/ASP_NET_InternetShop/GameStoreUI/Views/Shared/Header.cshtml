@@ -2,6 +2,7 @@
 
 @{
     var isAdmin = User.IsInRole("Admin");
+    var isAuth = User.Identity.IsAuthenticated;
 }
 <nav class="main-header navbar navbar-expand navbar-white navbar-light justify-content-between">
     <!-- Left navbar links -->
@@ -43,14 +44,17 @@
         }
         @if (!isAdmin)
         {
-            <li class="nav-item d-none d-sm-inline-block">
-                @Html.ActionLink("Cart", "ShowCart", "Cart", new { area = "" }, new { @class = "nav-link text-green" })
-            </li>
+            if (isAuth)
+            {
+                <li class="nav-item d-none d-sm-inline-block">
+                    @Html.ActionLink("Cart", "ShowCart", "Cart", new { area = "" }, new { @class = "nav-link text-green" })
+                </li>
+            }
         }
         else
         {
             <li class="nav-item d-none d-sm-inline-block">
-                @Html.ActionLink("Panel", "Index", "Panel", new { area= "Admin"}, new { @class = "nav-link text-green-dark" })
+                @Html.ActionLink("Admin Panel", "Index", "Panel", new { area = "Admin" }, new { @class = "nav-link text-indigo" })
             </li>
         }
     </ul>

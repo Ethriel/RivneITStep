@@ -8,6 +8,7 @@ namespace GameStoreDAL.Repository.Abstraction
     {
         void Create(TEntity entity);
         void Delete(TEntity entity);
+        void DeleteMultiple(IEnumerable<TEntity> entities);
         void Update(TEntity entity);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> GetAllWithIncludes(params Expression<Func<TEntity, object>>[] includes);

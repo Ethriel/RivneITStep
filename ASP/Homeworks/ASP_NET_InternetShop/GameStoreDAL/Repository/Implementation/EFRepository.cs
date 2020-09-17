@@ -61,5 +61,15 @@ namespace GameStoreDAL.Repository.Implementation
 
             return includes.Aggregate(query, (current, includeProp) => current.Include(includeProp));
         }
+
+        public void DeleteMultiple(IEnumerable<TEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                set.Remove(entity);
+            }
+
+            CommitChanges();
+        }
     }
 }

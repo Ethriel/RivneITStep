@@ -5,12 +5,14 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<div class="container">
+<div class="container w-50">
     <div class="card mb-4 my-card">
         <img class="card-img-top" src="@Model.Image" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">@Model.Name</h5>
+            <hr class="my-4">
             <p class="card-text">@Model.Description</p>
+            <hr class="my-4">
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><span class="font-weight-bold">Developer:</span> @Model.Developer</li>

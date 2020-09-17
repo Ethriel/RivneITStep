@@ -107,7 +107,7 @@ namespace GameStoreUI.Controllers
 
         private ActionResult ReturnToGamesList()
         {
-            return RedirectToAction("Index", "Home", new { area = "" });
+            return RedirectToAction("ListGames", "Home", new { area = "" });
         }
     }
 }

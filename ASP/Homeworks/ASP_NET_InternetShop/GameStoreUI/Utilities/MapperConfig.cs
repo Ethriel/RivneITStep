@@ -75,7 +75,8 @@ namespace GameStoreUI.Utilities
         {
             CreateMap<Order, OrderViewModel>()
                 .ForMember(x => x.GameStoreUser, opt => opt.MapFrom(x => x.GameStoreUser.Email))
-                .ForMember(x => x.OrderStatus, opt => opt.MapFrom(x => x.OrderStatus.Name));
+                .ForMember(x => x.OrderStatus, opt => opt.MapFrom(x => x.OrderStatus.Name))
+                .ForMember(x => x.IsDone, opt => opt.MapFrom(x => x.IsDone.Equals(true) ? "Yes" : "No"));
         }
     }
 }

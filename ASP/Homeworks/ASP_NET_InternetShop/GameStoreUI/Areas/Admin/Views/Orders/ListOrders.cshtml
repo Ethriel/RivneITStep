@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
+
 <h2 class="text-center">Users Orders</h2>
 
 <table class="table">
@@ -50,6 +51,7 @@
             </td>
         </tr>
     }
-    @Html.ActionLink("Remove copleted", "RemoveCompleted", "Orders", new { area = "Admin" }, new { @class = "btn-sm btn-success" })
+
 
 </table>
+@Html.ActionLink("Remove copleted", "RemoveCompleted", "Orders", new { area = "Admin" }, new { @class = "btn-sm btn-success" })
