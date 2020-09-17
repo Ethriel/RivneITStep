@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace GameStoreUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DevelopersController : Controller
     {
         private readonly IDeveloperService developerService;
@@ -17,6 +18,8 @@ namespace GameStoreUI.Areas.Admin.Controllers
             this.developerService = developerService;
             this.mapper = mapper;
         }
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var developers = developerService.GetAllDevelopers();

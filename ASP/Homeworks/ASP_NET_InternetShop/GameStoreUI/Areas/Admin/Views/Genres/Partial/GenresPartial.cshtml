@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<GameStoreUI.Areas.Admin.Models.Genres.GenreViewModel>
-
+@using Microsoft.AspNet.Identity
+@{
+    var isAdmin = User.IsInRole("Admin");
+}
 
 <table class="table">
     <tr>
@@ -9,10 +12,12 @@
         <th>
             Games Count
         </th>
-        <th>
-            Actions
-        </th>
-        <th></th>
+        @if (isAdmin)
+        {
+            <th>
+                Actions
+            </th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -26,10 +31,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.GamesCount)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Genres", new { area = "Admin", id = item.Id }, new { @class = "btn-sm btn-warning" }) |
-                    <input type="submit" value="Delete" class="btn-sm btn-danger" />
-                </td>
+                @if (isAdmin)
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Genres", new { area = "Admin", id = item.Id }, new { @class = "btn-sm btn-warning" }) |
+                        <input type="submit" value="Delete" class="btn-sm btn-danger" />
+                    </td>
+                }
             </tr>
         }
 

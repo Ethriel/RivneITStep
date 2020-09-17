@@ -1,11 +1,15 @@
 ﻿@model IEnumerable<GameStoreUI.Areas.Admin.Models.Genres.GenreViewModel>
+@{
+    var isAdmin = User.IsInRole("Admin");
+}
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-@{
+@if (isAdmin)
+{
     Html.RenderPartial("Partial/Sidebar");
 }
 <div class="content-wrapper">

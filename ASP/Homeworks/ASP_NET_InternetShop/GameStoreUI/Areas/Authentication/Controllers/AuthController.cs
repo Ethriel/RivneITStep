@@ -54,7 +54,7 @@ namespace GameStoreUI.Areas.Authentication.Controllers
                     {
                         case "Admin":
                         case "Customer":
-                            return ReturnToHome();
+                            return ReturnToGamesList();
                         default:
                             return View(model);
                     }
@@ -89,7 +89,7 @@ namespace GameStoreUI.Areas.Authentication.Controllers
 
             await signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             userManager.AddToRole(user.Id, "Customer");
-            return ReturnToHome();
+            return ReturnToGamesList();
         }
 
         [HttpPost]
@@ -103,6 +103,10 @@ namespace GameStoreUI.Areas.Authentication.Controllers
         private ActionResult ReturnToHome()
         {
             return RedirectToAction("Index", "Home", new { area = "" });
+        }
+        private ActionResult ReturnToGamesList()
+        {
+            return RedirectToAction("ListGames", "Home", new { area = "" });
         }
     }
 }

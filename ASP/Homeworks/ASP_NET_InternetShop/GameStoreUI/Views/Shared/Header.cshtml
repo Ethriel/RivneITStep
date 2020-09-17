@@ -1,4 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@{
+    var isAdmin = User.IsInRole("Admin");
+}
 <nav class="main-header navbar navbar-expand navbar-white navbar-light justify-content-between">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -21,11 +25,11 @@
         {
             var userName = User.Identity.GetUserName();
             var msg = $"Hello, {userName}!";
-            using (Html.BeginForm("LogOut", "Auth", new { area = "Authentication" }, FormMethod.Post, new { id = "logoutForm", @class = "nav-link" }))
+            using (Html.BeginForm("LogOut", "Auth", new { area = "Authentication" }, FormMethod.Post, new { id = "logoutForm", @class = "nav-item d-none d-sm-inline-block" }))
             {
                 @Html.AntiForgeryToken()
 
-                <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+                <li><a class="nav-link text-cyan" href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
             }
         }
         else
@@ -37,10 +41,18 @@
                 @Html.ActionLink("Sign up", "Register", "Auth", new { area = "Authentication" }, new { @class = "nav-link" })
             </li>
         }
-
-        <li class="nav-item d-none d-sm-inline-block">
-            @Html.ActionLink("Cart", "ShowCart", "Cart", new { area = "" }, new { @class = "nav-link text-green" })
-        </li>
+        @if (!isAdmin)
+        {
+            <li class="nav-item d-none d-sm-inline-block">
+                @Html.ActionLink("Cart", "ShowCart", "Cart", new { area = "" }, new { @class = "nav-link text-green" })
+            </li>
+        }
+        else
+        {
+            <li class="nav-item d-none d-sm-inline-block">
+                @Html.ActionLink("Panel", "Index", "Panel", new { area= "Admin"}, new { @class = "nav-link text-green-dark" })
+            </li>
+        }
     </ul>
 
     <!-- SEARCH FORM -->

@@ -176,10 +176,12 @@
     <Compile Include="Services\Abstraction\IDeveloperService.cs" />
     <Compile Include="Services\Abstraction\IGameService.cs" />
     <Compile Include="Services\Abstraction\IGenreService.cs" />
+    <Compile Include="Services\Abstraction\IOrderService.cs" />
     <Compile Include="Services\Implementation\CartService.cs" />
     <Compile Include="Services\Implementation\DeveloperService.cs" />
     <Compile Include="Services\Implementation\GameService.cs" />
     <Compile Include="Services\Implementation\GenreService.cs" />
+    <Compile Include="Services\Implementation\OrderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameStoreDAL\GameStoreDAL.csproj">

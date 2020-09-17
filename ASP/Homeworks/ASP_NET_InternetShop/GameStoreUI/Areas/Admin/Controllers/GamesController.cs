@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GameStoreBLL.Filters;
 using GameStoreBLL.Services.Abstraction;
 using GameStoreDAL.Entities;
 using GameStoreUI.Areas.Admin.Models.Games;
@@ -7,12 +6,12 @@ using GameStoreUI.Helpers;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace GameStoreUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class GamesController : Controller
     {
         private readonly IGameService gameService;

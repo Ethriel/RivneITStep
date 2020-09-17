@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace GameStoreUI.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly ICartService cartService;

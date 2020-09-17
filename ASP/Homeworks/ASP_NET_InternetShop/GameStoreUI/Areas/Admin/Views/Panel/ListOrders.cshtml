@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GameStoreUI.Areas.Admin.Models.Orders.OrderViewModel>
+
+@{
+    ViewBag.Title = "ListOrders";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2 class="text-center">Users Orders</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameStoreUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameStoreUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDone ? "Yes" : "No")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => $"item.TotalPrice $")
+            </td>
+            <td>
+                @Html.ActionLink("Complete", "CompleteOrder", "Orders", new { area = "Admin", id = item.Id }, new { @class = "btn-sm btn-success" })
+            </td>
+        </tr>
+    }
+    @Html.ActionLink("Remove copleted", "RemoveCompleted", "Orders", new { area = "Admin" }, new { @class = "btn-sm btn-success" })
+
+</table>

@@ -35,6 +35,7 @@ namespace GameStoreUI.Utilities
             builder.RegisterType<DeveloperService>().As<IDeveloperService>();
             builder.RegisterType<GenreService>().As<IGenreService>();
             builder.RegisterType<CartService>().As<ICartService>();
+            builder.RegisterType<OrderService>().As<IOrderService>();
 
             var mapperConfig = new MapperConfiguration(x => x.AddProfile(new MapperConfig()));
 

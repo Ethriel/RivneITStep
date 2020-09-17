@@ -3,6 +3,7 @@ using GameStoreDAL.Entities;
 using GameStoreUI.Areas.Admin.Models.Developers;
 using GameStoreUI.Areas.Admin.Models.Games;
 using GameStoreUI.Areas.Admin.Models.Genres;
+using GameStoreUI.Areas.Admin.Models.Orders;
 using GameStoreUI.Helpers;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace GameStoreUI.Utilities
             GameConfig();
             DeveloperConfig();
             GenreConfig();
+            OrderConfig();
         }
 
         private void GameConfig()
@@ -67,6 +69,13 @@ namespace GameStoreUI.Utilities
             CreateMap<Genre, EditGenreViewModel>();
 
             CreateMap<EditGenreViewModel, Genre>();
+        }
+
+        private void OrderConfig()
+        {
+            CreateMap<Order, OrderViewModel>()
+                .ForMember(x => x.GameStoreUser, opt => opt.MapFrom(x => x.GameStoreUser.Email))
+                .ForMember(x => x.OrderStatus, opt => opt.MapFrom(x => x.OrderStatus.Name));
         }
     }
 }

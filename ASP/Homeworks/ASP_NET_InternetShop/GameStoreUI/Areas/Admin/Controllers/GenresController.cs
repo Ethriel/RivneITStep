@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace GameStoreUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class GenresController : Controller
     {
         private readonly IGenreService genreService;
@@ -17,11 +18,13 @@ namespace GameStoreUI.Areas.Admin.Controllers
             this.genreService = genreService;
             this.mapper = mapper;
         }
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            var developers = genreService.GetAllGenres();
+            var genres = genreService.GetAllGenres();
 
-            var models = mapper.Map<IEnumerable<Genre>, IEnumerable<GenreViewModel>>(developers);
+            var models = mapper.Map<IEnumerable<Genre>, IEnumerable<GenreViewModel>>(genres);
 
             return View(models);
         }
@@ -39,9 +42,9 @@ namespace GameStoreUI.Areas.Admin.Controllers
             {
                 return Create();
             }
-            var developer = mapper.Map<CreateGenreViewModel, Genre>(model);
+            var genre = mapper.Map<CreateGenreViewModel, Genre>(model);
 
-            genreService.CreateGenre(developer);
+            genreService.CreateGenre(genre);
 
             return RedirectToAction(nameof(Index));
         }
@@ -49,9 +52,9 @@ namespace GameStoreUI.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var developer = genreService.GetGenreById(id);
+            var genre = genreService.GetGenreById(id);
 
-            var model = mapper.Map<Genre, EditGenreViewModel>(developer);
+            var model = mapper.Map<Genre, EditGenreViewModel>(genre);
 
             return View(model);
         }
@@ -64,9 +67,9 @@ namespace GameStoreUI.Areas.Admin.Controllers
                 return Edit(model.Id);
             }
 
-            var developer = mapper.Map<EditGenreViewModel, Genre>(model);
+            var genre = mapper.Map<EditGenreViewModel, Genre>(model);
 
-            genreService.UpdateGenre(developer);
+            genreService.UpdateGenre(genre);
 
             return RedirectToAction(nameof(Index));
         }
