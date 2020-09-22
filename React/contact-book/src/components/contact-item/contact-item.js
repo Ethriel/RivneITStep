@@ -4,14 +4,15 @@ import './contact-item.css';
 class ContactItem extends Component {
     constructor(props) {
         super(props);
+        const { name, phone, email, address, gender, avatar, isFavourite } = props.contact;
         this.state = {
-            name: "Volodymyr Lukashchuk",
-            phone: "+38 (097) 5449124",
-            email: "kerfoer6@ukr.net",
-            address: "Makarova 44",
-            gender: "men",
-            avatar: 3,
-            isFavourite: true
+            name: name,
+            phone: phone,
+            email: email,
+            address: address,
+            gender: gender,
+            avatar: avatar,
+            isFavourite: isFavourite
         };
         this.setRandomImg = this.setRandomImg.bind(this);
         this.setFavourite = this.setFavourite.bind(this);
@@ -39,19 +40,17 @@ class ContactItem extends Component {
         const title = isFavourite ? "Unfavourite" : "Favourite";
         return (
             <Fragment>
-                <div className="row">
-                    <div className="col-lg-3 col-sm-6 col-md-3">
-                        <div className="card my-card">
-                            <img className="card-img-top center-div" src={avatarUri} alt="avatar" />
-                            <div className="card-body">
-                                <h5 className="card-title">{name}</h5>
-                                <p className="card-text">{phone}</p>
-                                <p className="card-text">{email}</p>
-                                <p className="card-text">{address}</p>
-                                <div className="d-flex justify-content-between w-100 align-content-center">
-                                    <button href="#" className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
-                                    <i className={star} onClick={this.setFavourite} title={title}></i>
-                                </div>
+                <div className="col-lg-3 col-sm-6 col-md-3">
+                    <div className="card my-card">
+                        <img className="card-img-top center-div" src={avatarUri} alt="avatar" />
+                        <div className="card-body">
+                            <h5 className="card-title">{name}</h5>
+                            <p className="card-text">{phone}</p>
+                            <p className="card-text">{email}</p>
+                            <p className="card-text">{address}</p>
+                            <div className="d-flex justify-content-between w-100 align-content-center">
+                                <button href="#" className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
+                                <i className={star} onClick={this.setFavourite} title={title}></i>
                             </div>
                         </div>
                     </div>
