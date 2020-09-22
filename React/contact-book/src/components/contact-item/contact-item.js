@@ -4,15 +4,17 @@ import './contact-item.css';
 class ContactItem extends Component {
     constructor(props) {
         super(props);
-        const { name, phone, email, address, gender, avatar, isFavourite } = props.contact;
+        const { id, name, phone, email, address, gender, avatar, isFavourite } = props.contact;
         this.state = {
+            id: id,
             name: name,
             phone: phone,
             email: email,
             address: address,
             gender: gender,
             avatar: avatar,
-            isFavourite: isFavourite
+            isFavourite: isFavourite,
+            setFavourite: props.setFavourite
         };
         this.setRandomImg = this.setRandomImg.bind(this);
         this.setFavourite = this.setFavourite.bind(this);
@@ -33,9 +35,9 @@ class ContactItem extends Component {
     };
 
     render() {
-        const { name, phone, email, address, gender, avatar, isFavourite } = this.state;
+        const {id, name, phone, email, address, gender, avatar, isFavourite, setFavourite } = this.state;
         const avatarUri = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
-        const baseStar = isFavourite ? "fas" : "far";
+        const baseStar = this.props.contact.isFavourite ? "fas" : "far";
         const star = `${baseStar} fa-star my-star`;
         const title = isFavourite ? "Unfavourite" : "Favourite";
         return (
@@ -50,7 +52,7 @@ class ContactItem extends Component {
                             <p className="card-text">{address}</p>
                             <div className="d-flex justify-content-between w-100 align-content-center">
                                 <button href="#" className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
-                                <i className={star} onClick={this.setFavourite} title={title}></i>
+                                <i className={star} onClick={() => setFavourite(id)} title={title}></i>
                             </div>
                         </div>
                     </div>
