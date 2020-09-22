@@ -13,6 +13,8 @@ class ContactItem extends Component {
             avatar: 3,
             isFavourite: true
         };
+        this.setRandomImg = this.setRandomImg.bind(this);
+        this.setFavourite = this.setFavourite.bind(this);
     };
 
     setRandomImg() {
@@ -22,9 +24,18 @@ class ContactItem extends Component {
         });
     };
 
+    setFavourite(){
+        const opposite = !this.state.isFavourite;
+        this.setState({
+            isFavourite: opposite
+        });
+    };
+
     render() {
-        const { name, phone, email, address, gender, avatar } = this.state;
+        const { name, phone, email, address, gender, avatar, isFavourite } = this.state;
         const avatarUri = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
+        const baseStar = isFavourite ? "fas" : "far";
+        const star = `${baseStar} fa-star my-star`;
         return (
             <Fragment>
                 <div className="row">
@@ -36,7 +47,10 @@ class ContactItem extends Component {
                                 <p className="card-text">{phone}</p>
                                 <p className="card-text">{email}</p>
                                 <p className="card-text">{address}</p>
-                                <button href="#" className="btn btn-primary" onClick={this.setRandomImg.bind(this)}>Random image</button>
+                                <div className="d-flex justify-content-between w-100">
+                                    <i className={star} onClick={this.setFavourite}></i>
+                                    <button href="#" className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
+                                </div>
                             </div>
                         </div>
                     </div>

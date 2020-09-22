@@ -1,7 +1,16 @@
-.center-div{
+.center-div {
     margin: 0 auto;
 }
 
-.my-card{
+.my-card {
     width: 18rem;
+}
+
+.my-star {
+    color: rgb(255, 217, 0);
+    font-size: 40px;
+}
+
+.my-star:hover {
+    cursor: pointer;
 }
