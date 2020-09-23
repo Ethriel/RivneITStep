@@ -38,7 +38,8 @@ class App extends React.Component {
           avatar: 6,
           isFavourite: false
         }
-      ]
+      ],
+      search: ""
     }
   };
 
@@ -51,16 +52,20 @@ class App extends React.Component {
     });
 
     this.setState({ contacts: contacts });
+  };
+
+  searchOnChange = event => {
+    const value = event.target.value;
+    this.setState({ search: value })
   }
 
   render() {
-    const favourites = this.state.contacts.filter((x) => {return x.isFavourite === true});
-    const { contacts } = this.state;
+    const favourites = this.state.contacts.filter((x) => { return x.isFavourite === true });
+    const { contacts, search } = this.state;
     return (
       <div className="App">
-        <div className="d-flex flex-row justify-content-between"></div>
-        <ContactList dataContacts={contacts} setFavourite={this.setFavourite}></ContactList>
-        <ContactList dataContacts={favourites} setFavourite={this.setFavourite}></ContactList>
+        <ContactList dataContacts={contacts} setFavourite={this.setFavourite} searchOnChange={this.searchOnChange} search={search}></ContactList>
+        <FavouriteContacstList dataContacts={favourites} setFavourite={this.setFavourite}></FavouriteContacstList>
       </div>
     );
   }

@@ -1,9 +1,17 @@
 .center-div {
-    margin: 0 auto;
+    margin: 0.5% auto;
 }
 
 .my-card {
-    max-width: 18rem;
+    min-height: 485px;
+}
+
+.my-card-title {
+    min-height: 48px;
+}
+
+.my-card-text {
+    min-height: 24px;
 }
 
 .my-star {

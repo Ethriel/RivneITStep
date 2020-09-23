@@ -42,14 +42,14 @@ class ContactItem extends Component {
         const title = isFavourite ? "Unfavourite" : "Favourite";
         return (
             <Fragment>
-                <div className="col-lg-3 col-sm-6 col-md-3">
+                <div className="col-lg-3 col-md-4 col-sm-6">
                     <div className="card my-card">
                         <img className="card-img-top center-div" src={avatarUri} alt="avatar" />
                         <div className="card-body">
-                            <h5 className="card-title">{name}</h5>
-                            <p className="card-text">{phone}</p>
-                            <p className="card-text">{email}</p>
-                            <p className="card-text">{address}</p>
+                            <h5 className="card-title my-card-title">{name}</h5>
+                            <p className="card-text my-card-text">{phone}</p>
+                            <p className="card-text my-card-text">{email}</p>
+                            <p className="card-text my-card-text">{address}</p>
                             <div className="d-flex justify-content-between w-100 align-content-center">
                                 <button href="#" className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
                                 <i className={star} onClick={() => setFavourite(id)} title={title}></i>
