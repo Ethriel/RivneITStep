@@ -14,7 +14,8 @@ class ContactItem extends Component {
             gender: gender,
             avatar: avatar,
             isFavourite: isFavourite,
-            setFavourite: props.setFavourite
+            setFavourite: props.setFavourite,
+            groups: props.groups
         };
         this.setRandomImg = this.setRandomImg.bind(this);
         this.setFavourite = this.setFavourite.bind(this);
@@ -33,16 +34,24 @@ class ContactItem extends Component {
             isFavourite: opposite
         });
     };
-
     render() {
-        const {id, name, phone, email, address, gender, avatar, isFavourite, setFavourite } = this.state;
+        const { id, name, phone, email, address, gender, avatar, isFavourite, setFavourite, groups } = this.state;
         const avatarUri = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
         const baseStar = this.props.contact.isFavourite ? "fas" : "far";
         const star = `${baseStar} fa-star my-star`;
         const title = isFavourite ? "Unfavourite" : "Favourite";
+        let groupsPresent = false;
+        let selectOptions = [];
+        if (groups) {
+            groupsPresent = true;
+            selectOptions = groups.map((group) => {
+                return <option value={group}>{group}</option>
+            })
+        }
+
         return (
             <Fragment>
-                <div className="col-lg-3 col-md-4 col-sm-6">
+                <div className="col-lg-4 col-md-4 col-sm-6">
                     <div className="card my-card">
                         <img className="card-img-top center-div" src={avatarUri} alt="avatar" />
                         <div className="card-body">
@@ -51,8 +60,14 @@ class ContactItem extends Component {
                             <p className="card-text my-card-text">{email}</p>
                             <p className="card-text my-card-text">{address}</p>
                             <div className="d-flex justify-content-between w-100 align-content-center">
-                                <button href="#" className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
+                                <button className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
                                 <i className={star} onClick={() => setFavourite(id)} title={title}></i>
+                                {
+                                    groupsPresent &&
+                                    <select className="form-control">
+                                        {selectOptions}
+                                    </select>
+                                }
                             </div>
                         </div>
                     </div>

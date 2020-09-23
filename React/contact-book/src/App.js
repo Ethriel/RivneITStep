@@ -1,7 +1,14 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AppMenu from './appMenu';
 import ContactList from './components/contact-list/contact-list';
 import FavouriteContacstList from './components/favourite-contacts-list/favourite-contacts-list';
+import AddContact from './components/add-contact/add-contact';
+import NotFound from './components/page-404/page-404';
+import AddGroup from './components/add-group/add-group';
+import Groups from './components/groups/groups';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -39,7 +46,8 @@ class App extends React.Component {
           isFavourite: false
         }
       ],
-      search: ""
+      search: "",
+      groups: []
     }
   };
 
@@ -57,16 +65,48 @@ class App extends React.Component {
   searchOnChange = event => {
     const value = event.target.value;
     this.setState({ search: value })
-  }
+  };
+
+  addContact = (contact) => {
+    const { contacts } = this.state;
+    contacts.push(contact);
+    this.setState({
+      contacts: contacts
+    });
+  };
+
+  addGroup = (name) => {
+    const { groups } = this.state;
+    groups.push(name);
+    this.setState({
+      groups: groups
+    });
+  };
 
   render() {
     const favourites = this.state.contacts.filter((x) => { return x.isFavourite === true });
-    const { contacts, search } = this.state;
+    const { contacts, search, groups } = this.state;
     return (
-      <div className="App">
-        <ContactList dataContacts={contacts} setFavourite={this.setFavourite} searchOnChange={this.searchOnChange} search={search}></ContactList>
-        <FavouriteContacstList dataContacts={favourites} setFavourite={this.setFavourite}></FavouriteContacstList>
-      </div>
+      <Router>
+        <div className="App">
+          <AppMenu />
+
+          <Switch>
+            <Route exact path="/"
+              render={() => <ContactList dataContacts={contacts} setFavourite={this.setFavourite} groups={groups} searchOnChange={this.searchOnChange} search={search}></ContactList>} />
+            <Route exact path="/favouriteContacts"
+              render={() => <FavouriteContacstList dataContacts={favourites} setFavourite={this.setFavourite}></FavouriteContacstList>} />
+            <Route exact path="/groups"
+              render={() => <Groups></Groups>} />
+            <Route exact path="/addGroup"
+              render={() => <AddGroup addGroup={this.addGroup}></AddGroup>} />
+            <Route exact path="/addContact"
+              render={() => <AddContact addContact={this.addContact}></AddContact>} />
+            <Route path="*" render={() => <NotFound></NotFound>} />
+          </Switch>
+
+        </div>
+      </Router>
     );
   }
 }
