@@ -10,6 +10,8 @@ import AddGroup from './components/add-group/add-group';
 import Groups from './components/groups/groups';
 import uuid from 'react-uuid';
 import EditContact from './components/edit-contact/edit-contact';
+import ListGroups from './components/groups/listGroups';
+import AppSideBar from './appSidebar';
 
 class App extends React.Component {
   constructor(props) {
@@ -55,7 +57,8 @@ class App extends React.Component {
         "All",
         "No group"
       ],
-      contactToEdit: {}
+      contactToEdit: {},
+      filteredGroups: []
     }
   };
 
@@ -84,6 +87,11 @@ class App extends React.Component {
     });
   };
 
+  checkChanged = (group) => {
+    const filteredGroups = this.state.groups.filter(x => x !== group);
+    this.setState({ filteredGroups: filteredGroups });
+  }
+
   addGroup = (name) => {
     const { groups } = this.state;
     groups.push(name);
@@ -104,7 +112,7 @@ class App extends React.Component {
 
   deleteContact = (id) => {
     const contacts = this.state.contacts.filter((x) => x.id !== id);
-    this.setState({contacts: contacts});
+    this.setState({ contacts: contacts });
   };
 
   editContact = (id) => {
@@ -123,17 +131,26 @@ class App extends React.Component {
       return c;
     });
 
-    this.setState({contacts: contacts});
+    this.setState({ contacts: contacts });
   };
 
+  deleteGroup = (name) => {
+    const contacts = this.state.contacts.filter(x => x.group !== name);
+    const groups = this.state.groups.filter(x => x !== name);
+    this.setState({ contacts: contacts });
+    this.setState({ groups: groups });
+  }
   render() {
     const favourites = this.state.contacts.filter((x) => { return x.isFavourite === true });
-    const { contacts, search, groups, contactToEdit } = this.state;
+    const { contacts, search, groups, contactToEdit, filteredGroups } = this.state;
+    console.log("FILTERED", filteredGroups);
+    const filtered = filteredGroups.length > 0 ? filteredGroups : groups;
+
     return (
       <Router>
         <div className="App">
           <AppMenu />
-
+          <AppSideBar groups={groups} checkChanged={this.checkChanged} />
           <Switch>
             <Route exact path="/"
               render={() =>
@@ -148,7 +165,9 @@ class App extends React.Component {
             <Route exact path="/favouriteContacts"
               render={() => <FavouriteContacstList dataContacts={favourites} setFavourite={this.setFavourite}></FavouriteContacstList>} />
             <Route exact path="/groups"
-              render={() => <Groups contacts={contacts} groups={groups}></Groups>} />
+              render={() => <Groups contacts={contacts} groups={filtered}></Groups>} />
+            <Route exact path="/listGroups"
+              render={() => <ListGroups groups={groups} deleteGroup={this.deleteGroup}></ListGroups>} />
             <Route exact path="/addGroup"
               render={() => <AddGroup addGroup={this.addGroup}></AddGroup>} />
             <Route exact path="/editContact"

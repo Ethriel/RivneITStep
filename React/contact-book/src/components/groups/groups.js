@@ -15,6 +15,7 @@ const goupItems = groups.map((g) => {
         <Fragment>
             <div className="container">
                 <Link to="addGroup" className="btn btn-primary">Add group</Link>
+                <Link to="listGroups" className="btn btn-primary">List groups</Link>
                 <hr className="my-4"></hr>
                 {goupItems}
             </div>
