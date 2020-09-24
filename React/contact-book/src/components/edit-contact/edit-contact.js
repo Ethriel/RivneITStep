@@ -1,19 +1,21 @@
 import React, { Fragment, Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import AddContactForm from './add-contact-form';
-import './add-contact.css';
+import EditContactForm from './edit-contact-form';
+import './edit-contact.css';
 
-class AddContact extends Component {
+class EditContact extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
-            phone: "",
-            email: "",
-            address: "",
-            gender: "",
-            avatar: 1,
-            isFavourite: false,
+            id: props.contact.id,
+            name: props.contact.name,
+            phone: props.contact.phone,
+            email: props.contact.email,
+            address: props.contact.address,
+            gender: props.contact.gender,
+            avatar: props.contact.avatar,
+            group: props.contact.group,
+            isFavourite: props.contact.isFavourite,
             redirect: false
         }
     };
@@ -62,7 +64,7 @@ class AddContact extends Component {
     };
 
     submitClick = (ev) => {
-        this.props.addContact(this.state);
+        this.props.submitEdit(this.state);
         this.setState({ redirect: true });
     };
 
@@ -73,14 +75,15 @@ class AddContact extends Component {
         return (
             <Fragment>
                 <div className="container">
-                    <AddContactForm
+                    <EditContactForm
                         setName={this.setName}
                         setPhone={this.setPhone}
                         setEmail={this.setEmail}
                         setAddress={this.setAddress}
                         setGender={this.setGender}
                         setAvatar={this.setAvatar}
-                        submitClick={this.submitClick} />
+                        submitClick={this.submitClick}
+                        contact={this.state} />
                 </div>
 
             </Fragment>
@@ -88,4 +91,4 @@ class AddContact extends Component {
     };
 }
 
-export default AddContact;
+export default EditContact;

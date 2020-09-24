@@ -22,3 +22,21 @@
 .my-star:hover {
     cursor: pointer;
 }
+
+.my-trashcan {
+    color: red;
+    font-size: 40px;
+}
+
+.my-trashcan:hover {
+    cursor: pointer;
+}
+
+.my-edit {
+    color: green;
+    font-size: 40px;
+}
+
+.my-edit:hover {
+    cursor: pointer;
+}

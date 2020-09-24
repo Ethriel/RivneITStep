@@ -8,7 +8,8 @@ import AddContact from './components/add-contact/add-contact';
 import NotFound from './components/page-404/page-404';
 import AddGroup from './components/add-group/add-group';
 import Groups from './components/groups/groups';
-
+import uuid from 'react-uuid';
+import EditContact from './components/edit-contact/edit-contact';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class App extends React.Component {
     this.state = {
       contacts: [
         {
-          id: 1,
+          id: uuid(),
           name: "Volodymyr Lukashchuk",
           phone: "+38 (097) 5449124",
           email: "kerfoer6@ukr.net",
@@ -27,7 +28,7 @@ class App extends React.Component {
           group: "All"
         },
         {
-          id: 2,
+          id: uuid(),
           name: "Jack Black",
           phone: "+38 (055) 5478321",
           email: "aaa6@ukr.net",
@@ -38,7 +39,7 @@ class App extends React.Component {
           group: "All"
         },
         {
-          id: 3,
+          id: uuid(),
           name: "Allison White",
           phone: "+38 (035) 7538547",
           email: "aw6@ukr.net",
@@ -53,7 +54,8 @@ class App extends React.Component {
       groups: [
         "All",
         "No group"
-      ]
+      ],
+      contactToEdit: {}
     }
   };
 
@@ -75,8 +77,7 @@ class App extends React.Component {
 
   addContact = (contact) => {
     const { contacts } = this.state;
-    const lastId = contacts[contacts.length - 1].id;
-    contact.id = lastId + 1;
+    contact.id = uuid();
     contacts.push(contact);
     this.setState({
       contacts: contacts
@@ -101,9 +102,33 @@ class App extends React.Component {
     this.setState({ contacts: contacts });
   };
 
+  deleteContact = (id) => {
+    const contacts = this.state.contacts.filter((x) => x.id !== id);
+    this.setState({contacts: contacts});
+  };
+
+  editContact = (id) => {
+    const contact = this.state.contacts.find(x => x.id === id);
+    this.setState({
+      contactToEdit: contact
+    });
+  };
+
+  submitEdit = (contact) => {
+    console.log(contact);
+    const contacts = this.state.contacts.map((c) => {
+      if (c.id === contact.id) {
+        return contact;
+      }
+      return c;
+    });
+
+    this.setState({contacts: contacts});
+  };
+
   render() {
     const favourites = this.state.contacts.filter((x) => { return x.isFavourite === true });
-    const { contacts, search, groups } = this.state;
+    const { contacts, search, groups, contactToEdit } = this.state;
     return (
       <Router>
         <div className="App">
@@ -117,13 +142,17 @@ class App extends React.Component {
                   groups={groups}
                   searchOnChange={this.searchOnChange}
                   search={search}
-                  changeGroup={this.changeGroup} />} />
+                  changeGroup={this.changeGroup}
+                  deleteContact={this.deleteContact}
+                  editContact={this.editContact} />} />
             <Route exact path="/favouriteContacts"
               render={() => <FavouriteContacstList dataContacts={favourites} setFavourite={this.setFavourite}></FavouriteContacstList>} />
             <Route exact path="/groups"
               render={() => <Groups contacts={contacts} groups={groups}></Groups>} />
             <Route exact path="/addGroup"
               render={() => <AddGroup addGroup={this.addGroup}></AddGroup>} />
+            <Route exact path="/editContact"
+              render={() => <EditContact submitEdit={this.submitEdit} contact={contactToEdit}></EditContact>} />
             <Route exact path="/addContact"
               render={() => <AddContact addContact={this.addContact}></AddContact>} />
             <Route path="*" render={() => <NotFound></NotFound>} />

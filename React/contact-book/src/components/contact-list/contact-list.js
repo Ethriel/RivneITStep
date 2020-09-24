@@ -2,7 +2,7 @@ import React from 'react';
 import ContactItem from '../contact-item/contact-item';
 import './contact-list.css';
 
-const ContactList = ({ dataContacts, setFavourite, searchOnChange, search, groups, changeGroup, ...props }) => {
+const ContactList = ({ dataContacts, setFavourite, searchOnChange, search, groups, changeGroup, deleteContact, editContact, ...props }) => {
     let contacts = dataContacts;
     if (search) {
         contacts = dataContacts.filter((x) => {
@@ -13,7 +13,12 @@ const ContactList = ({ dataContacts, setFavourite, searchOnChange, search, group
     }
 
     contacts = contacts.map((contact) => {
-        return <ContactItem key={contact.id} contact={contact} groups={groups} setFavourite={setFavourite} changeGroup={changeGroup}></ContactItem>;
+        return <ContactItem key={contact.id}
+            contact={contact} groups={groups}
+            setFavourite={setFavourite}
+            changeGroup={changeGroup}
+            deleteContact={deleteContact}
+            editContact={editContact}></ContactItem>;
     });
 
     return (

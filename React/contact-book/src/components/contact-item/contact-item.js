@@ -16,9 +16,11 @@ class ContactItem extends Component {
             avatar: avatar,
             isFavourite: isFavourite,
             setFavourite: props.setFavourite,
+            deleteContact: props.deleteContact,
             group: group,
             groups: props.groups,
-            redirect: false
+            redirect: false,
+            redirectEdit: false
         };
     };
 
@@ -44,8 +46,13 @@ class ContactItem extends Component {
         this.setState({ redirect: true })
     };
 
+    editClick = (ev) => {
+        this.props.editContact(this.state.id);
+        this.setState({ redirectEdit: true })
+    }
+
     render() {
-        const { id, name, phone, email, address, gender, avatar, isFavourite, setFavourite, group, groups, redirect } = this.state;
+        const { id, name, phone, email, address, gender, avatar, isFavourite, setFavourite, group, groups, redirect, deleteContact, redirectEdit } = this.state;
         const avatarUri = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
         const baseStar = this.props.contact.isFavourite ? "fas" : "far";
         const star = `${baseStar} fa-star my-star`;
@@ -66,39 +73,51 @@ class ContactItem extends Component {
                 return <option key={key++} value={group}>{group}</option>
             })
         }
+        if (redirect) {
+            this.setState({ redirect: false });
+            return (<Redirect to="/" push={true} />);
+        }
+        if (redirectEdit) {
+            this.setState({ redirectEdit: false });
+            return <Redirect to="/editContact" push={true} />
+        }
         return (
             <Fragment>
-                <div className="col-lg-3 col-md-3 col-sm-6">
-                    <div className="card my-card">
-                        <img className="card-img-top center-div" src={avatarUri} alt="avatar" />
-                        <div className="card-body">
-                            <h5 className="card-title my-card-title">{name}</h5>
-                            <p className="card-text my-card-text">{phone}</p>
-                            <p className="card-text my-card-text">{email}</p>
-                            <p className="card-text my-card-text">{address}</p>
-                            <div className="d-flex justify-content-between w-100 align-content-center">
-                                <button className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
-                                <i className={star} onClick={() => setFavourite(id)} title={title}></i>
-
-                            </div>
-
-                            {
-                                groupPresent &&
+                {
+                    redirect === false &&
+                    <div className="col-lg-4 col-md-3 col-sm-6">
+                        <div className="card my-card">
+                            <img className="card-img-top center-div" src={avatarUri} alt="avatar" />
+                            <div className="card-body">
+                                <h5 className="card-title my-card-title">{name}</h5>
+                                <p className="card-text my-card-text">{phone}</p>
+                                <p className="card-text my-card-text">{email}</p>
+                                <p className="card-text my-card-text">{address}</p>
                                 <div className="d-flex justify-content-between w-100 align-content-center">
-                                    <p className="text-left card-text">Group:</p>
-                                    <p className="text-right card-text">{group}</p>
+                                    <button className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
+                                    <i className={star} onClick={() => setFavourite(id)} title={title}></i>
+                                    <i className="fa fa-trash my-trashcan" onClick={() => { deleteContact(id) }} title="Remove"></i>
+                                    <i className="fa fa-pencil-square-o my-edit" onClick={this.editClick} title="Edit"></i>
                                 </div>
-                            }
 
-                            {
-                                groupsPresent &&
-                                <select className="form-control" onChange={this.changeGroup}>
-                                    {selectOptions}
-                                </select>
-                            }
+                                {
+                                    groupPresent &&
+                                    <div className="d-flex justify-content-between w-100 align-content-center">
+                                        <p className="text-left card-text">Group:</p>
+                                        <p className="text-right card-text">{group}</p>
+                                    </div>
+                                }
+
+                                {
+                                    groupsPresent &&
+                                    <select className="form-control" onChange={this.changeGroup}>
+                                        {selectOptions}
+                                    </select>
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             </Fragment>
         );
     };
