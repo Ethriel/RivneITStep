@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import './contact-item.css';
 
 class ContactItem extends Component {
     constructor(props) {
         super(props);
-        const { id, name, phone, email, address, gender, avatar, isFavourite } = props.contact;
+        const { id, name, phone, email, address, gender, avatar, isFavourite, group } = props.contact;
         this.state = {
             id: id,
             name: name,
@@ -15,43 +16,59 @@ class ContactItem extends Component {
             avatar: avatar,
             isFavourite: isFavourite,
             setFavourite: props.setFavourite,
-            groups: props.groups
+            group: group,
+            groups: props.groups,
+            redirect: false
         };
-        this.setRandomImg = this.setRandomImg.bind(this);
-        this.setFavourite = this.setFavourite.bind(this);
     };
 
-    setRandomImg() {
+    setRandomImg = () => {
         const number = Math.floor(Math.random() * Math.floor(99));
         this.setState({
             avatar: number
         });
     };
 
-    setFavourite() {
+    setFavourite = () => {
         const opposite = !this.state.isFavourite;
         this.setState({
             isFavourite: opposite
         });
+        this.setState({ redirect: true })
     };
+
+    changeGroup = (ev) => {
+        const select = ev.target;
+        const group = select.options[select.selectedIndex].value;
+        this.props.changeGroup(this.state.id, group);
+        this.setState({ redirect: true })
+    };
+
     render() {
-        const { id, name, phone, email, address, gender, avatar, isFavourite, setFavourite, groups } = this.state;
+        const { id, name, phone, email, address, gender, avatar, isFavourite, setFavourite, group, groups, redirect } = this.state;
         const avatarUri = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
         const baseStar = this.props.contact.isFavourite ? "fas" : "far";
         const star = `${baseStar} fa-star my-star`;
         const title = isFavourite ? "Unfavourite" : "Favourite";
+        let groupPresent = false;
+        if (group) {
+            groupPresent = true;
+        }
         let groupsPresent = false;
         let selectOptions = [];
+        let key = 1;
         if (groups) {
             groupsPresent = true;
             selectOptions = groups.map((group) => {
-                return <option value={group}>{group}</option>
+                if (group === this.state.group) {
+                    return <option key={key++} value={this.state.group} defaultValue={this.state.group}>{group}</option>
+                }
+                return <option key={key++} value={group}>{group}</option>
             })
         }
-
         return (
             <Fragment>
-                <div className="col-lg-4 col-md-4 col-sm-6">
+                <div className="col-lg-3 col-md-3 col-sm-6">
                     <div className="card my-card">
                         <img className="card-img-top center-div" src={avatarUri} alt="avatar" />
                         <div className="card-body">
@@ -62,13 +79,23 @@ class ContactItem extends Component {
                             <div className="d-flex justify-content-between w-100 align-content-center">
                                 <button className="btn btn-primary" onClick={this.setRandomImg}>Random image</button>
                                 <i className={star} onClick={() => setFavourite(id)} title={title}></i>
-                                {
-                                    groupsPresent &&
-                                    <select className="form-control">
-                                        {selectOptions}
-                                    </select>
-                                }
+
                             </div>
+
+                            {
+                                groupPresent &&
+                                <div className="d-flex justify-content-between w-100 align-content-center">
+                                    <p className="text-left card-text">Group:</p>
+                                    <p className="text-right card-text">{group}</p>
+                                </div>
+                            }
+
+                            {
+                                groupsPresent &&
+                                <select className="form-control" onChange={this.changeGroup}>
+                                    {selectOptions}
+                                </select>
+                            }
                         </div>
                     </div>
                 </div>
