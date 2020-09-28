@@ -15,7 +15,7 @@ class EditContact extends Component {
             gender: props.contact.gender,
             avatar: props.contact.avatar,
             group: props.contact.group,
-            isFavourite: props.contact.isFavourite,
+            isFavorite: props.contact.isFavorite,
             redirect: false
         }
     };

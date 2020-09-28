@@ -13,7 +13,7 @@ class AddContact extends Component {
             address: "",
             gender: "",
             avatar: 1,
-            isFavourite: false,
+            isFavorite: false,
             redirect: false
         }
     };

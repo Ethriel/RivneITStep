@@ -1,12 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 
 const EditContactForm = ({ setName, setPhone, setEmail, setAddress, setGender, setAvatar, submitClick, contact }, ...props) => {
-    // if (contact) {
-
-    // } else {
-    //     return <Redirect to="/" push={true} />
-    // }
     return (
         <form>
             <div className="form-group row">

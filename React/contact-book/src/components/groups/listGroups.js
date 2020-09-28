@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import uuid from 'react-uuid';
 import './groups.css';
 

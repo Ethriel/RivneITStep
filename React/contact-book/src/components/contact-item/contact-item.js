@@ -14,7 +14,7 @@ class ContactItem extends Component {
             address: address,
             gender: gender,
             avatar: avatar,
-            isFavourite: isFavourite,
+            isFavorite: isFavourite,
             setFavourite: props.setFavourite,
             deleteContact: props.deleteContact,
             group: group,
@@ -32,7 +32,7 @@ class ContactItem extends Component {
     };
 
     setFavourite = () => {
-        const opposite = !this.state.isFavourite;
+        const opposite = !this.state.isFavorite;
         this.setState({
             isFavourite: opposite
         });
@@ -52,11 +52,11 @@ class ContactItem extends Component {
     }
 
     render() {
-        const { id, name, phone, email, address, gender, avatar, isFavourite, setFavourite, group, groups, redirect, deleteContact, redirectEdit } = this.state;
+        const { id, name, phone, email, address, gender, avatar, isFavorite, setFavourite, group, groups, redirect, deleteContact, redirectEdit } = this.state;
         const avatarUri = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
-        const baseStar = this.props.contact.isFavourite ? "fas" : "far";
+        const baseStar = this.props.contact.isFavorite ? "fas" : "far";
         const star = `${baseStar} fa-star my-star`;
-        const title = isFavourite ? "Unfavourite" : "Favourite";
+        const title = isFavorite ? "Unfavourite" : "Favourite";
         let groupPresent = false;
         if (group) {
             groupPresent = true;

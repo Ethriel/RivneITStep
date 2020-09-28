@@ -12,7 +12,7 @@ const AppSideBar = ({ groups, checkChanged }, ...props) => {
     }
     const checkboxes = groups.map((group) => {
         return (
-            <li key={uuid()} className="nav-item"><input type="checkbox" checked={true} className="checkbox-light" value={group} onChange={onChange} />{group}</li>
+            <li key={uuid()} className="nav-item text-left"><input type="checkbox" checked={true} className="checkbox-light" value={group} onChange={onChange} />{group}</li>
         )
     });
 
