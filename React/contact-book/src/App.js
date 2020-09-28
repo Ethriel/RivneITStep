@@ -12,7 +12,7 @@ import uuid from 'react-uuid';
 import EditContact from './components/edit-contact/edit-contact';
 import ListGroups from './components/groups/listGroups';
 import AppSideBar from './appSidebar';
-const URL = "https://contactbook-9f583.firebaseio.com/list.json";
+const URL = "https://contactbook-9f583.firebaseio.com/lukashchukContacts.json";
 
 class App extends React.Component {
   constructor(props) {
@@ -39,7 +39,8 @@ class App extends React.Component {
         return response.json();
       })
       .then((data) => {
-        this.setState({ contacts: data });
+        const contacts = (data !== null && data !== undefined) ? data : [];
+        this.setState({ contacts: contacts });
       })
       .catch((error) => {
         console.log(error);
@@ -129,7 +130,7 @@ class App extends React.Component {
     this.setState({ groups: groups });
   };
 
-  saveChanges = (contacts) => {
+  saveChanges = contacts => {
     fetch(URL, {
       method: "PUT",
       headers: {
@@ -138,16 +139,14 @@ class App extends React.Component {
       },
       body: JSON.stringify(contacts)
     }).then((response) => {
-      console.log(response);
     }).catch((error) => {
       console.log(error);
     });
   };
 
   render() {
-    const favourites = (this.state.contacts !== null && this.state.contacts !== undefined) ? this.state.contacts.filter((x) => { return x.isFavorite === true }) : [];
-    const list = (this.state.contacts !== null && this.state.contacts !== undefined) ? this.state.contacts : [];
-    const { search, groups, contactToEdit, filteredGroups } = this.state;
+    const favourites = this.state.contacts.filter((x) => { return x.isFavourite === true });
+    const { contacts, search, groups, contactToEdit, filteredGroups } = this.state;
     const filtered = filteredGroups.length > 0 ? filteredGroups : groups;
 
     return (
@@ -158,7 +157,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/"
               render={() =>
-                <ContactList dataContacts={list}
+                <ContactList dataContacts={contacts}
                   setFavourite={this.setFavourite}
                   groups={groups}
                   searchOnChange={this.searchOnChange}
@@ -169,7 +168,7 @@ class App extends React.Component {
             <Route exact path="/favouriteContacts"
               render={() => <FavouriteContacstList dataContacts={favourites} setFavourite={this.setFavourite}></FavouriteContacstList>} />
             <Route exact path="/groups"
-              render={() => <Groups contacts={list} groups={filtered}></Groups>} />
+              render={() => <Groups contacts={contacts} groups={filtered}></Groups>} />
             <Route exact path="/listGroups"
               render={() => <ListGroups groups={groups} deleteGroup={this.deleteGroup}></ListGroups>} />
             <Route exact path="/addGroup"
