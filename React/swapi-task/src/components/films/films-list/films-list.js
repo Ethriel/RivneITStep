@@ -1,24 +1,29 @@
-import React from 'react';
-import FilmItem from '../film-item/film-item';
+import React, { useState, useEffect } from 'react';
+import FetchData from '../../common/fetch-data/fetch-data';
+import ListItems from '../../common/list-items/list-items';
 import './films-list';
+import getFilmsItems from './get-films-items';
+import { BASE_URL } from '../../constants';
 
-const FilmsList = ({ films }, ...props) => {
-    const filmsItems = [];
-    let filmItem = {};
-    let img = "";
-    for (let i = 0; i < films.length; i++) {
-        img = `https://starwars-visualguide.com/assets/img/films/${i + 1}.jpg`
-        filmItem = <FilmItem film={films[i]} img={img}></FilmItem>
-        filmsItems.push(filmItem);
-    };
+const FilmsList = (props) => {
+    const [films, setFilms] = useState([]);
+    useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        async function fetchFilms() {
+            const data = await FetchData(`${BASE_URL}films`, signal);
+            setFilms(data.results);
+        };
 
-    return(
-        <div className="container">
-            <div className="card-deck">
-                {filmsItems}
-            </div>
-        </div>
-    )
+        fetchFilms();
+
+        return function cleanUp() {
+            controller.abort();
+        }
+
+    }, [])
+    const filmsItems = getFilmsItems(films);
+    return <ListItems items={filmsItems} />
 };
 
 export default FilmsList;

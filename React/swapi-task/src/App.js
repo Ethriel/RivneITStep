@@ -1,33 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-const filmsUrl = "https://swapi.dev/api/films";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AppMenu from './AppTopMenu';
+import Page404 from './components/page-404/page-404';
+import FilmsList from './components/films/films-list/films-list';
+import PeopleList from './components/people/people-list/people-list';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      films: [],
-      people: [],
-      planets: []
-    }
-  }
-  componentDidMount() {
-    this.fetchFilms();
-  }
-  fetchFilms = () => {
-    fetch(filmsUrl).then((response) => {
-      return response.json();
-    }).then((films) => {
-      console.log(films);
-    })
-  }
+
   render() {
     return (
-      <div className="App">
+      <Router>
+        <div className="App">
+          <AppMenu />
+          <div className="container-fluid">
+            <Switch>
+              <Route exact path="/" />
+              <Route exact path="/films" component={FilmsList}/>
+              <Route exact path="/characters" component={PeopleList}/>
+              <Route exact path="/planets" />
+              <Route exact path="*" render={() => <Page404 />} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
 
-      </div>
     )
   }
 }
