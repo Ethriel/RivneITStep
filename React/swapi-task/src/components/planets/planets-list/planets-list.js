@@ -1,77 +1,71 @@
 import React from 'react';
 import FetchData from '../../common/fetch-data/fetch-data';
-import getImageUrl from '../../common/get-image-url/get-image-url';
 import ListItems from '../../common/list-items/list-items';
-import { BASE_URL, SEARCH_PEOPLE } from '../../constants';
-import getPeopleItems from './get-people-items';
-import './people-list.css';
+import { BASE_URL, SEARCH_PLANETS } from '../../constants';
+import getPlanetsItems from './get-planets.items';
+import './planets-list.css';
 
-
-class PeopleList extends React.Component {
+class PlanetsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            people: {},
+            planets: {},
+            img: 1,
             search: ""
-        };
+        }
     }
 
     componentDidMount() {
-        this.fetchPeople();
+        this.fetchPlanets();
     };
 
-    fetchPeople = async () => {
+    fetchPlanets = async () => {
         const controller = new AbortController();
         const signal = controller.signal;
-        let data = await FetchData(`${BASE_URL}people`, signal);
+        let data = await FetchData(`${BASE_URL}planets`, signal);
         data = this.setData(data, false);
-        this.setPeople(data);
+        this.setPlanets(data);
+    };
+
+    setData = (data, isPrev) => {
+        let i = this.state.img;
+        if (isPrev) {
+            i -= 20;
+        };
+        data.results.forEach((p) => {
+            p.id = i++;
+            this.setState({ img: i });
+        });
+        return data;
+    };
+
+    setPlanets = (data) => {
+        this.setState({
+            planets: data
+        });
     };
 
     nextClick = async () => {
-        const next = this.state.people.next;
+        const next = this.state.planets.next;
         const controller = new AbortController();
         const signal = controller.signal;
 
         let data = await FetchData(next, signal);
         data = this.setData(data, false);
-        this.setPeople(data);
+        this.setPlanets(data);
     };
 
     prevClick = async () => {
-        if (this.state.people.previous) {
-            const previous = this.state.people.previous;
+        if (this.state.planets.previous) {
+            const previous = this.state.planets.previous;
             console.log(previous);
             const controller = new AbortController();
             const signal = controller.signal;
 
             let data = await FetchData(previous, signal);
             data = this.setData(data, true);
-            this.setPeople(data);
+            this.setPlanets(data);
         }
-    };
-
-    setPeople = (data) => {
-        this.setState({
-            people: data
-        });
-    };
-
-    setData = (data) => {
-        let id;
-        let spl;
-
-        data.results.forEach((p) => {
-            spl = p.url.split("/");
-            spl.pop()
-            id = +spl.pop();
-            if (id === 17) {
-                id++;
-            }
-            p.img = getImageUrl("people", id);
-
-        });
-        return data;
     };
 
     inputChanged = (ev) => {
@@ -81,7 +75,7 @@ class PeopleList extends React.Component {
             this.setState({ search: value });
         }
         else {
-            this.fetchPeople();
+            this.fetchPlanets();
         }
     };
 
@@ -90,22 +84,22 @@ class PeopleList extends React.Component {
         const signal = controller.signal;
         const { search } = this.state;
         if (search && search !== "") {
-            let data = await FetchData(`${SEARCH_PEOPLE}${search}`, signal);
-            data = this.setData(data);
-            this.setPeople(data);
+            let data = await FetchData(`${SEARCH_PLANETS}${search}`, signal);
+            this.setPlanets(data);
         }
         else {
-            this.fetchPeople();
+            this.fetchPlanets();
         }
     };
 
     render() {
-        const { people } = this.state;
+        const { planets } = this.state;
         let results = [];
-        if (people.results) {
-            results = people.results;
+        if (planets.results) {
+            results = planets.results;
         }
-        const peopleitems = getPeopleItems(results);
+
+        const planetsItems = getPlanetsItems(results);
 
         return (
             <>
@@ -117,7 +111,7 @@ class PeopleList extends React.Component {
                     <li className="page-item btn btn-primary pagination-btn" onClick={this.prevClick}>Previous</li>
                     <li className="page-item btn btn-primary pagination-btn" onClick={this.nextClick}>Next</li>
                 </ul>
-                <ListItems items={peopleitems} />
+                <ListItems items={planetsItems} />
                 <ul className="pagination justify-content-center">
                     <li className="page-item btn btn-primary pagination-btn" onClick={this.prevClick}>Previous</li>
                     <li className="page-item btn btn-primary pagination-btn" onClick={this.nextClick}>Next</li>
@@ -125,6 +119,6 @@ class PeopleList extends React.Component {
             </>
         )
     }
-}
+};
 
-export default PeopleList;
+export default PlanetsList;

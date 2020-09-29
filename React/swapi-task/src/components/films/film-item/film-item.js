@@ -4,12 +4,12 @@ import './film-item';
 import uuid from 'react-uuid';
 
 const FilmItem = ({ film, img }, ...props) => {
-    const { title, episode_id, opening_crawl, director, producer, release_date, characters, planets, starships, vehicles, species, created, edited, url } = film;
+    const { title, opening_crawl, director, producer, release_date } = film;
     return (
         <div className="col-lg-4 col-md-3 col-sm-6" key={uuid()}>
             <div className="card">
                 <div className="card-img-top">
-                    <img src={img} alt={title} />
+                    <img className="card-img-my" src={img} alt={title} />
                 </div>
                 <div className="card-body">
                     <div className="card-title">

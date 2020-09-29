@@ -1,0 +1,7 @@
+.pagination-btn {
+    display: block;
+}
+
+.pagination-btn:hover {
+    cursor: pointer;
+}
