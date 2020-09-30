@@ -1,5 +1,6 @@
 import React from 'react';
 import FetchData from '../../common/fetch-data/fetch-data';
+import getImageLink from '../../common/get-image-link/getImageLink';
 import getImageUrl from '../../common/get-image-url/get-image-url';
 import ListItems from '../../common/list-items/list-items';
 import { BASE_URL, SEARCH_PEOPLE } from '../../constants';
@@ -58,19 +59,13 @@ class PeopleList extends React.Component {
     };
 
     setData = (data) => {
-        let id;
-        let spl;
-
+        let obj;
         data.results.forEach((p) => {
-            spl = p.url.split("/");
-            spl.pop()
-            id = +spl.pop();
-            if (id === 17) {
-                id++;
-            }
-            p.img = getImageUrl("people", id);
-
+            obj = getImageLink(p.url, "people");
+            p.img = obj.img;
+            p.id = obj.id;
         });
+
         return data;
     };
 

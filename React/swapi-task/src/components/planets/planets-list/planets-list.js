@@ -1,5 +1,7 @@
 import React from 'react';
 import FetchData from '../../common/fetch-data/fetch-data';
+import getImageLink from '../../common/get-image-link/getImageLink';
+import getImageUrl from '../../common/get-image-url/get-image-url';
 import ListItems from '../../common/list-items/list-items';
 import { BASE_URL, SEARCH_PLANETS } from '../../constants';
 import getPlanetsItems from './get-planets.items';
@@ -23,19 +25,18 @@ class PlanetsList extends React.Component {
         const controller = new AbortController();
         const signal = controller.signal;
         let data = await FetchData(`${BASE_URL}planets`, signal);
-        data = this.setData(data, false);
+        data = this.setData(data);
         this.setPlanets(data);
     };
 
-    setData = (data, isPrev) => {
-        let i = this.state.img;
-        if (isPrev) {
-            i -= 20;
-        };
+    setData = (data) => {
+        let obj;
         data.results.forEach((p) => {
-            p.id = i++;
-            this.setState({ img: i });
-        });
+            obj = getImageLink(p.url, "planets");
+            p.img = obj.img;
+            p.id = obj.id;
+        })
+
         return data;
     };
 
@@ -51,7 +52,7 @@ class PlanetsList extends React.Component {
         const signal = controller.signal;
 
         let data = await FetchData(next, signal);
-        data = this.setData(data, false);
+        data = this.setData(data);
         this.setPlanets(data);
     };
 
@@ -63,7 +64,7 @@ class PlanetsList extends React.Component {
             const signal = controller.signal;
 
             let data = await FetchData(previous, signal);
-            data = this.setData(data, true);
+            data = this.setData(data);
             this.setPlanets(data);
         }
     };

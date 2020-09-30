@@ -4,10 +4,9 @@ import getImageUrl from '../../common/get-image-url/get-image-url';
 import FilmItem from '../film-item/film-item';
 
 const getFilmsItems = (films) => {
-    let i = 1;
     const filmsItems = films.map((film) => {
         return (
-            <FilmItem key={uuid()} film={film} img={getImageUrl("film", i++)} />
+            <FilmItem key={uuid()} film={film} />
         )
     })
 

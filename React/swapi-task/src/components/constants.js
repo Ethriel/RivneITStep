@@ -5,3 +5,6 @@ export const BASE_PLANETS_IMG_URL = "https://starwars-visualguide.com/assets/img
 export const SEARCH_FILMS = "https://swapi.dev/api/films/?search=";
 export const SEARCH_PEOPLE = "https://swapi.dev/api/people/?search=";
 export const SEARCH_PLANETS = "https://swapi.dev/api/planets/?search=";
+export const BASE_CHARACTER_DETAILS = "https://swapi.dev/api/people/";
+export const BASE_FILM_DETAILS = "https://swapi.dev/api/films/";
+export const BASE_PLANET_DETAILS = "https://swapi.dev/api/planets/";

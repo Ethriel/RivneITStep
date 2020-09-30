@@ -4,17 +4,29 @@ import ListItems from '../../common/list-items/list-items';
 import './films-list';
 import getFilmsItems from './get-films-items';
 import { BASE_URL, SEARCH_FILMS } from '../../constants';
+import getImageLink from '../../common/get-image-link/getImageLink';
 
 const FilmsList = (props) => {
     const [films, setFilms] = useState([]);
     const [search, setSearch] = useState("");
+    const setData = (data) => {
+        let obj;
+        data.results.forEach((f) => {
+            obj = getImageLink(f.url, "films");
+            f.img = obj.img;
+            f.id = obj.id;
+        });
+
+        return data;
+    }
 
     const fetchFilms = useCallback(async (signal) => {
-        const controller = new AbortController();
         if (!signal) {
+            const controller = new AbortController();
             signal = controller.signal;
         }
-        const data = await FetchData(`${BASE_URL}films`, signal);
+        let data = await FetchData(`${BASE_URL}films`, signal);
+        data = setData(data);
         setFilms(data.results);
     }, []);
     

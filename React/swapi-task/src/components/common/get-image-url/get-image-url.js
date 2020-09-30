@@ -4,7 +4,7 @@ const getImageUrl = (type, id) => {
     let url = "";
 
     switch (type) {
-        case "film":
+        case "films":
             url = `${BASE_FILMS_IMG_URL}${id}.jpg`
             break;
         case "people":

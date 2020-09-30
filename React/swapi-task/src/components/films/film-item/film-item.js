@@ -3,8 +3,8 @@ import LabelAndText from '../../common/label-and-text/label-and-text';
 import './film-item';
 import uuid from 'react-uuid';
 
-const FilmItem = ({ film, img }, ...props) => {
-    const { title, opening_crawl, director, producer, release_date } = film;
+const FilmItem = ({ film }, ...props) => {
+    const { title, opening_crawl, director, producer, release_date, img } = film;
     return (
         <div className="col-lg-4 col-md-3 col-sm-6" key={uuid()}>
             <div className="card">
