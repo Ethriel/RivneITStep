@@ -9,5 +9,5 @@ export class Event {
         this.description = description;
         this.imageURL = imageURL;
         this.startDate = startDate;
-    };
-};
+    }
+}
