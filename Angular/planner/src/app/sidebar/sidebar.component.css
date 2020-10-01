@@ -1,0 +1,11 @@
+.my-add-form {
+  margin: 4px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px black;
+  padding: 5px;
+}
+
+.my-add-form input {
+  margin-bottom: 3px;
+}

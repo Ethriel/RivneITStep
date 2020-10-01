@@ -1,4 +1,3 @@
-import { TopMenuModel } from './top.menu.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopMenuComponent implements OnInit {
 
-  topMenuModel: TopMenuModel;
   constructor() {
-    this.topMenuModel = new TopMenuModel();
   }
 
   ngOnInit(): void {

@@ -1,4 +1,3 @@
-import { SidebarModel } from './sidebar.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  sidebarModel: SidebarModel;
   constructor() {
-    this.sidebarModel = new SidebarModel();
   }
 
   ngOnInit(): void {

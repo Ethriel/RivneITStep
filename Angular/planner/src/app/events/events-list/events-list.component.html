@@ -1,6 +1,10 @@
-<div class="d-flex flex-column">
-    <app-event-item class="w-100 m-1"></app-event-item>
-    <app-event-item class="w-100 m-1"></app-event-item>
-    <app-event-item class="w-100 m-1"></app-event-item>
-    <app-event-item class="w-100 m-1"></app-event-item>
+<div class="container">
+    <div class="row">
+        <app-event-item
+            class="card col-lg-6 col-md-6 col-sm-6 col-xs-12"
+            *ngFor="let item of events; let i = index"
+            [currentEvent]="item"
+            [index]="i"
+        ></app-event-item>
+    </div>
 </div>
