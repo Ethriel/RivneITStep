@@ -11,19 +11,32 @@
         </div>
         <div class="d-flex flex-row justify-content-between">
             <i
-                *ngIf="isPrior === false"
+                *ngIf="isPrior===false"
                 (click)="setPriority()"
                 class="far fa-star my-icon"
-                title="Prior?"
+                title="Prior"
             ></i>
             <i
-                *ngIf="isPrior === true"
+                *ngIf="isPrior===true"
                 (click)="setPriority()"
                 class="fas fa-star my-icon"
-                title="Prior?"
+                title="Unprior"
+            ></i>
+
+
+            <i
+                *ngIf="currentEvent.isHidden===false"
+                (click)="setIsHidden()"
+                class="fas fa-eye my-eye-icon"
+                title="Hide"
+            ></i>
+            <i
+                *ngIf="currentEvent.isHidden===true"
+                (click)="setIsHidden()"
+                class="fas fa-eye-slash my-eye-icon"
+                title="Unhide"
             ></i>
         </div>
-        
     </div>
     <app-tasks-list></app-tasks-list>
 </div>

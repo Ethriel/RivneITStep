@@ -1,10 +1,40 @@
 <div class="container">
     <div class="row">
-        <app-event-item
-            class="card col-lg-6 col-md-6 col-sm-6 col-xs-12"
-            *ngFor="let item of events; let i = index"
-            [currentEvent]="item"
-            [index]="i"
-        ></app-event-item>
+        <ng-container *ngFor="let item of events; let i = index">
+            <app-event-item
+                class="card col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                *ngIf="item.isHidden===false"
+                [currentEvent]="item"
+                [index]="i"
+            ></app-event-item>
+        </ng-container>
     </div>
+    <button
+        class="btn btn-primary"
+        type="button"
+        data-toggle="collapse"
+        data-target="#hiddenEvents"
+        aria-expanded="false"
+        aria-controls="hiddenEvents"
+    >
+        Show hidden
+    </button>
+    <div
+        class="collapse"
+        id="hiddenEvents"
+    >
+        <div class="row">
+            <ng-container *ngFor="let item of events; let i = index">
+                <app-event-item
+                    class="card col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                    *ngIf="item.isHidden===true"
+                    [currentEvent]="item"
+                    [index]="i"
+                ></app-event-item>
+            </ng-container>
+        </div>
+    </div>
+
+
+
 </div>

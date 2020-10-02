@@ -3,11 +3,13 @@ export class Event {
     public description: string;
     public imageURL: string;
     public startDate: string;
+    public isHidden: boolean;
 
-    constructor(name: string, description: string, imageURL: string, startDate: string){
+    constructor(name: string, description: string, imageURL: string, startDate: string) {
         this.name = name;
         this.description = description;
         this.imageURL = imageURL;
         this.startDate = startDate;
+        this.isHidden = false;
     }
 }

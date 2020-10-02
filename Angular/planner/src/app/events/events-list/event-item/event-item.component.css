@@ -18,3 +18,11 @@
 .my-icon:hover {
   cursor: pointer;
 }
+
+.my-eye-icon {
+  font-size: 25px;
+}
+
+.my-eye-icon:hover {
+  cursor: pointer;
+}

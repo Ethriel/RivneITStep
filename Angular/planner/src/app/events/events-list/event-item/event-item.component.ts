@@ -10,12 +10,16 @@ export class EventItemComponent implements OnInit {
 
   @Input() currentEvent: Event;
   @Input() index: number;
-  isPrior: boolean = false;
+  isPrior = false;
 
-  setPriority(){
+  setPriority(): void {
     this.isPrior = !this.isPrior;
   }
+  setIsHidden(): void {
+    this.currentEvent.isHidden = !this.currentEvent.isHidden;
+  }
   constructor() {
+
   }
 
   ngOnInit(): void {

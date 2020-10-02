@@ -13,33 +13,38 @@ export class EventsListComponent implements OnInit {
       name: 'Event 1',
       description: 'Event 1 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '01.01.2020'
+      startDate: '01.01.2020',
+      isHidden: false
     },
     {
       name: 'Event 2',
       description: 'Event 2 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '02.01.2020'
+      startDate: '02.01.2020',
+      isHidden: false
     },
     {
       name: 'Event 3',
       description: 'Event 3 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '03.01.2020'
+      startDate: '03.01.2020',
+      isHidden: false
     },
     {
       name: 'Event 4',
       description: 'Event 4 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '04.01.2020'
+      startDate: '04.01.2020',
+      isHidden: false
     },
     {
       name: 'Event 5',
       description: 'Event 5 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '05.01.2020'
+      startDate: '05.01.2020',
+      isHidden: false
     }
-  ]
+  ];
   constructor() { }
 
   ngOnInit(): void {
