@@ -1,3 +1,4 @@
+import { EventService } from './../../eventService/event.service';
 import { Event } from './../../event.model';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -11,6 +12,13 @@ export class EventItemComponent implements OnInit {
   @Input() currentEvent: Event;
   @Input() index: number;
   isPrior = false;
+  
+  constructor(private eventService: EventService) {
+
+  }
+
+  ngOnInit(): void {
+  }
 
   setPriority(): void {
     this.isPrior = !this.isPrior;
@@ -18,11 +26,7 @@ export class EventItemComponent implements OnInit {
   setIsHidden(): void {
     this.currentEvent.isHidden = !this.currentEvent.isHidden;
   }
-  constructor() {
-
+  editClick():void{
+    this.eventService.eventToEdit.emit(this.currentEvent);
   }
-
-  ngOnInit(): void {
-  }
-
 }

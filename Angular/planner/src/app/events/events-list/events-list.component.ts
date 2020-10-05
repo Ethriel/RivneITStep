@@ -1,3 +1,4 @@
+import { EventService } from './../eventService/event.service';
 import { Component, OnInit } from '@angular/core';
 import { Event } from '../event.model';
 
@@ -8,46 +9,15 @@ import { Event } from '../event.model';
 })
 export class EventsListComponent implements OnInit {
 
-  events: Event[] = [
-    {
-      name: 'Event 1',
-      description: 'Event 1 descr',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '01.01.2020',
-      isHidden: false
-    },
-    {
-      name: 'Event 2',
-      description: 'Event 2 descr',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '02.01.2020',
-      isHidden: false
-    },
-    {
-      name: 'Event 3',
-      description: 'Event 3 descr',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '03.01.2020',
-      isHidden: false
-    },
-    {
-      name: 'Event 4',
-      description: 'Event 4 descr',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '04.01.2020',
-      isHidden: false
-    },
-    {
-      name: 'Event 5',
-      description: 'Event 5 descr',
-      imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
-      startDate: '05.01.2020',
-      isHidden: false
-    }
-  ];
-  constructor() { }
+  events: Event[];
+  showEdit: boolean;
+
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
+    this.events = this.eventService.getAllEvents();
+    this.eventService.refreshList.subscribe((events: Event[]) => {
+      this.events = events;
+    })
   }
-
 }

@@ -14,6 +14,7 @@ import { TasksComponent } from './events/tasks/tasks.component';
 import { TasksListComponent } from './events/tasks/tasks-list/tasks-list.component';
 import { TaskItemComponent } from './events/tasks/tasks-list/task-item/task-item.component';
 import { AddTaskComponent } from './events/tasks/add-task/add-task.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AddTaskComponent } from './events/tasks/add-task/add-task.component';
   imports: [
     CommonModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
