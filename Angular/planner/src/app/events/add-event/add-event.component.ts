@@ -23,10 +23,9 @@ export class AddEventComponent implements OnInit {
       this.description = event.description;
       this.date = event.startDate;
       this.image = event.imageURL;
-      this.addEdit();
+      this.setEditForm();
     });
   }
-
   onSubmit(): void {
     if (this.id) {
       this.editEvent();
@@ -36,25 +35,22 @@ export class AddEventComponent implements OnInit {
       this.addEvent();
     }
   }
-
   private editEvent(): void {
     const newEvent: Event = new Event(this.name, this.description, this.image, this.date);
     this.eventService.submitEdit(newEvent, this.id);
-    this.addSubmit();
+    this.setSubmitForm();
   }
-
   private addEvent(): void {
     const newEvent: Event = new Event(this.name, this.description, this.image, this.date);
     this.eventService.addEvent(newEvent);
   }
-  private addEdit(): void {
+  private setEditForm(): void {
     const h3 = document.getElementById("addEventText");
     h3.innerText = "Edit event";
     const btn = document.getElementById("addEventSubmit");
     btn.innerText = "Save";
   }
-
-  private addSubmit(): void {
+  private setSubmitForm(): void {
     const h3 = document.getElementById("addEventText");
     h3.innerText = "Add event";
     const btn = document.getElementById("addEventSubmit");
