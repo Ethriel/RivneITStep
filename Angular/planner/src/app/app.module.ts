@@ -20,6 +20,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AppInfoComponent } from './app-info/app-info.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AboutComponent } from './about/about.component';
+import { IdTestComponent } from './id-test/id-test.component';
+import { MyEventsComponent } from './my-events/my-events.component';
+import { MyEventsListComponent } from './my-events/my-events-list/my-events-list.component';
+import { MyEventItemComponent } from './my-events/my-events-list/my-event-item/my-event-item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { AboutComponent } from './about/about.component';
     PageNotFoundComponent,
     AppInfoComponent,
     ContactsComponent,
-    AboutComponent
+    AboutComponent,
+    IdTestComponent,
+    MyEventsComponent,
+    MyEventsListComponent,
+    MyEventItemComponent
   ],
   imports: [
     CommonModule,

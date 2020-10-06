@@ -24,9 +24,17 @@
 }
 
 .my-eye-icon {
-  color: green;
+  color: rgb(128, 0, 49);
 }
 
 .my-edit-icon {
   color: grey;
+}
+
+.my-icon-done {
+  color: green;
+}
+
+.my-icon-undone {
+  color: red;
 }

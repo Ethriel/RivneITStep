@@ -11,8 +11,7 @@ export class EventItemComponent implements OnInit {
 
   @Input() currentEvent: Event;
   @Input() index: number;
-  isPrior = false;
-  
+
   constructor(private eventService: EventService) {
 
   }
@@ -21,12 +20,18 @@ export class EventItemComponent implements OnInit {
   }
 
   setPriority(): void {
-    this.isPrior = !this.isPrior;
+    this.currentEvent.isPrior = !this.currentEvent.isPrior;
+    this.eventService.submitEdit(this.currentEvent, this.currentEvent.id);
+  }
+  setIsDone(): void {
+    this.currentEvent.isDone = !this.currentEvent.isDone;
+    this.eventService.submitEdit(this.currentEvent, this.currentEvent.id);
   }
   setIsHidden(): void {
     this.currentEvent.isHidden = !this.currentEvent.isHidden;
+    this.eventService.submitEdit(this.currentEvent, this.currentEvent.id);
   }
-  editClick():void{
+  editClick(): void {
     this.eventService.eventToEdit.emit(this.currentEvent);
   }
 }

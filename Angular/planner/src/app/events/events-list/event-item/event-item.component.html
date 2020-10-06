@@ -11,16 +11,29 @@
         </div>
         <div class="d-flex flex-row justify-content-between">
             <i
-                *ngIf="isPrior===false"
+                *ngIf="currentEvent.isPrior===false"
                 (click)="setPriority()"
                 class="far fa-star my-icon my-star-icon"
                 title="Prior"
             ></i>
             <i
-                *ngIf="isPrior===true"
+                *ngIf="currentEvent.isPrior===true"
                 (click)="setPriority()"
                 class="fas fa-star my-icon my-star-icon"
                 title="Unprior"
+            ></i>
+
+            <i
+                *ngIf="currentEvent.isDone===false"
+                (click)="setIsDone()"
+                class="fas fa-check my-icon my-icon-undone"
+                title="Done"
+            ></i>
+            <i
+                *ngIf="currentEvent.isDone===true"
+                (click)="setIsDone()"
+                class="fas fa-check my-icon my-icon-done"
+                title="Undone"
             ></i>
 
 

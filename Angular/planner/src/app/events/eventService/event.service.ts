@@ -16,7 +16,9 @@ export class EventService {
       description: 'Event 1 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
       startDate: '01.01.2020',
-      isHidden: false
+      isHidden: false,
+      isPrior: false,
+      isDone: false
     },
     {
       id: 2,
@@ -24,7 +26,9 @@ export class EventService {
       description: 'Event 2 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
       startDate: '02.01.2020',
-      isHidden: false
+      isHidden: false,
+      isPrior: false,
+      isDone: false
     },
     {
       id: 3,
@@ -32,7 +36,9 @@ export class EventService {
       description: 'Event 3 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
       startDate: '03.01.2020',
-      isHidden: false
+      isHidden: false,
+      isPrior: false,
+      isDone: false
     },
     {
       id: 4,
@@ -40,7 +46,9 @@ export class EventService {
       description: 'Event 4 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
       startDate: '04.01.2020',
-      isHidden: false
+      isHidden: false,
+      isPrior: false,
+      isDone: false
     },
     {
       id: 5,
@@ -48,7 +56,9 @@ export class EventService {
       description: 'Event 5 descr',
       imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png',
       startDate: '05.01.2020',
-      isHidden: false
+      isHidden: false,
+      isPrior: false,
+      isDone: false
     }
   ];
 
@@ -73,6 +83,14 @@ export class EventService {
     })
     this.events = newEvents;
     this.refreshList.emit(this.getAllEvents());
+  }
+
+  getMyEvents(): Event[] {
+    const myEvents = this.events.filter((event) => 
+      event.isDone === false && event.isHidden === false
+    );
+    console.log(myEvents);
+    return myEvents;
   }
   constructor() { }
 }
