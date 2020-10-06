@@ -13,13 +13,13 @@
             <i
                 *ngIf="isPrior===false"
                 (click)="setPriority()"
-                class="far fa-star my-icon"
+                class="far fa-star my-icon my-star-icon"
                 title="Prior"
             ></i>
             <i
                 *ngIf="isPrior===true"
                 (click)="setPriority()"
-                class="fas fa-star my-icon"
+                class="fas fa-star my-icon my-star-icon"
                 title="Unprior"
             ></i>
 
@@ -27,19 +27,19 @@
             <i
                 *ngIf="currentEvent.isHidden===false"
                 (click)="setIsHidden()"
-                class="fas fa-eye my-eye-icon"
+                class="fas fa-eye my-icon my-eye-icon"
                 title="Hide"
             ></i>
             <i
                 *ngIf="currentEvent.isHidden===true"
                 (click)="setIsHidden()"
-                class="fas fa-eye-slash my-eye-icon"
+                class="fas fa-eye-slash my-icon my-eye-icon"
                 title="Unhide"
             ></i>
 
             <i
                 (click)="editClick()"
-                class="fas fa-pen my-eye-icon"
+                class="fas fa-pen my-icon my-edit-icon"
                 title="Edit"
             ></i>
         </div>

@@ -11,7 +11,7 @@
 }
 
 .my-icon {
-  color: rgb(255, 217, 0);
+
   font-size: 25px;
 }
 
@@ -19,10 +19,14 @@
   cursor: pointer;
 }
 
-.my-eye-icon {
-  font-size: 25px;
+.my-star-icon {
+  color: rgb(255, 217, 0);
 }
 
-.my-eye-icon:hover {
-  cursor: pointer;
+.my-eye-icon {
+  color: green;
+}
+
+.my-edit-icon {
+  color: grey;
 }

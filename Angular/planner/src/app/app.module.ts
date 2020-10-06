@@ -15,6 +15,11 @@ import { TasksListComponent } from './events/tasks/tasks-list/tasks-list.compone
 import { TaskItemComponent } from './events/tasks/tasks-list/task-item/task-item.component';
 import { AddTaskComponent } from './events/tasks/add-task/add-task.component';
 import { FormsModule } from '@angular/forms';
+import { HomePageComponent } from './home-page/home-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AppInfoComponent } from './app-info/app-info.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,12 @@ import { FormsModule } from '@angular/forms';
     TasksComponent,
     TasksListComponent,
     TaskItemComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    HomePageComponent,
+    PageNotFoundComponent,
+    AppInfoComponent,
+    ContactsComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,
