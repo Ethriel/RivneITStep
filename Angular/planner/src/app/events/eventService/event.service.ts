@@ -63,7 +63,7 @@ export class EventService {
   ];
 
   getAllEvents(): Event[] {
-    return this.events.map((ev) => { return ev });
+    return this.events.map((ev) => ev);
   }
 
   addEvent(event: Event): void {
@@ -73,20 +73,20 @@ export class EventService {
     this.refreshList.emit(this.getAllEvents());
   }
 
-  submitEdit(event: Event, id: number) {
+  submitEdit(event: Event, id: number): void {
     const newEvents = this.events.map((ev) => {
       if (ev.id === id) {
         event.id = id;
         return event;
       }
       return ev;
-    })
+    });
     this.events = newEvents;
     this.refreshList.emit(this.getAllEvents());
   }
 
   getMyEvents(): Event[] {
-    const myEvents = this.events.filter((event) => 
+    const myEvents = this.events.filter((event) =>
       event.isDone === false && event.isHidden === false
     );
     console.log(myEvents);

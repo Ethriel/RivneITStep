@@ -18,6 +18,6 @@ export class EventsListComponent implements OnInit {
     this.events = this.eventService.getAllEvents();
     this.eventService.refreshList.subscribe((events: Event[]) => {
       this.events = events;
-    })
+    });
   }
 }
