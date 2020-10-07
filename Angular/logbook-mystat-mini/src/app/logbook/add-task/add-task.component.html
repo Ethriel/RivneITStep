@@ -1,0 +1,32 @@
+<form
+    #addForm="ngForm"
+    (ngSubmit)="onSubmit(); addForm.reset()"
+    class="mr-4 my-add-form"
+>
+    <h3 id="addEventText">Add event</h3>
+    <input
+        id="eventName"
+        name="eventName"
+        class="form-control"
+        type="text"
+        placeholder="Topic"
+        [(ngModel)]="topic"
+    >
+    <input
+        id="eventImg"
+        name="eventImg"
+        class="form-control"
+        type="text"
+        placeholder="Description"
+        [(ngModel)]="description"
+    >
+    <input
+        id="eventDate"
+        name="eventDate"
+        class="form-control"
+        type="date"
+        title="Date"
+        [(ngModel)]="date"
+    >
+    <button id="addEventSubmit" class="btn-sm btn-primary">Submit</button>
+</form>

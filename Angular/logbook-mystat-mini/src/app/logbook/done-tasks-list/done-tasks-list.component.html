@@ -1,1 +1,8 @@
-<p>done-tasks-list works!</p>
+<div class="row">
+    <app-task-item
+        class="card col-lg-6 col-md-6 col-sm-6 col-xs-12"
+        *ngFor="let item of tasks"
+        [task]="item"
+    >
+    </app-task-item>
+</div>

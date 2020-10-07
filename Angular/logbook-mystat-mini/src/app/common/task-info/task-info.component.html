@@ -1,0 +1,8 @@
+<div class="circle" [ngClass]="{
+    'blue-circle' : task.isDone === false && task.isUnderReview === false,
+    'yellow-circle' : task.isDone === false && task.isUnderReview === true,
+    'green-circle' : task.isDone === true && task.isUnderReview === false
+}"></div>
+<h2 class="card-title">{{task.topic}}</h2>
+<p class="card-text">{{task.description}}</p>
+<p class="card-text">{{task.date}}</p>
