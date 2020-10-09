@@ -1,5 +1,9 @@
+using Authorization_Domain.Implementations;
+using Authorization_Domain.Interfaces;
+using AuthorizationJWT_API.Helpers;
 using DataAccess;
 using DataAccess.Entity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
 
 namespace AuthorizationJWT_API
 {
@@ -26,13 +33,15 @@ namespace AuthorizationJWT_API
         {
             services.AddCors();
 
-            services.AddDbContext<AppDbContext>(opt => 
-                                                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), 
+            services.AddDbContext<AppDbContext>(opt =>
+                                                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                                                 b => b.MigrationsAssembly("AuthorizationJWT-API")));
 
             services.AddIdentity<AppUser, IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>()
                     .AddDefaultTokenProviders();
+
+            services.AddTransient<IJWTTokenService, JWTTokenService>();
 
             services.Configure<IdentityOptions>(config =>
             {
@@ -41,6 +50,28 @@ namespace AuthorizationJWT_API
                 config.Password.RequireLowercase = true;
                 config.Password.RequireUppercase = true;
                 config.Password.RequireNonAlphanumeric = false;
+            });
+
+            var jwtSecret = Configuration["SecretPhrase"];
+            var signInKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret));
+
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = signInKey,
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ClockSkew = TimeSpan.Zero
+                };
             });
 
             services.AddControllersWithViews();
@@ -74,6 +105,9 @@ namespace AuthorizationJWT_API
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -93,6 +127,8 @@ namespace AuthorizationJWT_API
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            //SeederDB.SeedData(app.ApplicationServices, env, Configuration);
         }
     }
 }
