@@ -6,4 +6,33 @@
             [currentEvent]="item"
         ></app-my-event-item>
     </div>
+    <ul class="pagination">
+        <li class="page-item m-1">
+            <button
+                class="btn btn-primary"
+                (click)="previousClick()"
+            >
+                Previous
+            </button>
+        </li>
+        <li
+            class="page-item"
+            *ngFor="let page of pages"
+        >
+            <button
+                class="btn btn-primary m-1"
+                (click)="pageClick(page)"
+            >
+                {{page}}
+            </button>
+        </li>
+        <li class="page-item">
+            <button
+                class="btn btn-primary m-1"
+                (click)="nextClick()"
+            >
+                Next
+            </button>
+        </li>
+    </ul>
 </div>

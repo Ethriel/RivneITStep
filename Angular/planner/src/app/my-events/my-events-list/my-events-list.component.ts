@@ -10,10 +10,26 @@ import { Component, OnInit } from '@angular/core';
 export class MyEventsListComponent implements OnInit {
 
   events: Event[];
+  pages: number[];
   constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
-    this.events = this.eventService.getMyEvents();
+    this.pages = this.eventService.getPages();
+    this.events = this.eventService.getFirstPage();
+    this.eventService.loadPortion.subscribe((events: Event[]) => {
+      this.events = events;
+    });
   }
 
+  nextClick(): void {
+    this.eventService.nextClick();
+  }
+
+  previousClick(): void {
+    this.eventService.previousClick();
+  }
+
+  pageClick(page: number): void {
+    this.eventService.getForPage(page);
+  }
 }
