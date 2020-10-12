@@ -1,1 +1,9 @@
-<p>my-events-list works!</p>
+<div class="container">
+    <div class="row">
+        <app-my-event-item
+            *ngFor="let item of events; let i = index"
+            class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
+            [currentEvent]="item"
+        ></app-my-event-item>
+    </div>
+</div>

@@ -2,7 +2,7 @@
     <div class="row">
         <ng-container *ngFor="let item of events; let i = index">
             <app-event-item
-                class="card col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
                 *ngIf="item.isHidden===false"
                 [currentEvent]="item"
                 [index]="i"
@@ -26,7 +26,7 @@
         <div class="row">
             <ng-container *ngFor="let item of events; let i = index">
                 <app-event-item
-                    class="card col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                    class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
                     *ngIf="item.isHidden===true"
                     [currentEvent]="item"
                     [index]="i"

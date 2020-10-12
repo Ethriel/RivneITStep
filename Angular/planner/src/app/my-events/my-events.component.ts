@@ -9,11 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyEventsComponent implements OnInit {
 
-  events: Event[];
   constructor(private eventService: EventService) { }
 
-  ngOnInit(): void {
-    this.events = this.eventService.getMyEvents();
-  }
+  ngOnInit(): void {}
 
 }

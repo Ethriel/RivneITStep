@@ -1,1 +1,19 @@
-<p>my-event-item works!</p>
+<div
+    class="card my-card-alt"
+    [routerLink]="['/my-events'+'/'+currentEvent.id]"
+>
+    <img
+        class="card-img-top my-card-img"
+        [src]="currentEvent.imageURL"
+        [alt]="currentEvent.name"
+    >
+    <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="d-flex flex-column">
+                <h5 class="card-title">{{currentEvent.name}}</h5>
+                <p class="card-text">{{currentEvent.startDate}}</p>
+            </div>
+            <app-tasks-list></app-tasks-list>
+        </div>
+    </div>
+</div>

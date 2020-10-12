@@ -45,15 +45,15 @@ export class AddEventComponent implements OnInit {
     this.eventService.addEvent(newEvent);
   }
   private setEditForm(): void {
-    const h3 = document.getElementById("addEventText");
-    h3.innerText = "Edit event";
-    const btn = document.getElementById("addEventSubmit");
-    btn.innerText = "Save";
+    const h3 = document.getElementById('addEventText');
+    h3.innerText = 'Edit event';
+    const btn = document.getElementById('addEventSubmit');
+    btn.innerText = 'Save';
   }
   private setSubmitForm(): void {
-    const h3 = document.getElementById("addEventText");
-    h3.innerText = "Add event";
-    const btn = document.getElementById("addEventSubmit");
-    btn.innerText = "Save";
+    const h3 = document.getElementById('addEventText');
+    h3.innerText = 'Add event';
+    const btn = document.getElementById('addEventSubmit');
+    btn.innerText = 'Save';
   }
 }

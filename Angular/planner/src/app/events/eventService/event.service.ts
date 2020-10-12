@@ -62,6 +62,8 @@ export class EventService {
     }
   ];
 
+  constructor() { }
+
   getAllEvents(): Event[] {
     return this.events.map((ev) => ev);
   }
@@ -92,5 +94,9 @@ export class EventService {
     console.log(myEvents);
     return myEvents;
   }
-  constructor() { }
+
+  getEventById(id: number): Event {
+    const ev = this.events.find(x => x.id === id);
+    return ev;
+  }
 }

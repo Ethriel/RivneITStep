@@ -24,6 +24,7 @@ import { IdTestComponent } from './id-test/id-test.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { MyEventsListComponent } from './my-events/my-events-list/my-events-list.component';
 import { MyEventItemComponent } from './my-events/my-events-list/my-event-item/my-event-item.component';
+import { MyEventDetailsComponent } from './my-events/my-event-details/my-event-details.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MyEventItemComponent } from './my-events/my-events-list/my-event-item/m
     IdTestComponent,
     MyEventsComponent,
     MyEventsListComponent,
-    MyEventItemComponent
+    MyEventItemComponent,
+    MyEventDetailsComponent
   ],
   imports: [
     CommonModule,
