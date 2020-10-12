@@ -1,1 +1,19 @@
-<p>my-event-details works!</p>
+<div class="card w-75 place-center">
+    <img
+        class="card-img-top my-card-img"
+        [src]="eventDetails.imageURL"
+    >
+    <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="d-flex flex-column">
+                <h5 class="card-title">{{eventDetails.name}}</h5>
+                <p class="card-text">{{eventDetails.startDate}}</p>
+            </div>
+            <p class="card-text">{{eventDetails.description}}</p>
+            <div>
+                <p class="card-text">Tasks:</p>
+                <app-tasks-list></app-tasks-list>
+            </div>
+        </div>
+    </div>
+</div>
