@@ -31,8 +31,8 @@ namespace AuthorizationJWT_API.Controllers
             this.JWTTokenService = JWTTokenService;
         }
 
-        [HttpPost("register")]
-        public async Task<ResultDTO> Register([FromBody]SignUpDTO model)
+        [HttpPost("signup")]
+        public async Task<ResultDTO> SignUp([FromBody] SignUpDTO model)
         {
             var result = default(ResultDTO);
             try
@@ -71,7 +71,7 @@ namespace AuthorizationJWT_API.Controllers
                         var userMoreInfo = new UserMoreInfo
                         {
                             Address = model.Address,
-                            ImageURL = model.Image,
+                            ImageURL = "default.jpg",
                             FirstName = model.FirstName,
                             MiddleName = model.MiddleName,
                             LastName = model.LastName,
@@ -101,6 +101,49 @@ namespace AuthorizationJWT_API.Controllers
 
                 return result;
             }
+        }
+
+        [HttpPost("signin")]
+        public async Task<ResultDTO> SignIn([FromBody] SignInDTO model)
+        {
+            var result = default(ResultDTO);
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelStateCustomValidator.GetErrorsFromModel(ModelState);
+                result = new ErrorResultDTO
+                {
+                    Status = 403,
+                    Message = "Invalid sign in attempt",
+                    Errors = errors
+                };
+            }
+            else
+            {
+                var loginResult = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+                if (!loginResult.Succeeded)
+                {
+                    result = new ErrorResultDTO
+                    {
+                        Status = 403,
+                        Message = "Incorrect email or password"
+                    };
+                }
+                else
+                {
+                    var user = await userManager.FindByEmailAsync(model.Email);
+                    await signInManager.SignInAsync(user, false);
+
+                    result = new AuthResultDTO
+                    {
+                        Status = 200,
+                        Message = "Ok",
+                        Token = JWTTokenService.GenerateToken(user)
+                    };
+                }
+            }
+
+            return result;
         }
     }
 }

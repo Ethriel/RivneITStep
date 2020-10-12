@@ -1,6 +1,14 @@
 <body>
-  <app-nav-menu></app-nav-menu>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+    <app-nav-menu></app-nav-menu>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
 </body>
+<ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#fff"
+    type="pacman"
+    [fullScreen]="true"
+></ngx-spinner>
+<notifier-container></notifier-container>

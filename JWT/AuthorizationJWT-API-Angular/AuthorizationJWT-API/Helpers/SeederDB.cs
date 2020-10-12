@@ -5,9 +5,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AuthorizationJWT_API.Helpers
 {
@@ -57,10 +54,8 @@ namespace AuthorizationJWT_API.Helpers
             var resultAdmin = userManager.CreateAsync(admin, "Qwerty1-").Result;
             resultAdmin = userManager.AddToRoleAsync(admin, "Admin").Result;
 
-            var resultAndrii = userManager.CreateAsync(andrii, "Qwerty1-").Result;
-            resultAndrii = userManager.AddToRoleAsync(andrii, "User").Result;
-
-
+            var resultUser = userManager.CreateAsync(andrii, "Qwerty1-").Result;
+            resultUser = userManager.AddToRoleAsync(andrii, "User").Result;
         }
     }
 }

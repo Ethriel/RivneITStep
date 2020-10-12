@@ -1,0 +1,70 @@
+<div class="login-page">
+    <div class="form">
+        <h2>Sign up</h2>
+        <form
+            class="login-form"
+            #myForm="ngForm"
+            (ngSubmit)="submit()"
+        >
+            <input
+                type="text"
+                placeholder="First name"
+                name="firstName"
+                [(ngModel)]="model.firstName"
+            >
+            <input
+                type="text"
+                placeholder="Middle name"
+                name="middleName"
+                [(ngModel)]="model.middleName"
+            >
+            <input
+                type="text"
+                placeholder="Last name"
+                name="lastName"
+                [(ngModel)]="model.lastName"
+            >
+            <input
+                type="text"
+                placeholder="Email"
+                name="email"
+                [(ngModel)]="model.email"
+            >
+            <input
+                type="text"
+                placeholder="Address"
+                name="address"
+                [(ngModel)]="model.address"
+            >
+            <input
+                type="text"
+                placeholder="Phone number"
+                prefix='+38'
+                mask='(000) 000-00-00'
+                name="phone"
+                [(ngModel)]="model.phone"
+            >
+            <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                [(ngModel)]="model.password"
+            >
+            <input
+                type="password"
+                placeholder="Confirm password"
+                name="confirmPassword"
+                [(ngModel)]="confirmPassword"
+            >
+            <button
+                class="btn btn-primary my-btn"
+            >
+                Sign up
+            </button>
+            <p class="message">
+                Already a member?
+                <a [routerLink]="['/sign-in']">Sign in</a>
+            </p>
+        </form>
+    </div>
+</div>

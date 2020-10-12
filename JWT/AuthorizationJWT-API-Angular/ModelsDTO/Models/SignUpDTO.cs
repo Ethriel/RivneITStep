@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ModelsDTO.Models
 {
@@ -28,8 +25,5 @@ namespace ModelsDTO.Models
 
         [Required(ErrorMessage = "Address is required")]
         public string Address { get; set; }
-
-        [Required(ErrorMessage = "Image is required")]
-        public string Image { get; set; }
     }
 }
