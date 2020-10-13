@@ -1,1 +1,28 @@
-<p>sign-in works!</p>
+<div class="login-page">
+    <div class="form">
+        <h2>Sign in</h2>
+        <form
+            class="login-form"
+            #myForm="ngForm"
+            (ngSubmit)="submit()"
+        >
+            <input
+                type="text"
+                placeholder="Email"
+                name="email"
+                [(ngModel)]="model.email"
+            >
+            <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                [(ngModel)]="model.password"
+            >
+            <button class="btn btn-primary my-btn">Sign in</button>
+            <p class="message">
+                Not a member?
+                <a [routerLink]="['/sign-up']">Sign up</a>
+            </p>
+        </form>
+    </div>
+</div>

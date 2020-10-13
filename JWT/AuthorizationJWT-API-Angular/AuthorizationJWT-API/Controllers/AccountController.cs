@@ -126,7 +126,8 @@ namespace AuthorizationJWT_API.Controllers
                     result = new ErrorResultDTO
                     {
                         Status = 403,
-                        Message = "Incorrect email or password"
+                        Message = "Sign in error",
+                        Errors = new string[] { "Incorrect email or password" }
                     };
                 }
                 else

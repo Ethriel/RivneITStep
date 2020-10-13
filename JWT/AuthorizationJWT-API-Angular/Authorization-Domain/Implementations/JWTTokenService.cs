@@ -40,7 +40,7 @@ namespace Authorization_Domain.Implementations
 
             foreach (var role in roles)
             {
-                claims.Add(new Claim(role, role.ToString()));
+                claims.Add(new Claim("role", role.ToString()));
             }
 
             var jwtSecret = configuration["SecretPhrase"];
