@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  refreshIsSignedIn = new EventEmitter<boolean>();
+  switchMenu = new EventEmitter<boolean>();
 
   baseUrl: string;
   constructor(private httpClient: HttpClient) {
@@ -23,12 +23,11 @@ export class AuthService {
 
   signIn(signInModel: SignInModel): Observable<ApiResponse> {
     const result = this.httpClient.post<ApiResponse>(`${this.baseUrl}/signin`, signInModel);
-    this.refreshIsSignedIn.emit(true);
     return result;
   }
 
   signOut(): void {
     localStorage.removeItem("token");
-    this.refreshIsSignedIn.emit(false);
+    this.switchMenu.emit(false);
   }
 }

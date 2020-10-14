@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotifierService } from 'angular-notifier';
 import { Router } from '@angular/router';
-import jwt_decode from 'jwt-decode';
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-sign-in',
@@ -30,23 +30,21 @@ export class SignInComponent implements OnInit {
 
     if (!this.model.isValidEmail()) {
       this.notify.notify("error", "Please, enter email");
-      this.hideSpinner();
     }
     else if (!this.model.isValidPassword()) {
       this.notify.notify("error", "Please, enter password");
-      this.hideSpinner();
     }
     else if (!this.model.isEmail()) {
       this.notify.notify("error", "Please, enter a valid email");
-      this.hideSpinner();
     }
     else {
       this.authService.signIn(this.model).subscribe(data => {
         if (data.status === 200) {
+          this.authService.switchMenu.emit(true);
           this.notify.notify("success", "Sign in was successful");
           localStorage.setItem("token", data.token);
           
-          const decoded = jwt_decode(data.token);
+          const decoded = jwt_decode<any>(data.token);
           if (decoded.role === "Admin") {
             this.router.navigate(["admin"])
           }
@@ -61,11 +59,11 @@ export class SignInComponent implements OnInit {
           }
         }
       });
-
-      setTimeout(() => {
-        this.hideSpinner();
-      }, 1000);
     }
+
+    setTimeout(() => {
+      this.hideSpinner();
+    }, 1000);
   }
 
   private hideSpinner(): void {

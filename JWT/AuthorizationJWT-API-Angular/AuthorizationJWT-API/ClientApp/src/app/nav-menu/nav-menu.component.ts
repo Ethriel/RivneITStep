@@ -20,8 +20,13 @@ export class NavMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isSignedIn = false;
-    this.authService.refreshIsSignedIn.subscribe((value: boolean) => {
+    if (localStorage.getItem('token')) {
+      this.isSignedIn = true;
+    }
+    else {
+      this.isSignedIn = false;
+    }
+    this.authService.switchMenu.subscribe((value: boolean) => {
       this.isSignedIn = value;
     });
   }
