@@ -1,4 +1,4 @@
-import { NgZorroModule } from './ng-zorro.module';
+import { DemoNgZorroAntdModule } from './ng-zorro.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -47,7 +47,7 @@ const notifierConfig: NotifierOptions = {
     NgxSpinnerModule,
     BrowserAnimationsModule,
     NotifierModule.withConfig(notifierConfig),
-    NgZorroModule
+    DemoNgZorroAntdModule
   ],
   providers: [
     NgxSpinnerService,

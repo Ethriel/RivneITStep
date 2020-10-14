@@ -16,9 +16,10 @@ import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzCommentModule } from 'ng-zorro-antd/comment';
-import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
-import { NzTransButtonModule } from 'ng-zorro-antd/core/trans-button';
-import { NzWaveModule } from 'ng-zorro-antd/core/wave';
+// import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
+// import { NzTransButtonModule } from 'ng-zorro-antd/core/trans-button';
+// import { NzWaveModule } from 'ng-zorro-antd/core/wave';
+import { warnDeprecation } from 'ng-zorro-antd/core/logger';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -65,78 +66,76 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
-import { NzPipesModule } from 'ng-zorro-antd/pipes';
-
 @NgModule({
-    exports: [
-      NzAffixModule,
-      NzAlertModule,
-      NzAnchorModule,
-      NzAutocompleteModule,
-      NzAvatarModule,
-      NzBackTopModule,
-      NzBadgeModule,
-      NzButtonModule,
-      NzBreadCrumbModule,
-      NzCalendarModule,
-      NzCardModule,
-      NzCarouselModule,
-      NzCascaderModule,
-      NzCheckboxModule,
-      NzCollapseModule,
-      NzCommentModule,
-      NzDatePickerModule,
-      NzDescriptionsModule,
-      NzDividerModule,
-      NzDrawerModule,
-      NzDropDownModule,
-      NzEmptyModule,
-      NzFormModule,
-      NzGridModule,
-      NzI18nModule,
-      NzIconModule,
-      NzInputModule,
-      NzInputNumberModule,
-      NzLayoutModule,
-      NzListModule,
-      NzMentionModule,
-      NzMenuModule,
-      NzMessageModule,
-      NzModalModule,
-      NzNoAnimationModule,
-      NzNotificationModule,
-      NzPageHeaderModule,
-      NzPaginationModule,
-      NzPopconfirmModule,
-      NzPopoverModule,
-      NzProgressModule,
-      NzRadioModule,
-      NzRateModule,
-      NzResultModule,
-      NzSelectModule,
-      NzSkeletonModule,
-      NzSliderModule,
-      NzSpinModule,
-      NzStatisticModule,
-      NzStepsModule,
-      NzSwitchModule,
-      NzTableModule,
-      NzTabsModule,
-      NzTagModule,
-      NzTimePickerModule,
-      NzTimelineModule,
-      NzToolTipModule,
-      NzTransButtonModule,
-      NzTransferModule,
-      NzTreeModule,
-      NzTreeSelectModule,
-      NzTypographyModule,
-      NzUploadModule,
-      NzWaveModule,
-      NzResizableModule,
-      NzPipesModule,
-    ]
-  })
-  export class NgZorroModule {
-  
-  }
+  exports: [
+    NzAffixModule,
+    NzAlertModule,
+    NzAnchorModule,
+    NzAutocompleteModule,
+    NzAvatarModule,
+    NzBackTopModule,
+    NzBadgeModule,
+    NzButtonModule,
+    NzBreadCrumbModule,
+    NzCalendarModule,
+    NzCardModule, NzCarouselModule,
+    NzCascaderModule,
+    NzCheckboxModule,
+    NzCollapseModule,
+    NzCommentModule,
+    NzDatePickerModule,
+    NzDescriptionsModule,
+    NzDividerModule,
+    NzDrawerModule,
+    NzDropDownModule,
+    NzEmptyModule,
+    NzFormModule,
+    NzGridModule,
+    NzI18nModule,
+    NzIconModule,
+    NzInputModule,
+    NzInputNumberModule,
+    NzLayoutModule,
+    NzListModule,
+    NzMentionModule,
+    NzMenuModule,
+    NzMessageModule,
+    NzModalModule,
+    // NzNoAnimationModule,
+    NzNotificationModule,
+    NzPageHeaderModule,
+    NzPaginationModule,
+    NzPopconfirmModule,
+    NzPopoverModule,
+    NzProgressModule,
+    NzRadioModule,
+    NzRateModule,
+    NzResultModule,
+    NzSelectModule,
+    NzSkeletonModule,
+    NzSliderModule,
+    NzSpinModule,
+    NzStatisticModule,
+    NzStepsModule,
+    NzSwitchModule,
+    NzTableModule,
+    NzTabsModule,
+    NzTagModule,
+    NzTimePickerModule,
+    NzTimelineModule,
+    NzToolTipModule,
+    // NzTransButtonModule,
+    NzTransferModule,
+    NzTreeModule,
+    NzTreeSelectModule,
+    NzTypographyModule,
+    NzUploadModule,
+    // NzWaveModule,
+    NzResizableModule,
+    NzIconModule
+
+  ]
+})
+export class DemoNgZorroAntdModule {
+
+}
