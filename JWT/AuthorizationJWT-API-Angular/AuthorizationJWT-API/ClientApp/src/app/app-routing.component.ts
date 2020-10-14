@@ -10,8 +10,8 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 const routes: Routes = [
-    { path: '/', pathMatch: 'full', component: HomeComponent },
-    { path: 'home', redirectTo: '/', pathMatch: 'full' },
+    { path: '', pathMatch: 'full', component: HomeComponent },
+    { path: 'home', redirectTo: '', pathMatch: 'full' },
     { path: 'sign-up', pathMatch: 'full', canActivate: [NotSignedInGuard], component: SignUpComponent },
     { path: 'sign-in', pathMatch: 'full', canActivate: [NotSignedInGuard], component: SignInComponent },
     { path: 'admin', pathMatch: 'full', canActivate: [AdminGuard], component: AdminMainComponent },

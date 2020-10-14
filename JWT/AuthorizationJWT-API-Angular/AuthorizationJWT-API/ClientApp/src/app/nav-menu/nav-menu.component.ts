@@ -42,6 +42,6 @@ export class NavMenuComponent implements OnInit {
   signOut(): void {
     this.authService.signOut();
     this.notify.notify("success", "Sign out successfully!");
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
 }
