@@ -4,9 +4,14 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.my-link:hover {
+  cursor: pointer;
+}
+
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;

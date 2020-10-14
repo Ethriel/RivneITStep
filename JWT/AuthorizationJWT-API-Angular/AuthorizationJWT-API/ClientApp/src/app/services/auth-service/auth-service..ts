@@ -2,13 +2,15 @@ import { SignInModel } from './../../models/sign-in.model';
 import { ApiResponse } from '../../models/api-response';
 import { SignUpModel } from '../../models/sign-up.model';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  refreshIsSignedIn = new EventEmitter<boolean>();
 
   baseUrl: string;
   constructor(private httpClient: HttpClient) {
@@ -18,7 +20,15 @@ export class AuthService {
   signUp(signUpModel: SignUpModel): Observable<ApiResponse> {
     return this.httpClient.post<ApiResponse>(`${this.baseUrl}/signup`, signUpModel);
   }
+
   signIn(signInModel: SignInModel): Observable<ApiResponse> {
-    return this.httpClient.post<ApiResponse>(`${this.baseUrl}/signin`, signInModel);
+    const result = this.httpClient.post<ApiResponse>(`${this.baseUrl}/signin`, signInModel);
+    this.refreshIsSignedIn.emit(true);
+    return result;
+  }
+
+  signOut(): void {
+    localStorage.removeItem("token");
+    this.refreshIsSignedIn.emit(false);
   }
 }

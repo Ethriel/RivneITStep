@@ -3,7 +3,7 @@
         <div class="container">
             <a
                 class="navbar-brand"
-                [routerLink]="['/']"
+                [routerLink]="['']"
             >
                 Products
             </a>
@@ -30,13 +30,14 @@
                     >
                         <a
                             class="nav-link text-dark"
-                            [routerLink]="['/']"
+                            [routerLink]="['/home']"
                         >
                             Home
                         </a>
                     </li>
                     <li
                         class="nav-item"
+                        *ngIf="isSignedIn===false"
                         [routerLinkActive]="['link-active']"
                     >
                         <a
@@ -48,6 +49,7 @@
                     </li>
                     <li
                         class="nav-item"
+                        *ngIf="isSignedIn===false"
                         [routerLinkActive]="['link-active']"
                     >
                         <a
@@ -55,6 +57,19 @@
                             [routerLink]="['/sign-up']"
                         >
                             Sign up
+                        </a>
+                    </li>
+                    <li
+                        class="nav-item"
+                        *ngIf="isSignedIn===true"
+                        [routerLinkActive]="['link-active']"
+                        (click)="signOut()"
+                    >
+                        <a
+                            class="nav-link text-dark my-link"
+                            
+                        >
+                            Sign out
                         </a>
                     </li>
                 </ul>
