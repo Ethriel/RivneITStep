@@ -27,7 +27,50 @@ export class AuthService {
   }
 
   signOut(): void {
-    localStorage.removeItem("token");
+    this.clearStorageSignOut();
     this.switchMenu.emit(false);
+  }
+
+  isSignedIn(): boolean {
+    const token = this.getToken();
+    return token !== null;
+  }
+
+  isThereRole(): boolean {
+    const role = this.getRole();
+    return role !== null;
+  }
+
+  isAdmin(): boolean {
+    const role = this.getRole();
+    return role === 'Admin';
+  }
+
+  isUser(): boolean {
+    const role = this.getRole();
+    return role === 'User';
+  }
+
+  getToken(): string {
+    const token = localStorage.getItem('token');
+    return token;
+  }
+
+  setToken(token: any): void {
+    localStorage.setItem('token', token);
+  }
+
+  getRole(): string {
+    const role = localStorage.getItem('userRole');
+    return role;
+  }
+
+  setRole(role: any): void {
+    localStorage.setItem('userRole', role);
+  }
+
+  private clearStorageSignOut(): void {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
   }
 }

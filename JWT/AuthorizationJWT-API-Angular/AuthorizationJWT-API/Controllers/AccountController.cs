@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Authorization_Domain.Interfaces;
+﻿using Authorization_Domain.Interfaces;
 using DataAccess;
 using DataAccess.Entity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ModelsDTO.Helpers;
 using ModelsDTO.Models;
 using ModelsDTO.Models.Result;
+using System;
+using System.Threading.Tasks;
 
 namespace AuthorizationJWT_API.Controllers
 {

@@ -20,7 +20,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('token')) {
+    if (this.authService.getToken()) {
       this.isSignedIn = true;
     }
     else {
@@ -41,7 +41,7 @@ export class NavMenuComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
-    this.notify.notify("success", "Sign out successfully!")
-    this.router.navigate(['']);
+    this.notify.notify("success", "Sign out successfully!");
+    this.router.navigate(['/']);
   }
 }
