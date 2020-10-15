@@ -40,13 +40,13 @@ export class SignInComponent implements OnInit {
     else {
       this.authService.signIn(this.model).subscribe(data => {
         if (data.status === 200) {
-          this.authService.switchMenu.emit(true);
           this.notify.notify("success", "Sign in was successful");
           this.authService.setToken(data.token);
-
+          
           const decoded = jwt_decode<any>(data.token);
           this.authService.setRole(decoded.role);
-
+          this.authService.switchMenu.emit(true);
+          
           if (decoded.role === "Admin") {
             this.router.navigate(["admin"])
           }

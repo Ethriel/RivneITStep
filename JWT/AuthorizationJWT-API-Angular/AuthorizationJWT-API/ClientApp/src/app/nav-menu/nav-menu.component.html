@@ -37,6 +37,18 @@
                     </li>
                     <li
                         class="nav-item"
+                        *ngIf="isAdmin===true"
+                        [routerLinkActive]="['link-active']"
+                        (click)="adminPanelClick()"
+                    >
+                        <a
+                            class="nav-link text-dark my-link"
+                        >
+                            Admin panel
+                        </a>
+                    </li>
+                    <li
+                        class="nav-item"
                         *ngIf="isSignedIn===false"
                         [routerLinkActive]="['link-active']"
                     >

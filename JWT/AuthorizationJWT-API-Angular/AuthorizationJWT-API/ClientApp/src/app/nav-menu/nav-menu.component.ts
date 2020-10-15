@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavMenuComponent implements OnInit {
   isExpanded = false;
   isSignedIn: boolean;
+  isAdmin: boolean;
 
   constructor(
     private authService: AuthService,
@@ -20,6 +21,8 @@ export class NavMenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAdmin = this.authService.isAdmin();
+
     if (this.authService.getToken()) {
       this.isSignedIn = true;
     }
@@ -28,6 +31,7 @@ export class NavMenuComponent implements OnInit {
     }
     this.authService.switchMenu.subscribe((value: boolean) => {
       this.isSignedIn = value;
+      this.isAdmin = this.authService.isAdmin();
     });
   }
 
@@ -43,5 +47,9 @@ export class NavMenuComponent implements OnInit {
     this.authService.signOut();
     this.notify.notify("success", "Sign out successfully!");
     this.router.navigate(['']);
+  }
+
+  adminPanelClick(): void {
+    this.router.navigate(['admin']);
   }
 }

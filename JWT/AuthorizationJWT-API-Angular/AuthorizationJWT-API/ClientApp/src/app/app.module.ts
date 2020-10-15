@@ -17,6 +17,18 @@ import { UserMainComponent } from './user-area/user-main/user-main.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NotifierModule, NotifierOptions, NotifierService } from 'angular-notifier';
 
+import { NZ_ICONS } from 'ng-zorro-antd/icon'
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { IconDefinition } from '@ant-design/icons-angular';
+import * as AllIcons from '@ant-design/icons-angular/icons';
+import { ProductsListComponent } from './admin-area/products/products-list/products-list.component';
+import { AddProductComponent } from './admin-area/products/add-product/add-product.component';
+
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key]);
+
 const notifierConfig: NotifierOptions = {
   position: {
     horizontal: {
@@ -37,7 +49,9 @@ const notifierConfig: NotifierOptions = {
     SignUpComponent,
     AdminMainComponent,
     UserMainComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProductsListComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,7 +65,8 @@ const notifierConfig: NotifierOptions = {
   ],
   providers: [
     NgxSpinnerService,
-    NotifierService
+    NotifierService,
+    { provide: NZ_ICONS, useValue: icons }
   ],
   bootstrap: [AppComponent]
 })
