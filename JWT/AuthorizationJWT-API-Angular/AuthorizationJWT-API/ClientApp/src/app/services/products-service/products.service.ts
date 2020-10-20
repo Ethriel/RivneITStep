@@ -1,7 +1,7 @@
 import { ApiResponse } from './../../models/api-response';
 import { Observable } from 'rxjs';
 import { ProductModel } from './../../models/product.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable({
@@ -24,13 +24,21 @@ export class ProductsService {
     return response;
   }
 
-  deleteProduct(id: number): Observable<ApiResponse> {
-    const response = this.getPostResponse('delete', id);
+  deleteProduct(id: number): Observable<ProductModel[]> {
+    const response = this.httpClient.post<ProductModel[]>(`${this.baseURL}/delete`, { id: id });
     return response;
   }
 
   editProduct(product: ProductModel): Observable<ApiResponse> {
     const response = this.getPostResponse('edit', product);
+    return response;
+  }
+
+  searchProduct(search: string): Observable<ProductModel[]> {
+    const params = new HttpParams().set('search', search);
+    const response = this.httpClient.get<ProductModel[]>(`${this.baseURL}/search`, {
+      params: params
+    });
     return response;
   }
 

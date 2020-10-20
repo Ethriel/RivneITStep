@@ -1,25 +1,34 @@
-<nz-table
-    #myTable
-    [nzData]="products"
-    nzTableLayout="fixed"
->
+<div class="container-fluid">
+  <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton" style="max-width: 25%;">
+    <input type="text" nz-input placeholder="Search..." [(ngModel)]="search">
+  </nz-input-group>
+  <ng-template #suffixIconButton>
+    <button nz-button nzType="primary" nzSearch (click)="searchClick()">
+      <i nz-icon nzType="search"></i>
+    </button>
+  </ng-template>
+  <nz-table #myTable [nzData]="products" nzTableLayout="fixed">
     <thead>
-        <tr>
-            <th *ngFor="let column of listOfColumn">{{ column.title }}</th>
-        </tr>
+      <tr>
+        <th *ngFor="let column of listOfColumn">{{ column.title }}</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of myTable.data">
-            <td>{{ data.id }}</td>
-            <td>
-                <img
-                    class="my-img"
-                    [src]="data.imageURL"
-                >
-            </td>
-            <td>{{ data.title }}</td>
-            <td>{{ data.price }}</td>
-            <td>{{ data.description }}</td>
-        </tr>
+      <tr *ngFor="let data of myTable.data">
+        <td>{{ data.id }}</td>
+        <td>
+          <img class="my-img" [src]="data.imageURL">
+        </td>
+        <td>{{ data.title }}</td>
+        <td>{{ data.price }}</td>
+        <td>{{ data.description }}</td>
+        <td>
+          <button nz-button nzType="primary" nz-popconfirm
+            nzPopconfirmTitle="Are you sure you want to delete this product?" nzPopconfirmPlacement="bottom"
+            nzOkText="OK" nzCancelText="Cancel" (nzOnConfirm)="deleteClick(data.id)" (nzOnCancel)="cancelDelete()">
+            Delete</button>
+        </td>
+      </tr>
     </tbody>
-</nz-table>
+  </nz-table>
+</div>

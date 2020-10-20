@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DataAccess;
+﻿using DataAccess;
 using DataAccess.Entity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelsDTO.Models;
 using ModelsDTO.Models.Result;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AuthorizationJWT_API.Controllers
 {
@@ -61,20 +58,40 @@ namespace AuthorizationJWT_API.Controllers
                 Status = 200
             };
         }
-        [HttpPost("delete")]
-        public ResultDTO DeleteProduct([FromBody] int id)
+
+        [HttpGet("search")]
+        public IEnumerable<ProductDTO> SearchProduct([FromQuery] string search)
         {
-            var product = context.Products.FirstOrDefault(x => x.Id.Equals(id));
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                return GetProducts();
+            }
+
+            search = search.ToLower();
+            var products = context.Products
+                                  .Where(x => x.Title.ToLower().Contains(search))
+                                  .Select(x => new ProductDTO
+                                  {
+                                      Description = x.Description,
+                                      Id = x.Id,
+                                      ImageURL = x.ImageURL,
+                                      Price = x.Price,
+                                      Title = x.Title
+                                  }).ToArray();
+
+            return products;
+        }
+
+        [HttpPost("delete")]
+        public IEnumerable<ProductDTO> DeleteProduct([FromBody] DeleteProductDTO model)
+        {
+            var product = context.Products.FirstOrDefault(x => x.Id.Equals(model.Id));
 
             context.Products.Remove(product);
 
             context.SaveChanges();
 
-            return new ResultDTO
-            {
-                Message = "Ok",
-                Status = 200
-            };
+            return GetProducts();
         }
     }
 }

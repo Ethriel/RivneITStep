@@ -1,7 +1,7 @@
 import { DemoNgZorroAntdModule } from './ng-zorro.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.component';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
@@ -61,7 +61,8 @@ const notifierConfig: NotifierOptions = {
     NgxSpinnerModule,
     BrowserAnimationsModule,
     NotifierModule.withConfig(notifierConfig),
-    DemoNgZorroAntdModule
+    DemoNgZorroAntdModule,
+    ReactiveFormsModule
   ],
   providers: [
     NgxSpinnerService,
