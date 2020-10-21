@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ModelsDTO.Models;
 using ModelsDTO.Models.Result;
@@ -37,6 +38,7 @@ namespace AuthorizationJWT_API.Controllers
             return products;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("add")]
         public ResultDTO AddProduct([FromBody] ProductDTO model)
         {
@@ -82,6 +84,7 @@ namespace AuthorizationJWT_API.Controllers
             return products;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("delete")]
         public IEnumerable<ProductDTO> DeleteProduct([FromBody] DeleteProductDTO model)
         {

@@ -1,3 +1,4 @@
+import { TokenInterceptor } from './authentication/interceptors/token.interceptor';
 import { DemoNgZorroAntdModule } from './ng-zorro.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -67,7 +68,15 @@ const notifierConfig: NotifierOptions = {
   providers: [
     NgxSpinnerService,
     NotifierService,
-    { provide: NZ_ICONS, useValue: icons }
+    { 
+      provide: NZ_ICONS,
+      useValue: icons
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
