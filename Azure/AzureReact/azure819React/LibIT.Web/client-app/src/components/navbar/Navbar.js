@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Navbar extends Component {
 
     render() {
+        // console.log("USER NAME", this.props.name);
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <Link className="navbar-brand" to="/">=Навігація=</Link>
@@ -34,7 +36,7 @@ class Navbar extends Component {
                             </div>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link disabled" to="/">Профіль</Link>
+                            <Link className="nav-link disabled" to="/">{this.props.name}</Link>
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
@@ -47,4 +49,10 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+const mapState = (stateRedux) => {
+    return {
+        name: stateRedux.login.name
+    }
+}
+
+export default connect(mapState)(Navbar);

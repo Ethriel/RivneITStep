@@ -47,13 +47,13 @@ class LoginPage extends Component {
     }
 
     handlerChange = (e) => {
-        console.log("e handler", e.target.name + " " + e.target.value);
+        // console.log("e handler", e.target.name + " " + e.target.value);
         this.setState({ [e.target.name]: e.target.value });
         //this.setState
     }
     render() {
-        console.log("Login props: ", this.props);
-        console.log("Login state: ", this.state);
+        // console.log("Login props: ", this.props);
+        // console.log("Login state: ", this.state);
         //const errorMessage = this.state.errorMessage;
         const { 
             email,
@@ -61,7 +61,7 @@ class LoginPage extends Component {
             loading,
             errors
         } = this.state;
-        console.log("Is Erors email:", !!errors["email"]);
+        // console.log("Is Erors email:", !!errors["email"]);
         return (
             <>
                 <div className="container">
