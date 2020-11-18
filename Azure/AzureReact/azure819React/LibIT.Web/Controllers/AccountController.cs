@@ -69,11 +69,11 @@ namespace LibIT.Web.Controllers
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-
+            
             return Ok(
                 new
                 {
-                    token = _IJwtTokenService.CreateToken(user)
+                    token = _IJwtTokenService.CreateToken(user, Request)
                 });
         }
     
@@ -93,7 +93,7 @@ namespace LibIT.Web.Controllers
             {
                 base64 = base64.Split(',')[1];
             }
-            var bmp = FromBase64StringToImage(base64);
+            var bmp = ImageUploader.FromBase64StringToImage(base64);
 
             var serverPath = _env.ContentRootPath; //Directory.GetCurrentDirectory(); //_env.WebRootPath;
 
@@ -103,9 +103,13 @@ namespace LibIT.Web.Controllers
                 Directory.CreateDirectory(path);
             }
 
-            var fileName = Path.GetRandomFileName() + ".jpg";
+            var width = 50;
+
+            var fileName = string.Concat(width, "_", Path.GetRandomFileName(), ".jpg");
 
             var filePathSave = Path.Combine(path, fileName);
+
+            bmp = ImageUploader.CreateImage(bmp, width, width);
 
             bmp.Save(filePathSave, ImageFormat.Jpeg);
 
@@ -128,26 +132,6 @@ namespace LibIT.Web.Controllers
 
             return Ok();
         }
-        private static Bitmap FromBase64StringToImage(string base64String)
-        {
-            byte[] byteBuffer = Convert.FromBase64String(base64String);
-            try
-            {
-                using (MemoryStream memoryStream = new MemoryStream(byteBuffer))
-                {
-                    memoryStream.Position = 0;
-                    using (Image imgReturn = Image.FromStream(memoryStream))
-                    {
-                        memoryStream.Close();
-                        byteBuffer = null;
-                        return new Bitmap(imgReturn);
-                    }
-                }
-            }
-            catch { return null; }
-
-        }
-
 
         [HttpPost("forgotPassword")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel forgotPasswordModel)

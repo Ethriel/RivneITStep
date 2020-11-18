@@ -12,10 +12,12 @@ export const loginUser = (model) => {
                 const token = response.data.token;
                 localStorage.setItem("token", token);
                 const decoded = jwt_decode(token);
+                const image = decoded.image;
                 const name = decoded.name;
-                console.log("NAME IN LOGIN", name);
+                
                 dispatch({ type: types.LOGIN_USER, payload: name });
                 dispatch({ type: types.LOGIN_TOKEN, payload: token });
+                dispatch({ type: types.LOGIN_IMAGE, payload: image });
                 dispatch({ type: types.LOGIN_SUCCESS });
                 dispatch(push('/'));
 
@@ -30,6 +32,5 @@ export const loginUser = (model) => {
                 console.log("Global server error", err);
             }
             );
-
     }
 }
