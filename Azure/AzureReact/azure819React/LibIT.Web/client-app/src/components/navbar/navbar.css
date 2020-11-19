@@ -3,3 +3,7 @@
     max-width: 50px;
     height: auto;
 }
+
+.logout-link:hover {
+    cursor: pointer;
+}

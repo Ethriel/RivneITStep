@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logOutUser } from '../auth/login/actions';
 import './navbar.css';
 
 class Navbar extends Component {
@@ -36,12 +37,20 @@ class Navbar extends Component {
                                 <Link className="dropdown-item" to="/">Something else here</Link>
                             </div>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link disabled" to="/">{this.props.name}</Link>
-                        </li>
-                        <li className="nav-item">
-                            <img className="img-navbar" src={this.props.image} alt="No" />
-                        </li>
+                        {
+                            this.props.isLoggedIn &&
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link disabled" to="/">{this.props.name}</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <img className="img-navbar" src={this.props.image} alt="No" />
+                                </li>
+                                <li className="nav-item logout-link" onClick={this.props.logOutUser}>
+                                    <p className="nav-link">Logout</p>
+                                </li>
+                            </>
+                        }
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
@@ -56,8 +65,9 @@ class Navbar extends Component {
 const mapState = (stateRedux) => {
     return {
         name: stateRedux.login.name,
-        image: stateRedux.login.image
+        image: stateRedux.login.image,
+        isLoggedIn: stateRedux.login.isLoggedIn
     }
 }
 
-export default connect(mapState)(Navbar);
+export default connect(mapState, { logOutUser })(Navbar);
