@@ -5,16 +5,16 @@ import { withRouter } from 'react-router';
 
 const SignUpComponent = (props) => {
 
-    const [user, setUser] = useState({});
-    const [isSet, setIsSet] = useState(false);
+    const [signUp, setSignUp] = useState({});
+    const [ready, setReady] = useState(false);
 
     const submit = values => {
-        setUser(values);
-        setIsSet(true);
+        setSignUp(values);
+        setReady(true);
     }
 
-    if (isSet) {
-        console.log(user);
+    if (ready) {
+        console.log(signUp);
     }
 
     return (

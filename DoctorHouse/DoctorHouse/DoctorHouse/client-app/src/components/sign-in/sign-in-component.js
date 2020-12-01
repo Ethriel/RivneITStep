@@ -4,16 +4,16 @@ import LoginForm from './index.js';
 import { withRouter } from 'react-router';
 
 const SignInComponent = (props) => {
-    const [user, setUser] = useState({});
-    const [isSet, setIsSet] = useState(false);
+    const [signIn, setSignIn] = useState({});
+    const [ready, setReady] = useState(false);
 
     const submit = values => {
-        setUser(values);
-        setIsSet(true);
+        setSignIn(values);
+        setReady(true);
     };
 
-    if (isSet) {
-        console.log(user);
+    if (ready) {
+        console.log(signIn);
     }
 
     return (

@@ -6,31 +6,18 @@ import { withRouter } from "react-router";
 import { forgotPassword } from '../common/routes-directions';
 import '../../styles/common.css';
 
-const LoginForm = (props) => {
+const LoginForm = ({ submit, ...props }) => {
     const forgotClick = (event) => {
         props.history.push(forgotPassword);
-    }
-    const layout = {
-        labelCol: {
-            span: 8,
-        },
-        wrapperCol: {
-            span: 16,
-        },
-    };
-    const tailLayout = {
-        wrapperCol: {
-            offset: 8,
-            span: 16,
-        },
     };
 
     return (
         <div className="form-container center-container">
             <Form
-                {...layout}
+                size="default"
+                layout="vertical"
                 name="normal_login"
-                onFinish={props.submit}>
+                onFinish={submit}>
 
                 <Form.Item
                     label="Username"
@@ -64,7 +51,8 @@ const LoginForm = (props) => {
                     />
                 </Form.Item>
 
-                <Form.Item {...tailLayout}>
+                <Form.Item
+                >
                     <Button type="primary"
                         htmlType="submit"
                         style={{ width: '100%' }}
@@ -74,7 +62,8 @@ const LoginForm = (props) => {
                 </Button>
                 </Form.Item>
 
-                <Form.Item {...tailLayout}>
+                <Form.Item 
+                >
                     <a className="login-form-forgot ant-login-forgot-my" onClick={forgotClick} href={forgotPassword}>
                         Forgot password
                 </a>

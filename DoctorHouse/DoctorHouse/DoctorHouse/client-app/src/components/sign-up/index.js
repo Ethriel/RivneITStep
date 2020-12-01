@@ -1,38 +1,34 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { Form, Input, Button, DatePicker } from 'antd';
+import PhoneInputMask from '../common/phone-input-mask';
 
-const SignUpForm = (props) => {
+const SignUpForm = ({ submit, ...props }) => {
     const [form] = Form.useForm();
-    const layout = {
-        labelCol: {
-            span: 8,
-        },
-        wrapperCol: {
-            span: 16,
-        },
+
+    const onPhoneChange = phone => {
+        return phone.replace(/\(|\)|\s|-/g, "");
     };
-    const tailLayout = {
-        wrapperCol: {
-            offset: 8,
-            span: 16,
-        },
+
+    const beforeSubmit = values => {
+        values.phone = onPhoneChange(values.phone);
+        submit(values);
     };
-    
+
     return (
         <div className="form-container center-container">
             <Form
-                {...layout}
+                layout="vertical"
                 form={form}
                 name="register"
-                onFinish={props.submit}
-                size="small"
+                onFinish={beforeSubmit}
+                size="default"
                 scrollToFirstError
             >
+                
                 <Form.Item
                     label="First name"
                     name={['user', 'name']}
-                    // style={{ marginBottom: 22 }}
                     className="ant-input-my-sign-up"
                     rules={
                         [
@@ -46,10 +42,10 @@ const SignUpForm = (props) => {
                         className="ant-input-my-sign-up"
                     />
                 </Form.Item>
+
                 <Form.Item
                     label="Last name"
                     name={['user', 'lastname']}
-                    // style={{ marginBottom: 22 }}
                     className="ant-input-my-sign-up"
                     rules={
                         [
@@ -67,7 +63,6 @@ const SignUpForm = (props) => {
                 <Form.Item
                     label="Email"
                     name="email"
-                    // style={{ marginBottom: 22 }}
                     className="ant-input-my-sign-up"
                     rules={[
                         {
@@ -86,9 +81,22 @@ const SignUpForm = (props) => {
                 </Form.Item>
 
                 <Form.Item
+                    label="Phone"
+                    name="phone"
+                    className="ant-input-my-sign-up"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your phone!'
+                        }
+                    ]}
+                    >
+                    <PhoneInputMask className="ant-input ant-input-my-sign-up" />
+                </Form.Item>
+
+                <Form.Item
                     label="Password"
                     name="password"
-                    // style={{ marginBottom: 22 }}
                     className="ant-input-my-sign-up"
                     rules={[
                         {
@@ -106,7 +114,6 @@ const SignUpForm = (props) => {
                 <Form.Item
                     label="Confirm"
                     name="confirm"
-                    // style={{ marginBottom: 22 }}
                     className="ant-input-my-sign-up"
                     dependencies={['password']}
                     hasFeedback
@@ -130,7 +137,6 @@ const SignUpForm = (props) => {
                     />
                 </Form.Item>
                 <Form.Item
-                    // style={{ marginBottom: 22 }}
                     label="Birthdate"
                     name="birthdate"
                     rules={
@@ -149,7 +155,8 @@ const SignUpForm = (props) => {
                     />
                 </Form.Item>
 
-                <Form.Item {...tailLayout}>
+                <Form.Item
+                >
                     <Button
                         type="primary"
                         htmlType="submit"
