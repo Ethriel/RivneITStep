@@ -1,7 +1,9 @@
 using DoctorHouse.DLL;
+using DoctorHouse.DLL.Entity;
+using DoctorHouse.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +28,11 @@ namespace DoctorHouse
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllersWithViews();
+
+            services.AddIdentity<DbUser, DbRole>(options => options.Stores.MaxLengthForKeys = 128)
+                    .AddEntityFrameworkStores<EFContext>()
+                    .AddDefaultTokenProviders();
+
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -70,6 +77,8 @@ namespace DoctorHouse
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            SeederDB.SeedDataByAS(app.ApplicationServices);
         }
     }
 }
