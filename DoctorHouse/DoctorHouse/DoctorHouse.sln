@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorHouse", "DoctorHouse\DoctorHouse.csproj", "{E902228C-9DCE-4B84-9D1D-A70A09F40EC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorHouse.DLL", "DoctorHouse.DLL\DoctorHouse.DLL.csproj", "{0429AF73-B83C-4219-8689-544BD025BC02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorHouse.DLL", "DoctorHouse.DLL\DoctorHouse.DLL.csproj", "{0429AF73-B83C-4219-8689-544BD025BC02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorHouse.Infrastructure", "DoctorHouse.Infrastructure\DoctorHouse.Infrastructure.csproj", "{92B45C40-5FC4-4E6D-B88F-2B6C49F676E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0429AF73-B83C-4219-8689-544BD025BC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0429AF73-B83C-4219-8689-544BD025BC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0429AF73-B83C-4219-8689-544BD025BC02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92B45C40-5FC4-4E6D-B88F-2B6C49F676E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B45C40-5FC4-4E6D-B88F-2B6C49F676E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92B45C40-5FC4-4E6D-B88F-2B6C49F676E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92B45C40-5FC4-4E6D-B88F-2B6C49F676E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

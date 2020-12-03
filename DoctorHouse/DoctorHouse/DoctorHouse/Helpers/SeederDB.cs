@@ -26,7 +26,7 @@ namespace DoctorHouse.Helpers
             {
                 var roleresult = roleManager.CreateAsync(new DbRole
                 {
-                    Name = Roles.Admin
+                    Name = role
 
                 }).Result;
             }
