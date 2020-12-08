@@ -23,10 +23,7 @@ namespace DoctorHouse.IdentityServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMvcCore()
-            //        .AddAuthorization();
-
-
+            services.AddControllersWithViews();
 
             var builder = services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Config.IdentityResources)
@@ -35,7 +32,7 @@ namespace DoctorHouse.IdentityServer
                 //.AddInMemoryClients(ConfigGlobal.Clients)
                 .AddTestUsers(TestUsers.Users);
 
-            services.AddControllersWithViews();
+            builder.AddDeveloperSigningCredential();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,11 +43,17 @@ namespace DoctorHouse.IdentityServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseAuthentication();
-
-            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseRouting();
 
             app.UseIdentityServer();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapDefaultControllerRoute();
+            });
         }
     }
 }
