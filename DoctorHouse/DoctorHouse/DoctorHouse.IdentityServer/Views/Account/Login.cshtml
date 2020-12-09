@@ -1,4 +1,4 @@
-@model LoginViewModel
+@model DoctorHouse.Infrastructure.Model.SignInModel
 
 <div class="login-page">
     <div class="lead">
@@ -9,8 +9,34 @@
     <partial name="_ValidationSummary" />
 
     <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Local Account</h2>
+                </div>
 
-        @if (Model.EnableLocalLogin)
+                <div class="card-body">
+                    <form asp-route="Login">
+                        <input type="hidden" asp-for="ReturnUrl" />
+
+                        <div class="form-group">
+                            <label asp-for="UserName"></label>
+                            <input class="form-control" placeholder="Username" asp-for="UserName" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password"></label>
+                            <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
+                        </div>
+                        <button class="btn btn-primary" name="button" value="login">Login</button>
+                        <button class="btn btn-secondary" name="button" value="cancel">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        @*
+            @if (Model.EnableLocalLogin)
         {
             <div class="col-sm-6">
                 <div class="card">
@@ -82,6 +108,8 @@
                 <strong>Invalid login request</strong>
                 There are no login schemes configured for this request.
             </div>
-        }
+        }*@
+
+
     </div>
 </div>

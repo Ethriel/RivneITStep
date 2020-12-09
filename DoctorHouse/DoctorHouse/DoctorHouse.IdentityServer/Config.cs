@@ -35,6 +35,8 @@ namespace DoctorHouse.IdentityServer
                     ClientName = "MVC Client",
                     AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
 
+                    RequireConsent = false,
+
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
