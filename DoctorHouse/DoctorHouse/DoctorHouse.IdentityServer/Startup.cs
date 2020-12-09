@@ -48,6 +48,11 @@ namespace DoctorHouse.IdentityServer
                     .AddEntityFrameworkStores<EFContext>()
                     .AddDefaultTokenProviders();
 
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                options.ValidationInterval = TimeSpan.Zero;
+            });
+
             services.AddMvc();
 
             services.AddIdentityServer()

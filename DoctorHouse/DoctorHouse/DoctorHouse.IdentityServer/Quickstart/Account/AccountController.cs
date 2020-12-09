@@ -401,21 +401,71 @@ namespace IdentityServerHost.Quickstart.UI
             this.events = events;
         }
 
+        #region OLD login
+
+        //[HttpGet]
+        //public IActionResult Login(string returnUrl)
+        //{
+        //    var model = new SignInModel();
+        //    model.ReturnUrl = returnUrl;
+        //    return View(model);
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Login(SignInModel model, string button)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = await userManager.FindByEmailAsync(model.UserName);
+        //        if (user == null)
+        //        {
+        //            return View(model);
+        //        }
+        //        else
+        //        {
+        //            var result = await signInManager.PasswordSignInAsync(user, model.Password, true, false);
+        //            if (!result.Succeeded)
+        //            {
+        //                return View(model);
+        //            }
+        //            else
+        //            {
+        //                return RedirectToAction("Index", "Diagnostics");
+        //            }
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        return View(model);
+        //    }
+        //}
+
+        #endregion
+
         [HttpGet]
-        public IActionResult Login(string returnUrl)
+        public async Task<IActionResult> Login(string returnUrl)
         {
-            var model = new SignInModel();
-            model.ReturnUrl = returnUrl;
-            return View(model);
+            // build a model so we know what to show on the login page
+            var vm = await BuildLoginViewModelAsync(returnUrl);
+
+            if (vm.IsExternalLoginOnly)
+            {
+                // we only have one option for logging in and it's an external provider
+                return RedirectToAction("Challenge", "External", new { scheme = vm.ExternalLoginScheme, returnUrl });
+            }
+
+            return View(vm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(SignInModel model, string button)
+        public async Task<IActionResult> Login(LoginInputModel model, string button)
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByEmailAsync(model.UserName);
+                var user = await userManager.FindByEmailAsync(model.Username);
                 if (user == null)
                 {
                     return View(model);
@@ -429,6 +479,7 @@ namespace IdentityServerHost.Quickstart.UI
                     }
                     else
                     {
+
                         return RedirectToAction("Index", "Diagnostics");
                     }
                 }
@@ -439,6 +490,7 @@ namespace IdentityServerHost.Quickstart.UI
                 return View(model);
             }
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Logout(string logoutId)
@@ -466,8 +518,10 @@ namespace IdentityServerHost.Quickstart.UI
             if (User?.Identity.IsAuthenticated == true)
             {
                 await events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));
-                HttpContext.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
-                await signInManager.SignOutAsync();
+                //HttpContext.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
+                var name = HttpContext.User?.GetDisplayName();
+                var user = await userManager.FindByEmailAsync(name);
+                await userManager.UpdateSecurityStampAsync(user);
                 // delete local authentication cookie
                 await HttpContext.SignOutAsync();
 
@@ -487,6 +541,72 @@ namespace IdentityServerHost.Quickstart.UI
             }
 
             return View("LoggedOut", vm);
+        }
+
+        private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl)
+        {
+            var context = await interaction.GetAuthorizationContextAsync(returnUrl);
+            if (context?.IdP != null && await schemeProvider.GetSchemeAsync(context.IdP) != null)
+            {
+                var local = context.IdP == IdentityServer4.IdentityServerConstants.LocalIdentityProvider;
+
+                // this is meant to short circuit the UI and only trigger the one external IdP
+                var vm = new LoginViewModel
+                {
+                    EnableLocalLogin = local,
+                    ReturnUrl = returnUrl,
+                    Username = context?.LoginHint,
+                };
+
+                if (!local)
+                {
+                    vm.ExternalProviders = new[] { new ExternalProvider { AuthenticationScheme = context.IdP } };
+                }
+
+                return vm;
+            }
+
+            var schemes = await schemeProvider.GetAllSchemesAsync();
+
+            var providers = schemes
+                .Where(x => x.DisplayName != null)
+                .Select(x => new ExternalProvider
+                {
+                    DisplayName = x.DisplayName ?? x.Name,
+                    AuthenticationScheme = x.Name
+                }).ToList();
+
+            var allowLocal = true;
+            if (context?.Client.ClientId != null)
+            {
+                var client = await clientStore.FindEnabledClientByIdAsync(context.Client.ClientId);
+                if (client != null)
+                {
+                    allowLocal = client.EnableLocalLogin;
+
+                    if (client.IdentityProviderRestrictions != null && client.IdentityProviderRestrictions.Any())
+                    {
+                        providers = providers.Where(provider => client.IdentityProviderRestrictions.Contains(provider.AuthenticationScheme)).ToList();
+                    }
+                }
+            }
+
+            return new LoginViewModel
+            {
+                AllowRememberLogin = AccountOptions.AllowRememberLogin,
+                EnableLocalLogin = allowLocal && AccountOptions.AllowLocalLogin,
+                ReturnUrl = returnUrl,
+                Username = context?.LoginHint,
+                ExternalProviders = providers.ToArray()
+            };
+        }
+
+        private async Task<LoginViewModel> BuildLoginViewModelAsync(LoginInputModel model)
+        {
+            var vm = await BuildLoginViewModelAsync(model.ReturnUrl);
+            vm.Username = model.Username;
+            vm.RememberLogin = model.RememberLogin;
+            return vm;
         }
 
         private async Task<LogoutViewModel> BuildLogoutViewModelAsync(string logoutId)
