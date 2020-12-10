@@ -30,21 +30,12 @@ namespace DoctorHouse.IdentityServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllersWithViews();
-
-            //var builder = services.AddIdentityServer()
-            //    .AddInMemoryIdentityResources(Config.IdentityResources)
-            //    .AddInMemoryApiScopes(Config.ApiScopes)
-            //    .AddInMemoryClients(Config.Clients)
-            //    //.AddInMemoryClients(ConfigGlobal.Clients)
-            //    .AddTestUsers(TestUsers.Users);
-
-            //builder.AddDeveloperSigningCredential();
+            services.AddControllersWithViews();
 
             services.AddDbContext<EFContext>(options =>
                                                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<DbUser, DbRole>()
+            services.AddIdentity<DbUser, DbRole>(options => options.Stores.MaxLengthForKeys = 128)
                     .AddEntityFrameworkStores<EFContext>()
                     .AddDefaultTokenProviders();
 
@@ -53,15 +44,17 @@ namespace DoctorHouse.IdentityServer
                 options.ValidationInterval = TimeSpan.Zero;
             });
 
-            services.AddMvc();
+            // configure identity server with in-memory stores, keys, clients and resources
+            var builder = services.AddIdentityServer()
+                .AddInMemoryIdentityResources(Config.IdentityResources)
+                .AddInMemoryApiScopes(Config.ApiScopes)
+                .AddInMemoryClients(Config.Clients)
+                //.AddInMemoryClients(ConfigGlobal.Clients)
+                //.AddTestUsers(TestUsers.Users);
+                .AddAspNetIdentity<DbUser>();
 
-            services.AddIdentityServer()
-                    .AddDeveloperSigningCredential()
-                    .AddInMemoryPersistedGrants()
-                    .AddInMemoryIdentityResources(Config.IdentityResources)
-                    //.AddInMemoryApiResources(Config.ApiScopes)
-                    .AddInMemoryClients(Config.Clients)
-                    .AddAspNetIdentity<DbUser>();
+            // not recommended for production - you need to store your key material somewhere secure
+            builder.AddDeveloperSigningCredential();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
