@@ -114,15 +114,19 @@ namespace DoctorHouse.IdentityServer.Controllers
 
                         // only set explicit expiration here if user chooses "remember me". 
                         // otherwise we rely upon expiration configured in cookie middleware.
-                        AuthenticationProperties props = null;
-                        if (AccountOptions.AllowRememberLogin && model.RememberLogin)
+                        AuthenticationProperties props = new AuthenticationProperties
                         {
-                            props = new AuthenticationProperties
-                            {
-                                IsPersistent = true,
-                                ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration)
-                            };
+                            IsPersistent = true,
+                            ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration)
                         };
+                        //if (AccountOptions.AllowRememberLogin && model.RememberLogin)
+                        //{
+                        //    props = new AuthenticationProperties
+                        //    {
+                        //        IsPersistent = true,
+                        //        ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration)
+                        //    };
+                        //};
 
                         // issue authentication cookie with subject ID and username
                         var isuser = new IdentityServerUser(user.Id.ToString())
@@ -202,6 +206,8 @@ namespace DoctorHouse.IdentityServer.Controllers
             {
                 // delete local authentication cookie
                 await HttpContext.SignOutAsync();
+
+                await _signInManager.SignOutAsync();
 
                 // raise the logout event
                 await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));

@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,19 +40,21 @@ namespace DoctorHouse.IdentityServer
                     .AddEntityFrameworkStores<EFContext>()
                     .AddDefaultTokenProviders();
 
-            services.Configure<SecurityStampValidatorOptions>(options =>
-            {
-                options.ValidationInterval = TimeSpan.Zero;
-            });
+            //services.Configure<SecurityStampValidatorOptions>(options =>
+            //{
+            //    options.ValidationInterval = TimeSpan.Zero;
+            //});
 
             // configure identity server with in-memory stores, keys, clients and resources
             var builder = services.AddIdentityServer()
-                .AddInMemoryIdentityResources(Config.IdentityResources)
-                .AddInMemoryApiScopes(Config.ApiScopes)
-                .AddInMemoryClients(Config.Clients)
-                //.AddInMemoryClients(ConfigGlobal.Clients)
-                //.AddTestUsers(TestUsers.Users);
-                .AddAspNetIdentity<DbUser>();
+                                  .AddInMemoryIdentityResources(Config.IdentityResources)
+                                  .AddInMemoryApiScopes(Config.ApiScopes)
+                                  .AddInMemoryClients(Config.Clients)
+                                //.AddInMemoryClients(ConfigGlobal.Clients)
+                                //.AddTestUsers(TestUsers.Users);
+                                  .AddAspNetIdentity<DbUser>();
+
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
@@ -69,6 +72,8 @@ namespace DoctorHouse.IdentityServer
             app.UseRouting();
 
             app.UseIdentityServer();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
