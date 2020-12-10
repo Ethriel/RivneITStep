@@ -1,4 +1,5 @@
-﻿using IdentityServer4;
+﻿using IdentityModel;
+using IdentityServer4;
 using IdentityServer4.Models;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,11 @@ namespace DoctorHouse.IdentityServer
             {
                 new ApiScope("api1", "My API")
             };
+
+        public static IEnumerable<ApiResource> ApiResources => new List<ApiResource>
+        {
+
+        };
 
         public static IEnumerable<Client> Clients =>
             new List<Client>
@@ -49,7 +55,8 @@ namespace DoctorHouse.IdentityServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "api1"
+                        "api1",
+                        "roles"
                     },
                     AllowOfflineAccess = true,
                     RequirePkce = false
@@ -73,7 +80,8 @@ namespace DoctorHouse.IdentityServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "api1"
+                        "api1",
+                        "roles"
                     },
                     AllowOfflineAccess = true,
                     RequirePkce = false
@@ -85,6 +93,12 @@ namespace DoctorHouse.IdentityServer
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResource
+                {
+                    Name = "roles",
+                    DisplayName = "Roles",
+                    UserClaims = { JwtClaimTypes.Role }
+                }
             };
     }
 }

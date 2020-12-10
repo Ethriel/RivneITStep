@@ -50,6 +50,7 @@ namespace DoctorHouse.IdentityServer
                                   .AddInMemoryIdentityResources(Config.IdentityResources)
                                   .AddInMemoryApiScopes(Config.ApiScopes)
                                   .AddInMemoryClients(Config.Clients)
+                                  .AddInMemoryApiResources(Config.ApiResources)
                                 //.AddInMemoryClients(ConfigGlobal.Clients)
                                 //.AddTestUsers(TestUsers.Users);
                                   .AddAspNetIdentity<DbUser>();
