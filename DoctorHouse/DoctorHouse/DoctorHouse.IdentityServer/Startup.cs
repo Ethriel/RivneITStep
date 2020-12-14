@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace DoctorHouse.IdentityServer
@@ -31,10 +33,14 @@ namespace DoctorHouse.IdentityServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
             services.AddControllersWithViews();
 
             services.AddDbContext<EFContext>(options =>
-                                                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                                                options.UseNpgsql(connectionString));
 
             services.AddIdentity<DbUser, DbRole>(options => options.Stores.MaxLengthForKeys = 128)
                     .AddEntityFrameworkStores<EFContext>()
@@ -47,12 +53,22 @@ namespace DoctorHouse.IdentityServer
 
             // configure identity server with in-memory stores, keys, clients and resources
             var builder = services.AddIdentityServer()
-                                  .AddInMemoryIdentityResources(Config.IdentityResources)
-                                  .AddInMemoryApiScopes(Config.ApiScopes)
-                                  .AddInMemoryClients(Config.Clients)
-                                  .AddInMemoryApiResources(Config.ApiResources)
-                                //.AddInMemoryClients(ConfigGlobal.Clients)
-                                //.AddTestUsers(TestUsers.Users);
+                                  .AddConfigurationStore(options =>
+                                  {
+                                       options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                                       sql => sql.MigrationsAssembly(migrationsAssembly));
+                                  })
+                                  .AddOperationalStore(options =>
+                                  {
+                                       options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                                       sql => sql.MigrationsAssembly(migrationsAssembly));
+                                  })
+                                  //.AddInMemoryIdentityResources(Config.IdentityResources)
+                                  //.AddInMemoryApiScopes(Config.ApiScopes)
+                                  //.AddInMemoryClients(Config.Clients)
+                                  //.AddInMemoryApiResources(Config.ApiResources)
+                                  //.AddInMemoryClients(ConfigGlobal.Clients)
+                                  //.AddTestUsers(TestUsers.Users);
                                   .AddAspNetIdentity<DbUser>()
                                   .AddProfileService<ProfileService>();
 

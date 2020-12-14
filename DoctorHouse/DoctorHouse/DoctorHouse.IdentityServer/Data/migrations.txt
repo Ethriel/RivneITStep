@@ -1,0 +1,9 @@
+﻿add-migration Initial_PersistantGrantDb -Context PersistedGrantDbContext -OutputDir Data/PersistantGrantDb
+
+update-database -Context PersistedGrantDbContext
+
+
+
+add-migration Initial_ConfigurationDb -Context ConfigurationDbContext -OutputDir Data/ConfigurationDb
+
+update-database -Context ConfigurationDbContext
