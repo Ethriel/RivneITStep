@@ -53,7 +53,8 @@ namespace DoctorHouse.IdentityServer
                                   .AddInMemoryApiResources(Config.ApiResources)
                                 //.AddInMemoryClients(ConfigGlobal.Clients)
                                 //.AddTestUsers(TestUsers.Users);
-                                  .AddAspNetIdentity<DbUser>();
+                                  .AddAspNetIdentity<DbUser>()
+                                  .AddProfileService<ProfileService>();
 
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 

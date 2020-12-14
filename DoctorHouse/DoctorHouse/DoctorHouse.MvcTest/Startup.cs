@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace DoctorHouse.MvcTest
@@ -51,6 +52,7 @@ namespace DoctorHouse.MvcTest
                     options.Scope.Add("api1");
                     options.Scope.Add("offline_access");
                     options.ClaimActions.MapJsonKey("website", "website");
+                    options.ClaimActions.MapJsonKey(ClaimTypes.Role, ClaimTypes.Role);
                 });
 
             services.AddAuthorization();
