@@ -1,5 +1,6 @@
 using DoctorHouse.DLL;
 using DoctorHouse.DLL.Entity;
+using DoctorHouse.IdentityServer.Helper;
 using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,8 +35,10 @@ namespace DoctorHouse.IdentityServer
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var PersistantGrantString = Configuration.GetConnectionString("PersistantGrantConnection");
+            var ConfigurationDbString = Configuration.GetConnectionString("ConfigurationDbConnection");
 
-            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            var migrationsAssembly = typeof(EFContext).GetTypeInfo().Assembly.GetName().Name;
 
             services.AddControllersWithViews();
 
@@ -55,12 +58,12 @@ namespace DoctorHouse.IdentityServer
             var builder = services.AddIdentityServer()
                                   .AddConfigurationStore(options =>
                                   {
-                                       options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                                       options.ConfigureDbContext = b => b.UseSqlServer(PersistantGrantString,
                                        sql => sql.MigrationsAssembly(migrationsAssembly));
                                   })
                                   .AddOperationalStore(options =>
                                   {
-                                       options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                                       options.ConfigureDbContext = b => b.UseSqlServer(ConfigurationDbString,
                                        sql => sql.MigrationsAssembly(migrationsAssembly));
                                   })
                                   //.AddInMemoryIdentityResources(Config.IdentityResources)
@@ -99,6 +102,8 @@ namespace DoctorHouse.IdentityServer
             {
                 endpoints.MapDefaultControllerRoute();
             });
+
+            //InitializeIdentityContexts.Init(app.ApplicationServices);
         }
     }
 }
